@@ -29,11 +29,11 @@ Por esto es que se tomó la decisión de desarrollar para este Trabajo Final, un
 
 \section{Alcance y objetivos}
 
-Explicar que se pretende obtener finalizado el desarrollo.
+El objetivo de este trabajo final fue de desarrollar un prototipo que realizara las funciones de muestrear, guardar y mostrar en tiempo real, los datos adquiridos por los sensores del motor. 
 
 \section{Estado del arte}
 
-Actualmente en el mercado existen productos de características y funcionalidades similares aunque están orientados más a un mercado de competición. Para poder hacer una comparación, se eligieron los productos más básicos de dos marcas distintas. Uno es el Fueltech-FT300, que puede verse en la \ref{fig:comparativa} \subref{fig:fueltech},  y el otro es el HT-193000 de Halltech, visto en la \subref{fig:halltech}. La tabla uno hace una comparativa entre estos productos y el dispositivo desarrollado para el Trabajo Final.
+Actualmente en el mercado existen productos de características y funcionalidades similares. Para poder hacer una comparación, se eligieron los productos de entrada de dos marcas distintas. Uno es el Fueltech-FT300, que puede verse en la figura \ref{fig:comparativa} \subref{fig:fueltech},  y el otro es el HT-193000 de Halltech, visto en la figura \ref{fig:comparativa}\subref{fig:halltech}. La tabla \ref{tab:comparativa} hace una comparativa entre estos productos y el dispositivo desarrollado para el Trabajo Final, enlistando sus funcionalidades y características. Cabe destacar que al momento de escribir esta memoria, no existen un producto de estas características que esté diseñado o fabricado en Argentina.
 
 \begin{figure}[htpb]
 \centering
@@ -56,5 +56,26 @@ Actualmente en el mercado existen productos de características y funcionalidade
 \end{figure}
 
 \vspace{25px}
+
+\begin{table}[h]
+	\centering
+	\caption[caption corto]{Tabla comparativa entre dispositivos}
+	\begin{tabular}{l c c c}    
+		\toprule
+		\textbf{ }     & \textbf{Halltech HT-193000} & \textbf{Fueltech-300} & \textbf{Trabajo Final}\\
+		\midrule
+		Entradas temp.			&  0 &   2 &  3\\
+		Presión de aceite		& Si &  Si & Si\\
+		Presión de combustible	& Si &  Si & No\\
+		Presión de admisión		& Si &  Si & No\\
+		Sonda Lambda			& Si &  Si & Si\\
+		R.P.M.					& Si &  Si & Si\\
+		Entradas analógicas		& 11 &  0  &  0\\
+		Control de inyección	& Si &  Si & No\\
+		\bottomrule
+		\hline
+	\end{tabular}
+	\label{tab:comparativa}
+\end{table}
 
 
