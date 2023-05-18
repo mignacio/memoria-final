@@ -55,40 +55,6 @@ Quedan excluídas las siguientes tareas para una siguiente etapa del proyecto:
 
 La selección de los sensores a utilizar no formó parte de el Trabajo Final porque los sensores fueron seleccionados previo al comienzo del desarrollo.
 
-\subsection{Requerimientos}
-El Trabajo Final fue planificado según los siguientes requisitos que se divieron en cuatro grupos: Requerimientos generales del proyecto; requerimientos de la interfáz gráfica; requerimientos de la parte adquisidora de datos y requerimientos de la comunicación entre las partes.
-
-Los requerimientos generales del proyecto son:
-\begin{itemize}
-\item REQ-GEN-001: Todo el código fuente del proyecto será almacenado bajo un sistema de control de versiones GIT.
-\item REQ-GEN-002: La documentación del código fuente del sfotware embebidos será llevada a cabo en los comentarios, siguiendo el formato de Doxygen.
-\item REQ-GEN-003: La documentación del software para la interfaz gráfica también será llevada a cabo en los comentarios. El formato será elegido por el responsable del proyecto.
-\end{itemize}
-
-Requerimientos de la interfáz gráfica:
-\begin{itemize}
-\item REQ-GUI-001: La interfaz gráfica deberá poder mostrar figuras con la información de todos los sensores a la vez.
-\item REQ-GUI-002: El usuario tiene que poder elegir qué sensores ver al mismo tiempo y cuáles no desea ver.
-\item REQ-GUI-003: El usuario tiene que poder definir alarmas por valor máximo, para cada una de las variables.
-\item REQ-GUI-004: Las alarmas serán sonores y visuales. El estilo de las alarmas será definido por el cliente durante el proceso de desarrollo de la interfáz gráfica.
-\end{itemize}
-
-Requerimientos de la parte adquisidora:
-\begin{itemize}
-\item REQ-ADQ-001: El sistema tiene que adquirir la temperatura de los gases de admisión y escape, con un rango de temperatura entre 0\degree C y 400 \degree C y con una resolución menor igual a 0,5\degree C. Con una tasa de muestreo mayor o igual a 1hz.
-\item REQ-ADQ-002: El sistema tiene que adquirir la temperatura del aceite del motor, con un rango de temperatura entre 0\degree C y 400\degree C y una resolución menor igual a 0,5\degree C. Con una tasa de muestreo mayor igual a 1hz.
-\item REQ-ADQ-003: El sistema tiene que adquirir la velocidad de giro del motor, en un rango entre 0 y 20.000 revoluciones por minuto, con una resolución menor igual a 500 r.p.m. Con una tasa de muestreo mayor igual a 5hz.
-\item REQ-ADQ-004: El sistema tiene que adquirir la proporción de oxígeno en los gases de escape llamada lambda, con un rango de 0 a 2 y una resolución menor igual a 0,1 lambda.
-\item REQ-ADQ-005: El sistema tiene que adquirir la presión de aceite del motor, con un rango de 0 a 100 psi y con una resolución menor igual a 1 psi.
-\item REQ-ADQ-006: El sistema debe comenzar a transmitir a la interfaz gráfica la información obtenida en un tiempo no mayor a 1 segundo transcurrido el proceso de adquisición.
-\end{itemize}
-
-Requerimientos de la comunicación entre las partes del sistema:
-\begin{itemize}
-\item REQ-COMM-001: Se permitirá que se pierda hasta 1 paquete de cada 100 paquetes transmitidos.
-\end{itemize}
-
-
 \section{Estado del arte}
 
 Actualmente en el mercado existen productos de características y funcionalidades similares. Para poder hacer una comparación se eligieron los productos de entrada de dos marcas distintas. Uno es el Fueltech FT-300, que puede verse en la figura \ref{fig:comparativa} \subref{fig:fueltech},  y el otro es el HT-193000 de Halltech, visto en la figura \ref{fig:comparativa}\subref{fig:halltech}. La tabla \ref{tab:comparativa} hace una comparativa entre estos productos y el dispositivo desarrollado para el Trabajo Final, enlistando sus funcionalidades y características. Cabe destacar que al momento de escribir esta memoria, no existen un producto de estas características que esté diseñado o fabricado en Argentina.
