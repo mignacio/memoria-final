@@ -1,8 +1,8 @@
 % Chapter 1
 \chapter{Introducción general} % Main chapter title
 
-Este capitulo explica los motivos detrás de la decisión de realizar este Trabajo Final. 
-Enumera los alcances y requerimientos del proyecto. Y Realiza una comparación entre el dispositivo desarrollado y productos de características similares que están disponibles en el mercado.
+Este capítulo explica los motivos detrás de la decisión de realizar este trabajo final. 
+Enumera los alcances y requerimientos del proyecto. Y realiza una comparación entre el dispositivo desarrollado y productos de características similares que están disponibles en el mercado.
 
 \label{Chapter1} % For referencing the chapter elsewhere, use \ref{Chapter1} 
 \label{IntroGeneral}
@@ -24,17 +24,17 @@ Enumera los alcances y requerimientos del proyecto. Y Realiza una comparación e
 %----------------------------------------------------------------------------------------
 \section{Motivación}
 
-Desde el año 1991 en adelante, todos los fabricantes de vehículos de combustión interna están obligados a incluir en sus vehículos un sistema electrónico de diagnóstico. Este sistema, conocido por sus siglas en inglés como OBD (On-Board Diagnostics), realiza las tareas de muestrear sensores que están conectados físicamente sobre el motor y alertar al conductor, a través de un indicador en el tablero, cuando el motor no está funcionando dentro de los parámetros de operación. También mantiene un registro interno de los fallos ocurridos durante la vida del mismo, para luego ser descargado por el mecánico encargado de realizar tareas de reparación o puesta a punto, y así facilitar su trabajo.
+Desde el año 1991 en adelante, todos los fabricantes de vehículos de combustión interna están obligados a incluir en sus vehículos un sistema electrónico de diagnóstico. Este sistema, conocido por sus siglas en inglés como OBD {\it(On-Board Diagnostics)}, realiza las tareas de muestrear sensores que están conectados físicamente sobre el motor y alertar al conductor, a través de un indicador en el tablero, cuando el motor no está funcionando dentro de los parámetros de operación. También mantiene un registro interno de los fallos ocurridos durante la vida del mismo, para luego ser descargado por el mecánico encargado de realizar tareas de reparación o puesta a punto, y así facilitar su trabajo.
 Actualmente existen grupos de entusiastas y coleccionistas que poseen vehículos fabricados antes de que el sistema OBD se haga obligatorio. Y por esa razón, no tienen la posibilidad de hacer un monitoreo del funcionamiento del motor de su vehículo. Tampoco es posible mantener un registro de si hubo eventos de fallas o momentos de operación fuera de rango, información útil para su mantenimiento preventivo.
-Por esto es que se tomó la decisión de desarrollar para este Trabajo Final, un dispositivo que cumpla las mismas funciones que un OBD, pero para vehículos antiguos que no tienen instalado dicho sistema de fábrica.
+Por esto es que se tomó la decisión de desarrollar un dispositivo que cumpla las mismas funciones que un OBD, pero para vehículos antiguos que no tienen instalado dicho sistema de fábrica.
 
 \section{Alcance y objetivos}
 
-El objetivo de este trabajo final fue de desarrollar un prototipo que realizara las funciones de muestrear, guardar y mostrar en tiempo real, los datos adquiridos por los sensores del motor.
+El objetivo de este trabajo fue de desarrollar un prototipo que realizara las funciones de muestrear, guardar y mostrar en tiempo real, los datos adquiridos por los sensores del motor.
 
 \subsection{Alcances}
 
-Los alcances de el Trabajo Final son:
+Los alcances son:
 \begin{itemize}
 \item La elección de componentes electrónicos
 \item El diseño del circuito para amplificar las señales de los sensores.
@@ -45,19 +45,11 @@ Los alcances de el Trabajo Final son:
 \item Los ensayos de verificación y validación con el prototipo.
 \end{itemize}
 
-Quedan excluídas las siguientes tareas para una siguiente etapa del proyecto:
-\begin{itemize}
-\item La elección o desarrollo de un gabinete para la parte adquisidora.
-\item El desarrollo de los componentes de montaje del sistema adquisidor.
-\item El montaje del dispositivo para la interfáz gráfica.
-\item Desarrollo del embalaje y documentación acompañante (e.g.: manual de usuario, prospecto)
-\end{itemize}
-
-La selección de los sensores a utilizar no formó parte de el Trabajo Final porque los sensores fueron seleccionados previo al comienzo del desarrollo.
+La selección de los sensores a utilizar no formó parte los alcances porque los sensores fueron seleccionados previo al comienzo del desarrollo.
 
 \section{Estado del arte}
 
-Actualmente en el mercado existen productos de características y funcionalidades similares. Para poder hacer una comparación se eligieron los productos de entrada de dos marcas distintas. Uno es el Fueltech FT-300, que puede verse en la figura \ref{fig:comparativa} \subref{fig:fueltech},  y el otro es el HT-193000 de Halltech, visto en la figura \ref{fig:comparativa}\subref{fig:halltech}. La tabla \ref{tab:comparativa} hace una comparativa entre estos productos y el dispositivo desarrollado para el Trabajo Final, enlistando sus funcionalidades y características. Cabe destacar que al momento de escribir esta memoria, no existen un producto de estas características que esté diseñado o fabricado en Argentina.
+Actualmente, existen en el mercado productos de características y funcionalidades similares. Para poder hacer una comparación se eligieron los productos de entrada de dos marcas distintas. Uno es el Fueltech FT-300, que puede verse en la figura \ref{fig:comparativa} \subref{fig:fueltech},  y el otro es el HT-193000 de Halltech, visto en la figura \ref{fig:comparativa}\subref{fig:halltech}. La tabla \ref{tab:comparativa} hace una comparativa entre estos productos y el dispositivo desarrollado para el Trabajo Final, enlistando sus funcionalidades y características. Cabe destacar que al momento de escribir esta memoria, no existen un producto de estas características que esté diseñado o fabricado en Argentina.
 
 \begin{figure}[htpb]
 \centering
@@ -81,24 +73,24 @@ Actualmente en el mercado existen productos de características y funcionalidade
 \hfil
 \begin{table}[h]
 	\centering
-	\caption[Tabla comparativa entre dispositivos]{Tabla comparativa entre dispositivos}
+	\caption[Tabla comparativa entre dispositivos.]{Tabla comparativa entre dispositivos}
 	\centering
 	\begin{tabular}{l c c c}    
 		\toprule
-		\textbf{Característica }     & \textbf{HT-193000} & \textbf{FT-300} & \textbf{Trabajo Final}\\
+		\textbf{Característica }     & \textbf{HT-193000} & \textbf{FT-300} & \textbf{Prototipo desarrollado}\\
 		\midrule
 		Entradas temperatura	&  0 &   2 &  3\\
-		Presión de aceite		& Si &  Si & Si\\
-		Presión de combustible	& Si &  Si & No\\
-		Presión de admisión		& Si &  Si & No\\
-		Sonda Lambda			& Si &  Si & Si\\
-		R.P.M.					& Si &  Si & Si\\
+		Presión de aceite		& Sí &  Sí & Sí\\
+		Presión de combustible	& Sí &  Sí & No\\
+		Presión de admisión		& Sí &  Sí & No\\
+		Sonda Lambda			& Sí &  Sí & Sí\\
+		R.P.M.					& Sí &  Sí & Sí\\
 		Entradas analógicas		& 11 &  0  &  0\\
-		Control de inyección	& Si &  Si & No\\
+		Control de inyección	& Sí &  Sí & No\\
 		Interfáz gráfica		& No &  Matriz de puntos & Pantalla LCD \\
 		\bottomrule
 	\end{tabular}
 	\label{tab:comparativa}
 \end{table}
 
-Como se puede ver de la tabla \ref{tab:comparativa} el prototipo desarrollado no posee entradas para presión de combustible, presión de admisión y tampoco posee control de inyección, como los otros dos productos. Se decidió no implementar estas características para abaratar costos y no alargar el tiempo de desarrollo. La ventaja que tiene el prototipo es que tiene una pantalla LCD para mostrar las gráficas de las evoluciones de las variables en el tiempo.
+Como se puede ver de la tabla \ref{tab:comparativa}, el prototipo desarrollado no posee entradas para presión de combustible, presión de admisión y tampoco posee control de inyección, como los otros dos productos. Se decidió no implementar estas características para abaratar costos y no alargar el tiempo de desarrollo. La ventaja que tiene el prototipo es que tiene una pantalla LCD para mostrar las gráficas de las evoluciones de las variables en el tiempo.

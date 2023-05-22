@@ -10,7 +10,7 @@ Un motor de combustión interna, o motor a explosión, es un tipo de máquina qu
 
 En una combustión completa la totalidad del combustible es oxidado y entonces su eficiencia es máxima. Para que una combustión sea completa se tiene que cumplir la condición de que la proporción por peso de aire y combustible sea igual a su proporción estequiométrica. En un motor de gasolina esta proporción es de 14,7 partes de aire por 1 parte de combustible.
 
-A esta proporción se la llama factor lambda y se designa con la letra griega \lambda. Entonces para poder operar un motor de forma eficiente, se debe controlar la cantidad de combustible utilizado en cada proceso de combustión según el factor lambda
+A esta proporción se la llama factor lambda y se designa con la letra griega $\lambda$ . Entonces para poder operar un motor de forma eficiente, se debe controlar la cantidad de combustible utilizado en cada proceso de combustión según el factor lambda.
 
 \section{Descripción general del sistema}
 
@@ -25,7 +25,7 @@ El desarrollo del Trabajo Final fue basado en las historias de usuario y los req
 En la planificación del proyecto, se obtuvieron historias de usuario según un cliente interesado en instalar este dispositivo en su vehículo antiguo. Las historias compiladas son las siguientes:
 
 \begin{itemize}
-\item Como cliente quiero poder visualizar en una pantalla la ifnromación de los sensores en tiempo real en un mismo gráfico lineal para poder ver la evolución de las variables de los sensores.
+\item Como cliente quiero poder visualizar en una pantalla la información de los sensores en tiempo real en un mismo gráfico lineal para poder ver la evolución de las variables de los sensores.
 \item Como cliente quiero poder definir la escala del eje temporal del gráfico lineal, y elegir entre cinco valores distintos. (1, 10, 30, 60 y 120 minutos por división) para poder ver con detalle fenómenos de corta y larga duración
 \item Como cliente quiero poder elegir qué sensores deben ser mostrados en pantalla y cuáles no, para poder darle prioridad a la información que es más relevante en ese momento.
 \item Como cliente quiero poder definir niveles para cada sensor individualmente y que suene una alarma cuando algún valor supere dicho nivel para ser notificado al instante de que algo no funciona adecuadamente.
@@ -46,23 +46,23 @@ Los requerimientos generales del proyecto son:
 
 Requerimientos de la interfáz gráfica:
 \begin{itemize}
-\item REQ-GUI-001: La interfaz gráfica deberá poder mostrar figuras con la información de todos los sensores a la vez.
-\item REQ-GUI-002: El usuario tiene que poder elegir qué sensores ver al mismo tiempo y cuáles no desea ver.
-\item REQ-GUI-003: El usuario tiene que poder definir alarmas por valor máximo, para cada una de las variables.
-\item REQ-GUI-004: Las alarmas serán sonores y visuales. El estilo de las alarmas será definido por el cliente durante el proceso de desarrollo de la interfáz gráfica.
+\item REQ-GUI-001: la interfaz gráfica deberá poder mostrar figuras con la información de todos los sensores a la vez.
+\item REQ-GUI-002: el usuario tiene que poder elegir qué sensores ver al mismo tiempo y cuáles no desea ver.
+\item REQ-GUI-003: el usuario tiene que poder definir alarmas por valor máximo, para cada una de las variables.
+\item REQ-GUI-004: las alarmas serán sonores y visuales. El estilo de las alarmas será definido por el cliente durante el proceso de desarrollo de la interfáz gráfica.
 \end{itemize}
 
 Requerimientos de la parte adquisidora:
 \begin{itemize}
-\item REQ-ADQ-001: El sistema tiene que adquirir la temperatura de los gases de admisión y escape, con un rango de temperatura entre 0\degree C y 400 \degree C y con una resolución menor igual a 0,5\degree C. Con una tasa de muestreo mayor o igual a 1hz.
-\item REQ-ADQ-002: El sistema tiene que adquirir la temperatura del aceite del motor, con un rango de temperatura entre 0\degree C y 400\degree C y una resolución menor igual a 0,5\degree C. Con una tasa de muestreo mayor igual a 1hz.
-\item REQ-ADQ-003: El sistema tiene que adquirir la velocidad de giro del motor, en un rango entre 0 y 20.000 revoluciones por minuto, con una resolución menor igual a 500 r.p.m. Con una tasa de muestreo mayor igual a 5hz.
-\item REQ-ADQ-004: El sistema tiene que adquirir la proporción de oxígeno en los gases de escape llamada lambda, con un rango de 0 a 2 y una resolución menor igual a 0,1 lambda.
-\item REQ-ADQ-005: El sistema tiene que adquirir la presión de aceite del motor, con un rango de 0 a 100 psi y con una resolución menor igual a 1 psi.
-\item REQ-ADQ-006: El sistema debe comenzar a transmitir a la interfaz gráfica la información obtenida en un tiempo no mayor a 1 segundo transcurrido el proceso de adquisición.
+\item REQ-ADQ-001: el sistema tiene que adquirir la temperatura de los gases de admisión y escape, con un rango de temperatura entre 0 \degree C y 400 \degree C y con una resolución menor igual a 0,5 \degree C. Con una tasa de muestreo mayor o igual a 1 hz.
+\item REQ-ADQ-002: el sistema tiene que adquirir la temperatura del aceite del motor, con un rango de temperatura entre 0 \degree C y 400 \degree C y una resolución menor igual a 0,5 \degree C. Con una tasa de muestreo mayor igual a 1 hz.
+\item REQ-ADQ-003: el sistema tiene que adquirir la velocidad de giro del motor, en un rango entre 0 y 20.000 revoluciones por minuto, con una resolución menor igual a 500 r.p.m. Con una tasa de muestreo mayor igual a 5 hz.
+\item REQ-ADQ-004: el sistema tiene que adquirir la proporción de oxígeno en los gases de escape llamada lambda, con un rango de 0 a 2 y una resolución menor igual a 0,1 lambda.
+\item REQ-ADQ-005: el sistema tiene que adquirir la presión de aceite del motor, con un rango de 0 a 100 psi y con una resolución menor igual a 1 psi.
+\item REQ-ADQ-006: el sistema debe comenzar a transmitir a la interfaz gráfica la información obtenida en un tiempo no mayor a 1 segundo transcurrido el proceso de adquisición.
 \end{itemize}
 
 Requerimientos de la comunicación entre las partes del sistema:
 \begin{itemize}
-\item REQ-COMM-001: Se permitirá que se pierda hasta 1 paquete de cada 100 paquetes transmitidos.
+\item REQ-COMM-001: se permitirá que se pierda hasta 1 paquete de cada 100 paquetes transmitidos.
 \end{itemize}
