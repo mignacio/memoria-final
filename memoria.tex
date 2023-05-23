@@ -25,7 +25,11 @@ headsepline, % Uncomment to get a line under the header
 
 \usepackage{subcaption}
 \usepackage{gensymb}
-
+\usepackage[backend=bibtex,
+			natbib=true,
+			style=numeric,
+			sorting=none]
+{biblatex}
 
 %----------------------------------------------------------------------------------------
 %	INFORMACIÓN DE LA MEMORIA
@@ -137,7 +141,7 @@ Esta sección es para agradecimientos personales y es totalmente \textbf{OPCIONA
 % Incluir los apéndices de la memoria como archivos separadas desde la carpeta Appendices
 % Descomentar las líneas a medida que se escriben los apéndices
 
-%\include{Appendices/AppendixA}
+\include{Appendices/AppendixA}
 %\include{Appendices/AppendixB}
 %\include{Appendices/AppendixC}
 

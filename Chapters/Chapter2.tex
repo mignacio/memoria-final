@@ -6,15 +6,25 @@ En este capítulo se explica en detalle el funcionamiento de un motor de combust
 
 \section{Funcionamiento de un motor de combustión interna}
 
-Un motor de combustión interna, o motor a explosión, es un tipo de máquina que obtiene energía mecánica a través de una reacción química conocida como combustión. La combustión es la oxidación rápida de materiales llamados combustibles en presencia de oxígeno, al que se le llama comburente. El resultado de esta reacción, cuando la reacción es completa, es dióxido de carbono, agua, y energía liberada en forma de calor y expansión gaseosa. Es la energía liberada en forma de expansión que es convertida en energía mecánica, y la energía liberada en forma de calor es disipada a la atmósfera.
+Un motor de combustión interna, o motor a explosión, es un tipo de máquina que obtiene energía mecánica a través de una reacción química conocida como combustión. La combustión es la oxidación rápida en presencia de oxígeno de materiales llamados combustibles. El resultado de esta reacción, cuando la reacción es completa, es dióxido de carbono, agua, y energía liberada en forma de calor y expansión gaseosa. Es la energía liberada en forma de expansión que es convertida en energía mecánica, y la energía liberada en forma de calor es disipada a la atmósfera. Cuando la combustión no es completa, ya sea por exceso de oxígeno o en su defecto, se producen otros compuestos parcialmente oxidados como el monóxido de carbono, cuando esto sucede la energía liberada es menor.
 
-En una combustión completa la totalidad del combustible es oxidado y entonces su eficiencia es máxima. Para que una combustión sea completa se tiene que cumplir la condición de que la proporción por peso de aire y combustible sea igual a su proporción estequiométrica. En un motor de gasolina esta proporción es de 14,7 partes de aire por 1 parte de combustible.
+Para que una combustión sea completa se tiene que cumplir la condición de que la proporción por peso de aire y combustible sea igual a su proporción estequiométrica. En un motor de gasolina esta proporción es de 14,7 partes de aire por 1 parte de combustible\citep{book-afr}.
 
-A esta proporción se la llama factor lambda y se designa con la letra griega $\lambda$ . Entonces para poder operar un motor de forma eficiente, se debe controlar la cantidad de combustible utilizado en cada proceso de combustión según el factor lambda.
+Se le llama factor lambda, denominado con la letra griega $\lambda$, a la relación entre la proporción aire y combustible actual con su proporción estequiométrica. Si la combustión ocurre con exceso de aire el factor lambda será mayor a 1, si ocurre con defecto de aire el factor será menor a 1, y si ocurre con la proporción justa será igual a 1.
+
+Se desarrollaron sensores capaces de medir el factor lambda para poder operar un motor de combustión interna eficientemente y también reducir emisiones de gases, como el monóxido de carbono.
+
+En la práctica, la eficiencia de un motor de combustión no sólo depende del factor lambda sino que otras variables físicas también influyen. 
 
 \section{Descripción general del sistema}
 
-Describir las partes que componen al sistema y su funcionamiento.
+El sistema desarrolado consiste de dos partes distintas. La parte adquisidora es un circuito controlado por microprocesador montado dentro del habitáculo del motor, a este circuito se conectan los sensores para adquirir las variables de interés. La información adquirisa por la parte adquisidora es transmitida a la interfaz gráfica por Bluetooth. La interfaz gráfica va instalada en la cabina del vehículo para que 
+
+\begin{figure}
+\includegraphics[width=\textwidth]{./Figures/diagrama-proyecto.png}
+\caption{Diagrama en bloques del sistema.}
+\label{fig:diagrama-de-bloques}
+\end{figure}
 
 \section{Historias de usuario y requerimientos}
 
