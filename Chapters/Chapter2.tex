@@ -2,25 +2,48 @@
 
 \label{Chapter2}
 
-En este capítulo se explica en detalle el funcionamiento de un motor de combustión interna y se describe el sistema de desarrollado, sus partes y la interacción entre ellas. Al final enlista las historias de usuario y requerimientos del proyecto.
+En este capítulo se explica en detalle el funcionamiento de un motor de combustión interna y se describe el sistema de desarrollado, sus partes y la interacción entre ellas. Al final los requerimientos del proyecto.
 
 \section{Funcionamiento de un motor de combustión interna} \label{func-motor}
 
-En la actualidad, el motor de combustión interna es el motor más utilizado en vehículos de transporte de cargas y pasajeros. Existen distintos tipos de motores que utilizan distintos tipos de combustibles. En esta sección se explicará específicamente sobre el funcionamiento de motores de pistón a gasolina.
+En la actualidad, el motor de combustión interna es el motor más utilizado en vehículos de transporte de cargas y pasajeros. Existen distintos tipos de motores que utilizan distintos tipos de combustibles. En esta sección se explicará específicamente sobre el funcionamiento de motores de pistón a gasolina de cuatro tiempos. Los motores de pistón utilizan un mecanismo llamado cigüeñal para convertir el movimiento lineal que el pistón recorre dentro de la cámara de combustión en un movimiento rotatorio que finalmente se transmite a las ruedas del vehículo a través de una transmisión.
+
+En dos revoluciones completas del cigüeñal el pistón pasa por cuatro etapas, representadas en la figura \ref{fig:motor-combustion}
+\begin{itemize}
+\item{Admisión:} Se ingresa a la cámara de combustión una mezcla de aire y combustible, gracias al movimiento hacia abajo del pistón que genera vacío dentro de la cámara.
+\item{Compresión:} El pistón se mueve hacia arriba comprimiendo la mezcla de aire y combustible, con esto también aumenta su temperatura.
+\item{Combustión:} A través de una chispa generada por una bujía se enciende la mezcla y se produce la combustión.
+\item{Escape:} La combustión genera gases que son evacuados de la cámara por el movimiento hacia arriba del pistón. Luego de esta etapa final el proceso de repite y el pistón vuelve a la etapa de admisión.
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=.9\textwidth]{./Figures/motor-combustion.png}
+\caption{Representación gráfica de las etapas de un motor de combustión de cuatro tiempos.}
+\label{fig:motor-combustion}
+\end{figure}
 
 \subsection{Proceso de combustión y su eficiencia}
 
 Un motor de combustión interna, o motor a explosión, es un tipo de máquina que obtiene energía mecánica a través de una reacción química conocida como combustión. La combustión es la oxidación rápida en presencia de oxígeno de materiales llamados combustibles. El resultado de esta reacción, cuando la reacción es completa es, dióxido de carbono, agua, y energía liberada en forma de calor y expansión gaseosa. Es la energía liberada en forma de expansión gaseosa que es convertida en energía mecánica, y la energía liberada en forma de calor es disipada a la atmósfera. Cuando la combustión no es completa, ya sea por exceso o defecto de oxígeno, se producen otros compuestos parcialmente oxidados como el monóxido de carbono, cuando esto sucede la cantidad total de energía liberada es menor.
 
-Para que una combustión sea completa se tiene que cumplir la condición de que la proporción por peso de oxígeno y combustible sea igual a su proporción estequiométrica. En un motor de gasolina esta proporción es de 14,7 partes de oxígeno por 1 parte de combustible\citep{book-afr}. Se le llama factor lambda, denominado con la letra griega $\lambda$, a la relación entre la proporción oxígeno y combustible actual con su proporción estequiométrica. Si la combustión ocurre con exceso de oxígeno el factor lambda será mayor a 1, si ocurre con defecto de oxígeno el factor será menor a 1, y si ocurre con la proporción justa será igual a 1. Los sensores desarrollados para poder monitorear este factor son llamados sondas lambda. En los vehículos actuales, el monitoreo de este factor es utilizado para regular la cantidad de combustible inyectada en cada proceso de combustión, de esa forma es posible operar al motor de forma eficiente minimizando las emisiones de gases indeseados.
+Para que una combustión sea completa se tiene que cumplir la condición de que la proporción por peso de oxígeno y combustible sea igual a su proporción estequiométrica. En un motor de gasolina esta proporción es de 14,7 partes de oxígeno por 1 parte de combustible \citep{book-afr}. Se le llama factor lambda, denominado con la letra griega $\lambda$, a la relación entre la proporción oxígeno y combustible actual con su proporción estequiométrica. Si la combustión ocurre con exceso de oxígeno el factor lambda será mayor a 1, si ocurre con defecto de oxígeno el factor será menor a 1, y si ocurre con la proporción justa será igual a 1. Los sensores desarrollados para poder monitorear este factor son llamados sondas lambda. En los vehículos actuales, el monitoreo de este factor es utilizado para regular la cantidad de combustible inyectada en cada proceso de combustión, de esa forma es posible operar al motor de forma eficiente minimizando las emisiones de gases indeseados.
 
 Otra variable que afecta a la cantidad de combustible inyectada es la temperatura de los gases de admisión. La densidad de un gas depende de su temperatura y, como el volumen de la cámara de combustión es fijo, es posible calcular el peso total de oxígeno que puede caber dentro de la cámara y por lo tanto define la cantidad máxima de combustible que puede inyectarse. A menor temperatura del gas, su densidad aumenta y por lo tanto la cantidad de combustible que puede inyectarse para alcanzar la relación estequiométrica es mayor. Pero si la temperatura del gas es alta, la cantidad de combustible que puede inyectarse es menor y a menor cantidad de combustible la energía total entregada es menor.
 
 \subsection{Eficiencia mecánica y lubricación}
 
-Sólo una parte de la energía mecánica proveniente del proceso de combustión es convertida en energía cinética. Parte de esa energía se pierde por la fricción entre las partes móbiles que componen al motor. Para disminuir esta fricción se utilizan fluidos lubricantes, que funcionan impidiendo el contacto entre dos partes móbiles. La fricción entre las partes móbiles y el lubricante será menor que la fricción si las partes estuvieran en contacto, y al disminuir la fricción la energía perdida es menor. Para que el lubricante funcione adecuadamente su viscosidad tiene que estar dentro de un rango definido por el fabricante del motor, la misma es dependiente de la temperatura y por eso es importante monitorearla\cite{lubrication}. La temperatura de operación de un lubricante es indicada por su fabricante y su viscosidad es garantizada sólo dentro de ese margen de operación.
+Sólo una parte de la energía mecánica proveniente del proceso de combustión es convertida en energía cinética. Parte de esa energía se pierde por la fricción entre las partes móviles que componen al motor. Para disminuir esta fricción se utilizan fluidos lubricantes, que funcionan impidiendo el contacto entre dos partes móviles. La fricción entre las partes móviles y el lubricante será menor que la fricción si las partes estuvieran en contacto, y al disminuir la fricción la energía perdida es menor. Para que el lubricante funcione adecuadamente su viscosidad tiene que estar dentro de un rango definido por el fabricante del motor, la misma es dependiente de la temperatura y por eso es importante monitorearla \cite{lubrication}. La temperatura de operación de un lubricante es indicada por su fabricante y su viscosidad es garantizada sólo dentro de ese margen de operación.
 
-El lubricante es distribuido a las partes móbiles del motor a través de un circuito hidraulico cerrado. Este circuito consiste de conductos, un tanque de almacenamiento y una bomba hidraulica. La operación de esta bomba garantiza la renovación del lubricante ya que parte del lubricante se pierde por el movimiento de las partes del motor y tiene que ser recolectado y devuelto al tanque de almacenamiento. Una presión hidraúlica insuficiente puede ocasionar daños en el motor por falta de lubricación. Por eso la presión de aceite es monitoreada junto con la temperatura.
+El lubricante es distribuido a las partes móviles del motor a través de un circuito hidráulico cerrado. Este circuito consiste de conductos, un tanque de almacenamiento y una bomba hidráulica. La operación de esta bomba garantiza la renovación del lubricante ya que parte del lubricante se pierde por el movimiento de las partes del motor y tiene que ser recolectado y devuelto al tanque de almacenamiento. Una presión hidráulica insuficiente puede ocasionar daños en el motor por falta de lubricación. Por eso la presión de aceite es monitoreada junto con la temperatura.
+
+\subsection{Batería eléctrica}
+Los motores no pueden operar sin una fuente de energía eléctrica ya que necesitan esta energía para dos procesos importantes: el arranque o puesta en marcha y la ignición del proceso de combustión.
+Para arrancar un motor de combustión interna se utiliza un motor eléctrico que hace girar el cigüeñal y mueve al pistón por sus cuatro etapas. Una vez que se produce la combustión, la propia inercia del sistema hace que la operación sea sostenida. En aplicaciones móviles, el motor eléctrico es alimentado por una batería eléctrica, que por lo general son baterías de plomo y ácido con tensión nominal entre bornes de 12v. Una tensión baja de la batería puede causar que el motor eléctrico no tenga suficiente torque para hacer girar el cigüeñal, o no pueda hacerlo girar a la velocidad suficiente. Por otro lado, si la tensión de la batería disminuye demasiado al intentar arrancar un motor, esto puede indicar que la misma esta descargada o que la fricción del motor es muy grande debido a fallas mecánicas o falta de lubricación.
+
+La bujía que produce la chispa necesaria para iniciar la combustión también es alimentada a través de un circuito eléctrico por la batería del motor. Si la batería no tiene tensión suficiente, puede causar que la bujía no genere una chispa o que esta no alcance para encender la mezcla de aire y combustible.
+
+En un vehículo existen otros sub-sistemas que son alimentados por la batería del motor como: las luces, panel de información, sistema de audio. Y todos ellos dependen de que la tensión de la batería se encuentre dentro de sus valores nominales para un correcto funcionamiento.
 
 \section{Descripción general del sistema}
 
@@ -30,38 +53,22 @@ La interfaz está compuesta por una \textit{Single Board Computer} una pantalla 
 
 La figura \ref{fig:diagrama-de-bloques} es una representación en diagrama de bloques del sistema.
 
-\begin{figure}
+\begin{figure}[htpb]
+\centering
 \includegraphics[width=.9\textwidth]{./Figures/diagrama-proyecto.png}
 \caption{Diagrama en bloques del sistema.}
 \label{fig:diagrama-de-bloques}
 \end{figure}
 
-\section{Historias de usuario y requerimientos}
+\section{Requerimientos del proyecto}
 
-El desarrollo del trabajo final fue basado en las historias de usuario y los requerimientos fijados durante la etapa de planificación del proyecto.
-
-\subsection{Historias de usuario}\label{historias-usuario}
-
-En la planificación del proyecto, se obtuvieron historias de usuario según un cliente interesado en instalar este dispositivo en su vehículo antiguo. Las historias compiladas son las siguientes:
-
-\begin{itemize}
-\item Como cliente quiero poder visualizar en una pantalla la información de los sensores en tiempo real en un mismo gráfico lineal para poder ver la evolución de las variables de los sensores.
-\item Como cliente quiero poder definir la escala del eje temporal del gráfico lineal, y elegir entre cinco valores distintos. (1, 10, 30, 60 y 120 minutos por división) para poder ver con detalle fenómenos de corta y larga duración
-\item Como cliente quiero poder elegir qué sensores deben ser mostrados en pantalla y cuáles no, para poder darle prioridad a la información que es más relevante en ese momento.
-\item Como cliente quiero poder definir niveles para cada sensor individualmente y que suene una alarma cuando algún valor supere dicho nivel para ser notificado al instante de que algo no funciona adecuadamente.
-\item Como cliente quiero poder descargar toda la información recolectada en una tarjeta SD o pendrive, para poder analizarla en otro momento.
-\item Como cliente quiero que el sistema conmience a funcionar cuando se le da contacto al vehículo con la llave de ignición para poder ver en pantalla como funciona el motor durante el arranque.
-\end{itemize}
-
-\subsection{Requerimientos}
-
-A partir de las historias de usuario listadas en la sección \ref{historias-usuario} se crearon los requerimientos del proyecto detallados más adelante. Los requisitos se divieron en cuatro grupos: Requerimientos generales del proyecto; requerimientos de la interfáz gráfica; requerimientos de la parte adquisidora de datos y requerimientos de la comunicación entre las partes.
+El desarrollo del trabajo final fue basado en las historias de usuario y los requerimientos fijados durante la etapa de planificación del proyecto. Los requerimientos se dividieron en cuatro grupos: requerimientos generales del proyecto; requerimientos de la interfáz gráfica; requerimientos de la parte adquisidora de datos y requerimientos de la comunicación entre las partes.
 
 Los requerimientos generales del proyecto son:
 \begin{itemize}
-\item REQ-GEN-001: Todo el código fuente del proyecto será almacenado bajo un sistema de control de versiones GIT.
-\item REQ-GEN-002: La documentación del código fuente del sfotware embebidos será llevada a cabo en los comentarios, siguiendo el formato de Doxygen.
-\item REQ-GEN-003: La documentación del software para la interfaz gráfica también será llevada a cabo en los comentarios. El formato será elegido por el responsable del proyecto.
+\item REQ-GEN-001: todo el código fuente del proyecto será almacenado bajo un sistema de control de versiones GIT.
+\item REQ-GEN-002: la documentación del código fuente del software embebidos será llevada a cabo en los comentarios, siguiendo el formato de Doxygen.
+\item REQ-GEN-003: la documentación del software para la interfaz gráfica también será llevada a cabo en los comentarios. El formato será elegido por el responsable del proyecto.
 \end{itemize}
 
 Requerimientos de la interfáz gráfica:
@@ -86,3 +93,5 @@ Requerimientos de la comunicación entre las partes del sistema:
 \begin{itemize}
 \item REQ-COMM-001: se permitirá que se pierda hasta 1 paquete de cada 100 paquetes transmitidos.
 \end{itemize}
+
+\footnotetext{Imagen tomada de \cite{ft-300}}
