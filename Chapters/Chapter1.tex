@@ -40,7 +40,7 @@ Los alcances son:
 \item El diseño del circuito para amplificar las señales de los sensores.
 \item El diseño del circuito impreso.
 \item El desarrollo del firmware de la parte adquisidora.
-\item El desarrollo del software de la interfáz gráfica de usuario.
+\item El desarrollo del software de la interfaz gráfica de usuario.
 \item La confección de un primer prototipo.
 \item Los ensayos de verificación y validación con el prototipo.
 \end{itemize}
@@ -49,30 +49,32 @@ La selección de los sensores a utilizar no formó parte los alcances porque los
 
 \section{Estado del arte}
 
-Actualmente, existen en el mercado productos de características y funcionalidades similares. Para poder hacer una comparación se eligieron los productos de entrada de dos marcas distintas. Uno es el Fueltech FT-300 \citep{ft-300}, que puede verse en la figura \ref{fig:comparativa}\subref{fig:fueltech},  y el otro es el HT-193000 \citep{ht-193000} de Halltech, visto en la figura \ref{fig:comparativa}\subref{fig:halltech}. A este tipo de dispositivos se los conoce por sus siglas en inglés como ECU o \textit{Engine Control Unit}. La tabla \ref{tab:comparativa} hace una comparativa entre estos productos y el dispositivo desarrollado enlistando sus funcionalidades y características. Cabe destacar que al momento de escribir esta memoria, no existen un producto similar que esté diseñado o fabricado en Argentina.
+Actualmente, existen en el mercado productos de características y funcionalidades similares. Para poder hacer una comparación se eligieron los productos de entrada de dos marcas distintas. Uno es el Fueltech FT-300 \citep{ft-300}, que puede verse en la figura \ref{fig:comparativa}\subref{fig:fueltech},  y el otro es el HT-193000 \citep{ht-193000} de Halltech, visto en la figura \ref{fig:comparativa}\subref{fig:halltech}. A este tipo de dispositivos se los conoce por sus siglas en inglés como ECU o \textit{Engine Control Unit}. Una ECU es un dispositivo electrónico que recopila los datos de los sensores del motor y también otros como la posición del pedal acelerador, para determinar la cantidad de combustible a inyectar y el tiempo de ignición. Además también funcionan como OBD para realizar diagnóstico y registro de fallos.
+
+La tabla \ref{tab:comparativa} hace una comparativa entre estos productos y el dispositivo desarrollado enlistando sus funcionalidades y características. Cabe destacar que al momento de escribir esta memoria, no existen un producto similar que esté diseñado o fabricado en Argentina.
 
 \begin{figure}[htpb]
 \centering
 \begin{subfigure}{.4\textwidth}
 \centering
 \includegraphics[width=\textwidth]{./Figures/fueltech-ft300.jpg}
-\caption{Fueltech FT-300 \footnotemark{1}}
+\caption{Fueltech FT-300 \footnotemark[1]}
 \label{fig:fueltech}
 \end{subfigure}
 \hfill
 \begin{subfigure}{.5\textwidth}
 \centering
 \includegraphics[width=\textwidth]{./Figures/HT-193000_00.JPG}
-\caption{Halltech HT-193000 \footnotemark{2}}
+\caption{Halltech HT-193000 \footnotemark[2]}
 \label{fig:halltech}
 \end{subfigure}
 \hfill
-\caption{Fotografias de ambas ECUs, a la izquierda (A) se ve la ECU FT-300 de Fueltech, y a la derecha (B) se ve la ECU HT-193000 de Halltech.}
+\caption{Fotografías de ambas ECUs, a la izquierda (A) se ve la ECU FT-300 de Fueltech, y a la derecha (B) se ve la ECU HT-193000 de Halltech.}
 \label{fig:comparativa}
 \end{figure}
 
-\footnotetext{Imagen tomada de \cite{ft-300}}
-\footnotetext{Imagen tomada de \cite{ht-193000}}
+\footnotetext[1]{Imagen tomada de \cite{ft-300}}
+\footnotetext[2]{Imagen tomada de \cite{ht-193000}}
 \hfil
 
 
@@ -92,10 +94,12 @@ Actualmente, existen en el mercado productos de características y funcionalidad
 		R.P.M.					& Sí &  Sí & Sí\\
 		Entradas analógicas		& 11 &  0  &  0\\
 		Control de inyección	& Sí &  Sí & No\\
-		Interfáz gráfica		& No &  Matriz de puntos & Pantalla LCD táctil \\
+		Interfaz gráfica		& No &  Matriz de puntos & Pantalla LCD \\
+		Configuración			& WiFi & USB & Interfaz táctil \\ 
 		\bottomrule
 	\end{tabular}
 	\label{tab:comparativa}
 \end{table}
 
-Como se puede ver de la tabla \ref{tab:comparativa}, el prototipo desarrollado no posee entradas para presión de combustible, presión de admisión y tampoco posee control de inyección como los otros dos productos. Se decidió no implementar estas características para abaratar costos y no alargar el tiempo de desarrollo. La ventaja que tiene el prototipo es que tiene una pantalla LCD para mostrar las gráficas de las evoluciones de las variables en el tiempo.
+Como se puede ver de la tabla \ref{tab:comparativa}, el prototipo desarrollado no posee entradas para presión de combustible, presión de admisión, y lo más importante, tampoco posee control de inyección como los otros dos productos. El hecho de que el prototipo no realice control de inyección hace que no sea clasificado como ECU y sólo realiza las funciones de un sistema de diagnóstico de a bordo. 
+Se decidió no implementar estas características para abaratar costos y no alargar el tiempo de desarrollo. La ventajas que tiene el prototipo es que tiene una pantalla LCD para mostrar las gráficas de las evoluciones de las variables en el tiempo y puede configurarse por medio de la misma por su interfaz táctil. El FT-300 puede configurarse conectando una PC con un cable USB, el usuario configura al dispositivo usando un software que proporciona el fabricante. Y el HT-19300 se configura de la misma manera solo que el dispositivo funciona como un punto de acceso WiFi y la PC debe conectarse a la red del dipositivo para poder comunicarse.

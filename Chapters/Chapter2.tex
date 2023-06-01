@@ -16,10 +16,10 @@ En dos revoluciones completas del cigüeñal el pistón pasa por cuatro etapas, 
 \item{Escape:} La combustión genera gases que son evacuados de la cámara por el movimiento hacia arriba del pistón. Luego de esta etapa final el proceso de repite y el pistón vuelve a la etapa de admisión.
 \end{itemize}
 
-\begin{figure}
+\begin{figure}[htpb]
 \centering
 \includegraphics[width=.9\textwidth]{./Figures/motor-combustion.png}
-\caption{Representación gráfica de las etapas de un motor de combustión de cuatro tiempos.}
+\caption{Representación gráfica de las etapas de un motor de combustión de cuatro tiempos \protect\footnotemark[3].}
 \label{fig:motor-combustion}
 \end{figure}
 
@@ -31,6 +31,8 @@ Para que una combustión sea completa se tiene que cumplir la condición de que 
 
 Otra variable que afecta a la cantidad de combustible inyectada es la temperatura de los gases de admisión. La densidad de un gas depende de su temperatura y, como el volumen de la cámara de combustión es fijo, es posible calcular el peso total de oxígeno que puede caber dentro de la cámara y por lo tanto define la cantidad máxima de combustible que puede inyectarse. A menor temperatura del gas, su densidad aumenta y por lo tanto la cantidad de combustible que puede inyectarse para alcanzar la relación estequiométrica es mayor. Pero si la temperatura del gas es alta, la cantidad de combustible que puede inyectarse es menor y a menor cantidad de combustible la energía total entregada es menor.
 
+\footnote[3]{Imagen tomada de \cite{motor}}
+
 \subsection{Eficiencia mecánica y lubricación}
 
 Sólo una parte de la energía mecánica proveniente del proceso de combustión es convertida en energía cinética. Parte de esa energía se pierde por la fricción entre las partes móviles que componen al motor. Para disminuir esta fricción se utilizan fluidos lubricantes, que funcionan impidiendo el contacto entre dos partes móviles. La fricción entre las partes móviles y el lubricante será menor que la fricción si las partes estuvieran en contacto, y al disminuir la fricción la energía perdida es menor. Para que el lubricante funcione adecuadamente su viscosidad tiene que estar dentro de un rango definido por el fabricante del motor, la misma es dependiente de la temperatura y por eso es importante monitorearla \cite{lubrication}. La temperatura de operación de un lubricante es indicada por su fabricante y su viscosidad es garantizada sólo dentro de ese margen de operación.
@@ -39,11 +41,11 @@ El lubricante es distribuido a las partes móviles del motor a través de un cir
 
 \subsection{Batería eléctrica}
 Los motores no pueden operar sin una fuente de energía eléctrica ya que necesitan esta energía para dos procesos importantes: el arranque o puesta en marcha y la ignición del proceso de combustión.
-Para arrancar un motor de combustión interna se utiliza un motor eléctrico que hace girar el cigüeñal y mueve al pistón por sus cuatro etapas. Una vez que se produce la combustión, la propia inercia del sistema hace que la operación sea sostenida. En aplicaciones móviles, el motor eléctrico es alimentado por una batería eléctrica, que por lo general son baterías de plomo y ácido con tensión nominal entre bornes de 12v. Una tensión baja de la batería puede causar que el motor eléctrico no tenga suficiente torque para hacer girar el cigüeñal, o no pueda hacerlo girar a la velocidad suficiente. Por otro lado, si la tensión de la batería disminuye demasiado al intentar arrancar un motor, esto puede indicar que la misma esta descargada o que la fricción del motor es muy grande debido a fallas mecánicas o falta de lubricación.
+Para arrancar un motor de combustión interna se utiliza un motor eléctrico que hace girar el cigüeñal y mueve al pistón por sus cuatro etapas. Una vez que se produce la combustión, la propia inercia del sistema hace que la operación sea sostenida. En aplicaciones móviles, el motor eléctrico es alimentado por una batería eléctrica, que por lo general son baterías de plomo y ácido con tensión nominal entre bornes de 12 V. Una tensión baja de la batería puede causar que el motor eléctrico no tenga suficiente torque para hacer girar el cigüeñal, o no pueda hacerlo girar a la velocidad suficiente. Por otro lado, si la tensión de la batería disminuye demasiado al intentar arrancar un motor, esto puede indicar que la batería esta descargada o que la fricción del motor es muy grande debido a fallas mecánicas o falta de lubricación.
 
-La bujía que produce la chispa necesaria para iniciar la combustión también es alimentada a través de un circuito eléctrico por la batería del motor. Si la batería no tiene tensión suficiente, puede causar que la bujía no genere una chispa o que esta no alcance para encender la mezcla de aire y combustible.
+La bujía que produce la chispa necesaria para iniciar la combustión también es alimentada a través de un circuito eléctrico por la batería del motor. Si la batería no tiene tensión suficiente, puede causar que la bujía no genere una chispa o que esta no sea suficiente para lograr la ignición de la mezcla de aire y combustible.
 
-En un vehículo existen otros sub-sistemas que son alimentados por la batería del motor como: las luces, panel de información, sistema de audio. Y todos ellos dependen de que la tensión de la batería se encuentre dentro de sus valores nominales para un correcto funcionamiento.
+En un vehículo existen otros sub-sistemas que son alimentados por la batería del motor como: las luces, panel de información, sistema de audio, etc. Y todos ellos dependen de que la tensión de la batería se encuentre dentro de sus valores nominales para un correcto funcionamiento.
 
 \section{Descripción general del sistema}
 
@@ -62,7 +64,7 @@ La figura \ref{fig:diagrama-de-bloques} es una representación en diagrama de bl
 
 \section{Requerimientos del proyecto}
 
-El desarrollo del trabajo final fue basado en las historias de usuario y los requerimientos fijados durante la etapa de planificación del proyecto. Los requerimientos se dividieron en cuatro grupos: requerimientos generales del proyecto; requerimientos de la interfáz gráfica; requerimientos de la parte adquisidora de datos y requerimientos de la comunicación entre las partes.
+El desarrollo del trabajo final fue basado en las historias de usuario y los requerimientos fijados durante la etapa de planificación del proyecto. Los requerimientos se dividieron en cuatro grupos: requerimientos generales del proyecto; requerimientos de la interfaz gráfica; requerimientos de la parte adquisidora de datos y requerimientos de la comunicación entre las partes.
 
 Los requerimientos generales del proyecto son:
 \begin{itemize}
@@ -71,12 +73,12 @@ Los requerimientos generales del proyecto son:
 \item REQ-GEN-003: la documentación del software para la interfaz gráfica también será llevada a cabo en los comentarios. El formato será elegido por el responsable del proyecto.
 \end{itemize}
 
-Requerimientos de la interfáz gráfica:
+Requerimientos de la interfaz gráfica:
 \begin{itemize}
 \item REQ-GUI-001: la interfaz gráfica deberá poder mostrar figuras con la información de todos los sensores a la vez.
 \item REQ-GUI-002: el usuario tiene que poder elegir qué sensores ver al mismo tiempo y cuáles no desea ver.
 \item REQ-GUI-003: el usuario tiene que poder definir alarmas por valor máximo, para cada una de las variables.
-\item REQ-GUI-004: las alarmas serán sonores y visuales. El estilo de las alarmas será definido por el cliente durante el proceso de desarrollo de la interfáz gráfica.
+\item REQ-GUI-004: las alarmas serán sonoras y visuales. El estilo de las alarmas será definido por el cliente durante el proceso de desarrollo de la interfaz gráfica.
 \end{itemize}
 
 Requerimientos de la parte adquisidora:
@@ -93,5 +95,3 @@ Requerimientos de la comunicación entre las partes del sistema:
 \begin{itemize}
 \item REQ-COMM-001: se permitirá que se pierda hasta 1 paquete de cada 100 paquetes transmitidos.
 \end{itemize}
-
-\footnotetext{Imagen tomada de \cite{ft-300}}
