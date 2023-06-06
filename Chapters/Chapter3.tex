@@ -1,17 +1,34 @@
 \chapter{Diseño e implementación} % Main chapter title
 
 \label{Chapter3}
+
+Este capítulo describe en detalle al sistema implementado, sus partes y su interacción, incluyendo los criterios adoptados durante el proceso de desarrollo. Luego se explica que sensores se utilizaron y su funcionamiento, que componentes fueron utilizados para el circuito impreso. Y finalmente describe el funcionamiento y proceso de desarrollo del software utilizado en la parte adquisidora y la interfaz gráfica.
+
 \section{Descripción del sistema implementado}
 
-Descripción detallada del sistema, sus partes individuales y como interactúan entre si.
+La parte adquisidora del sistema se implementó sobre una placa de desarrollo EDU-CIAA debido a la experiencia de uso acumulada durante el cursado de la Especialización en Sistemas Embebidos. Además, el microprocesador que utiliza esa placa de desarrollo, el NXP LPC4337, cuenta con los periféricos necesarios para digitalizar las señales de todos los sensores a utilizar y enviar los datos recolectados al módulo de comunicación \textit{Bluetooth}. Específicamente el microprocesador posee: interfaz SPI de cuatro canales con velocidad hasta 60MB por segundo; interfaz USART y tres conversores analógico digital de 10 bits de resolución, y tasa de muestreo de 400 mil muestras por segundo. El circuito de alimentación, digitalización de las señales de los sensores y comunicación con el módulo \textit{Bluetooth} se diseñó para funcionar como "Poncho"  \cite{poncho} de la EDU-CIAA.
 
-\section{Selección de sensores y componentes electrónicos}
+Para la comunicación \textit{Bluetooth} entre las partes se utilizó el módulo HM-10, basado en el circuito integrado CC2541 de Texas Instruments. Se utilizó este módulo porque sus niveles de señales son compatibles con los de la EDU-CIAA, tiene un bajo consumo de energía y puede transmitir información serie con una velocidad de hasta 6 kilobytes por segundo \cite{HM-10}.
 
-Criterios de selección de los componentes del circuito y sensores utilizados.
+Para la interfaz gráfica se utilizó una \textit{Raspberry Pi 3B+} con una pantalla LCD táctil capacitiva de 5 pulgadas de longitud diagonal y resolución de 800 píxeles de ancho por 480 píxeles de alto. Se eligió esta plataforma porque posee comunicación \textit{Bluetooth Low-Energy}, utiliza un sistema operativo basado en Linux y puede correr scripts escritos en Python 3.7 \cite{raspberrypi}. Como el software de la interfaz gráfica fue desarrollado enteramente en Python 3.7, el dispositivo para la interfaz gráfica podría ser cualquiera que cumpla con las especificaciones nombradas.
 
-\section{Desarrollo del circuito impreso}
+\section{Descripción de los sensores utilizados}
 
-Descripción de criterios y considereaciones elegidas para el desarrollo del circuito impreso.
+Los sensores utlizados en el proyecto fueron seleccionados en una etapa previa al comienzo del trabajo final. Pero en esta sección se explica su funcionamiento para luego explicar el desarrollo del circuito impreso en la sección \ref{circuito}.
+
+\subsection{Sensores de temperatura}
+
+
+
+\subsection{Sensor de presión de aceite}
+
+\subsection{Sensor Lambda}
+
+\subsection{Sensor de velocidad de giro}
+
+\section{Desarrollo del circuito impreso} \label{circuito}
+
+Descripción de criterios y consideraciones elegidas para el desarrollo del circuito impreso.
 
 \section{Desarrollo del firmware}
 
