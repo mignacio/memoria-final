@@ -2,26 +2,26 @@
 
 \label{Chapter2}
 
-En este capítulo se explica en detalle el funcionamiento de un motor de combustión interna y se describe el sistema de desarrollado, sus partes y la interacción entre ellas. Al final los requerimientos del proyecto.
+En este capítulo se explica en detalle el funcionamiento de un motor de combustión interna y se describe el sistema desarrollado, sus partes y la interacción entre ellas. Al final los requerimientos del proyecto.
 
 \section{Funcionamiento de un motor de combustión interna} \label{func-motor}
 
 En la actualidad, el motor de combustión interna es el motor más utilizado en vehículos de transporte de cargas y pasajeros. Existen distintos tipos de motores que utilizan distintos tipos de combustibles. En esta sección se explicará específicamente sobre el funcionamiento de motores de pistón a gasolina de cuatro tiempos. Los motores de pistón utilizan un mecanismo llamado cigüeñal para convertir el movimiento lineal que el pistón recorre dentro de la cámara de combustión en un movimiento rotatorio que finalmente se transmite a las ruedas del vehículo a través de una transmisión.
-
-En dos revoluciones completas del cigüeñal el pistón pasa por cuatro etapas, representadas en la figura \ref{fig:motor-combustion}
-\begin{itemize}
-\item{Admisión:} Se ingresa a la cámara de combustión una mezcla de aire y combustible, gracias al movimiento hacia abajo del pistón que genera vacío dentro de la cámara.
-\item{Compresión:} El pistón se mueve hacia arriba comprimiendo la mezcla de aire y combustible, con esto también aumenta su temperatura.
-\item{Combustión:} A través de una chispa generada por una bujía se enciende la mezcla y se produce la combustión.
-\item{Escape:} La combustión genera gases que son evacuados de la cámara por el movimiento hacia arriba del pistón. Luego de esta etapa final el proceso de repite y el pistón vuelve a la etapa de admisión.
-\end{itemize}
-
+\vfill
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=.9\textwidth]{./Figures/motor-combustion.png}
-\caption{Representación gráfica de las etapas de un motor de combustión de cuatro tiempos \protect\footnotemark[3].}
+\caption{Representación gráfica de las etapas de un motor de combustión de cuatro tiempos \protect\footnotemark.}
 \label{fig:motor-combustion}
 \end{figure}
+\footnote{Imagen tomada de \cite{motor}}
+En dos revoluciones completas del cigüeñal el pistón pasa por cuatro etapas, representadas en la figura \ref{fig:motor-combustion}
+\begin{itemize}
+\item{Admisión:} se ingresa a la cámara de combustión una mezcla de aire y combustible, gracias al movimiento hacia abajo del pistón que genera vacío dentro de la cámara.
+\item{Compresión:} el pistón se mueve hacia arriba comprimiendo la mezcla de aire y combustible, con esto también aumenta su temperatura.
+\item{Combustión:} a través de una chispa generada por una bujía se enciende la mezcla y se produce la combustión.
+\item{Escape:} la combustión genera gases que son evacuados de la cámara por el movimiento hacia arriba del pistón. Luego de esta etapa final el proceso se repite y el pistón vuelve a la etapa de admisión.
+\end{itemize}
 
 \subsection{Proceso de combustión y su eficiencia}
 
@@ -31,11 +31,9 @@ Para que una combustión sea completa se tiene que cumplir la condición de que 
 
 Otra variable que afecta a la cantidad de combustible inyectada es la temperatura de los gases de admisión. La densidad de un gas depende de su temperatura y, como el volumen de la cámara de combustión es fijo, es posible calcular el peso total de oxígeno que puede caber dentro de la cámara y por lo tanto define la cantidad máxima de combustible que puede inyectarse. A menor temperatura del gas, su densidad aumenta y por lo tanto la cantidad de combustible que puede inyectarse para alcanzar la relación estequiométrica es mayor. Pero si la temperatura del gas es alta, la cantidad de combustible que puede inyectarse es menor y a menor cantidad de combustible la energía total entregada es menor.
 
-\footnote[3]{Imagen tomada de \cite{motor}}
-
 \subsection{Eficiencia mecánica y lubricación}
 
-Sólo una parte de la energía mecánica proveniente del proceso de combustión es convertida en energía cinética. Parte de esa energía se pierde por la fricción entre las partes móviles que componen al motor. Para disminuir esta fricción se utilizan fluidos lubricantes, que funcionan impidiendo el contacto entre dos partes móviles. La fricción entre las partes móviles y el lubricante será menor que la fricción si las partes estuvieran en contacto, y al disminuir la fricción la energía perdida es menor. Para que el lubricante funcione adecuadamente su viscosidad tiene que estar dentro de un rango definido por el fabricante del motor, la misma es dependiente de la temperatura y por eso es importante monitorearla \cite{lubrication}. La temperatura de operación de un lubricante es indicada por su fabricante y su viscosidad es garantizada sólo dentro de ese margen de operación.
+Solo una parte de la energía mecánica proveniente del proceso de combustión es convertida en energía cinética. Parte de esa energía se pierde por la fricción entre las partes móviles que componen al motor. Para disminuir esta fricción se utilizan fluidos lubricantes, que funcionan impidiendo el contacto entre dos partes móviles. La fricción entre las partes móviles y el lubricante será menor que la fricción si las partes estuvieran en contacto, y al disminuir la fricción la energía perdida es menor. Para que el lubricante funcione adecuadamente su viscosidad tiene que estar dentro de un rango definido por el fabricante del motor, la misma es dependiente de la temperatura y por eso es importante monitorearla \cite{lubrication}. La temperatura de operación de un lubricante es indicada por su fabricante y su viscosidad es garantizada solo dentro de ese margen de operación.
 
 El lubricante es distribuido a las partes móviles del motor a través de un circuito hidráulico cerrado. Este circuito consiste de conductos, un tanque de almacenamiento y una bomba hidráulica. La operación de esta bomba garantiza la renovación del lubricante ya que parte del lubricante se pierde por el movimiento de las partes del motor y tiene que ser recolectado y devuelto al tanque de almacenamiento. Una presión hidráulica insuficiente puede ocasionar daños en el motor por falta de lubricación. Por eso la presión de aceite es monitoreada junto con la temperatura.
 
@@ -45,13 +43,13 @@ Para arrancar un motor de combustión interna se utiliza un motor eléctrico que
 
 La bujía que produce la chispa necesaria para iniciar la combustión también es alimentada a través de un circuito eléctrico por la batería del motor. Si la batería no tiene tensión suficiente, puede causar que la bujía no genere una chispa o que esta no sea suficiente para lograr la ignición de la mezcla de aire y combustible.
 
-En un vehículo existen otros sub-sistemas que son alimentados por la batería del motor como: las luces, panel de información, sistema de audio, etc. Y todos ellos dependen de que la tensión de la batería se encuentre dentro de sus valores nominales para un correcto funcionamiento.
+En un vehículo existen otros subsistemas que son alimentados por la batería del motor, tales como las luces, el panel de información, el sistema de audio, etc. Y todos ellos dependen de que la tensión de la batería se encuentre dentro de sus valores nominales para un correcto funcionamiento.
 
 \section{Descripción general del sistema}
 
-El sistema desarrolado consiste de dos partes distintas, la adquisidora de datos y la interfaz gráfica. La primer parte consiste de un circuito controlado por microprocesador montado cerca del motor del vehículo. El adquisidor digitaliza las señales producidas por los sensores de: temperatura de gases de admisión y escape; temperatura de aceite; sonda lambda; velocidad de giro; y tensión de la batería. Los sensores fueron seleccionados según el funcionamiento del motor explicado en \ref{func-motor}.  La información capturada por la parte adquisidora es transmitida a la segunda parte del sistema por \textit{Bluetooth Low-Energy}.
+El sistema desarrolado consiste de dos partes distintas, la adquisidora de datos y la interfaz gráfica. La primera parte consiste de un circuito controlado por un microprocesador montado cerca del motor del vehículo. El adquisidor digitaliza las señales producidas por los sensores de: temperatura de gases de admisión y escape; temperatura de aceite; sonda lambda; velocidad de giro; y tensión de la batería. Los sensores fueron seleccionados según el funcionamiento del motor explicado en \ref{func-motor}.  La información capturada por la parte adquisidora es transmitida a la segunda parte del sistema por \textit{Bluetooth Low-Energy}.
 
-La interfaz está compuesta por una \textit{Single Board Computer}, una pantalla LCD táctil, y una tarjeta SD para almacenar los datos recibidos o puede ser un dispositivo móvil como un \textit{Smartphone} o \textit{Tablet}. La función de esta parte del sistema es de mostrar la información recibida en gráficas e indicar con alarmas visuales y sonoras cuando el valor de alguna de las variables es superior al límite establecido por el usuario. También almacena los datos recibidos en la memoria del dispositivo para luego descargar la información y analizarla posteriormente. Esta parte del sistema va ubicada en la cabina del vehículo en un lugar con fácil acceso y que sea visible por el conductor.
+La segunda parte del sistema, la interfaz gráfica, está compuesta por un \textit{Single Board Computer}, una pantalla LCD táctil, y una tarjeta SD para almacenar los datos recibidos. O también puede ser un dispositivo móvil como un \textit{Smartphone} o \textit{Tablet}. La función de esta parte es de mostrar la información recibida en gráficas e indicar con alarmas visuales y sonoras cuando el valor de alguna de las variables es superior al límite establecido por el usuario. También almacena los datos recibidos en la memoria del dispositivo para luego descargar la información y analizarla posteriormente. Esta parte del sistema va ubicada en la cabina del vehículo en un lugar con fácil acceso y que sea visible por el conductor.
 
 La figura \ref{fig:diagrama-de-bloques} es una representación en diagrama de bloques del sistema.
 
@@ -64,7 +62,7 @@ La figura \ref{fig:diagrama-de-bloques} es una representación en diagrama de bl
 
 \section{Requerimientos del proyecto}
 
-El desarrollo del trabajo final fue basado en las historias de usuario y los requerimientos fijados durante la etapa de planificación del proyecto. Los requerimientos se dividieron en cuatro grupos: requerimientos generales del proyecto; requerimientos de la interfaz gráfica; requerimientos de la parte adquisidora de datos y requerimientos de la comunicación entre las partes.
+El desarrollo del trabajo final se basó en las historias de usuario y los requerimientos fijados durante la etapa de planificación del proyecto. Los requerimientos se dividieron en cuatro grupos: requerimientos generales del proyecto; requerimientos de la interfaz gráfica; requerimientos de la parte adquisidora de datos y requerimientos de la comunicación entre las partes.
 
 Los requerimientos generales del proyecto son:
 \begin{itemize}
@@ -73,6 +71,7 @@ Los requerimientos generales del proyecto son:
 \item REQ-GEN-003: la documentación del software para la interfaz gráfica también será llevada a cabo en los comentarios. El formato será elegido por el responsable del proyecto.
 \end{itemize}
 
+\break
 Requerimientos de la interfaz gráfica:
 \begin{itemize}
 \item REQ-GUI-001: la interfaz gráfica deberá poder mostrar figuras con la información de todos los sensores a la vez.
