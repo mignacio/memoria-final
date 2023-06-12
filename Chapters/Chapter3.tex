@@ -22,9 +22,9 @@ Para medir las temperaturas de los gases de admisión, escape y temperatura de a
 
 Para convertir la tensión de la termocupla en un valor de temperatura se utilizó el circuito integrado MAX31855K. Este integrado digitaliza la señal de termocuplas tipo K en un rango entre -200 \degree C y 700 \degree C con una resolución de 0,25 \degree C. Su interfaz es SPI de solo lectura y tiene una velocidad máxima de muestreo de 1 kHz. Además de informar la lectura de temperatura también comunica códigos de error si la termocupla esta desconectada, o en cortocircuito con la alimentación o masa \cite{MAX31855}. Con estas características se cumplen los requisitos REQ-ADQ-001 y REQ-ADQ-002. En total se utilizaron en el circuito impreso tres de estos circuitos integrados, uno para cada termocupla.
 
-\subsection{Sensor de velocidad de giro}
+\subsection{Circuito de medición de velocidad de giro}
 
-Para medir la velocidad de giro del cigüeñal del motor se utilizó un sensor de reluctancia variable. Estos sensores convierten variaciones en la reluctancia magnética en una señal de tensión. Estos variaciones son generadas por la presencia o movimiento de un objeto ferroso en la proximidad del sensor. La medición de la velocidad de giro del cigüeñal se hace a través de una rueda fónica. Una rueda fónica es una rueda dentada de acero que gira en conjunto con el cigüeñal del motor. Cuando la rueda gira los dientes se acerca al sensor y se alejan al sensor y esto genera un tren de pulsos en sus bornes. Para medir la velocidad de giro la señal del sensor tiene que ser convertida a una señal cuadrada de valores dentro del rango admisible por el microprocesador. Para esto se utilizó el circuito integrado MAX9924 \cite{MAX9924}. El proceso de adaptación de la señal del MAX9924 está representado en el diagrama de bloques de la figura \ref{fig:bloq-9924}.
+Para medir la velocidad de giro del cigüeñal del motor se utilizó un sensor de reluctancia variable. Estos sensores convierten variaciones en la reluctancia magnética en una señal de tensión. Estos variaciones son generadas por la presencia o movimiento de un objeto ferroso en la proximidad del sensor. La medición de la velocidad de giro del cigüeñal se hace a través de una rueda fónica. Una rueda fónica es una rueda dentada de acero que gira en conjunto con el cigüeñal del motor. Cuando la rueda gira los dientes se acerca al sensor y se alejan al sensor y esto genera un tren de pulsos en sus bornes. Para medir la velocidad de giro la señal del sensor tiene que ser convertida a una señal cuadrada de valores dentro del rango admisible por el microprocesador. Para esto se utilizó el circuito integrado MAX9924 \cite{MAX9924}. El proceso de adaptación de la señal del MAX9924 está representado en el diagrama de bloques de la figura \ref{fig:bloq-rpm}.
 
 \break
 
@@ -32,14 +32,42 @@ Para medir la velocidad de giro del cigüeñal del motor se utilizó un sensor d
 \centering
 \includegraphics[width=.9\textwidth]{./Figures/max9924.png}
 \caption{Funcionamiento del MAX9924 representado en diagrama de bloques. \protect\footnotemark[3].}
-\label{fig:motor-combustion}
+\label{fig:bloq-rpm}
 \end{figure}
 \footnotetext[3]{Imagen tomada de \cite{MAX9924}}
 
 
 \subsection{Circuito de medición de variables analógicos}
 
-Las variables analógicas son las variables generadas por los sensores lambda, presión de aceite y la tensión de la batería. Para digitalizar estas señales se utilizaron el conversor analógico digital de la ECU-CIAA con sus tres canales independientes.
+Las variables analógicas son las variables generadas por los sensores lambda, presión de aceite y la tensión de la batería. Para digitalizar estas señales se utilizaron el conversor analógico digital de la ECU-CIAA con sus tres canales independientes. Para esto fue necesario desarrollar tres circuitos amplificadores para llevar las señales producidas por los sensores a señales de tensión dentro del rango de 0 V a 3,3 V para poder aprovechar el rango máximo del conversor analógico digital que es de 10 bits. Para los circuitos amplificadores se utilizó el amplificador operacional LM358 por su capacidad de poder tener una salida de 0 V cuando se lo alimenta con una fuente simple \cite{lm358}. Su salida puede llegar a 1,5 V por debajo de su tensión de alimentación por lo que al alimentarlo con una fuente de simple de 5V su tensión de salida puede variar entre 0 V y 3.5 V, niveles de tensión compatibles con la EDU-CIAA.
+
+\subsection{Presión de aceite}
+
+El sensor de presión de aceite es un sensor de resistencia variable. El valor de la resistencia entre sus bornes es proporcional a la presión de aceite sensada. El sensor que se utilizó tiene un rango de 0 a 120 psi y su valor de resistencia va de 7 a 135 Ohm. Estos valores de resistencia son convertidos por un circuito amplificador de dos etapas diagramado en la figura \ref{fig:circuito-presion}.
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=.9\textwidth]{./Figures/circuito-presion.png}
+\caption{Diagrama del circuito amplificador de presión.}
+\label{fig:circuito-presion}
+\end{figure}
+
+La primera es una etapa amplificadora no inversora de ganancia unitaria, su entrada es la tensión del divisor resistivo formado por R9 y el sensor de presión y su salida se conecta a la siguiente etapa. La segunda etapa del circuito es una etapa amplificadora no inversora de ganancia dos.
+Cuando la presión de aceite es 0 psi, la resistencia del sensor será de 7 Ohm, y la tensión de salida del circuito será 0,208 V. Si la presión de aceite es de 120 psi, la resistencia del sensor será de 135 Ohm y la tensión de salida del circuito será de 2,905 V. Cada cuenta del conversor analógico digital es de 32 mV y con estos datos se puede obtener la función transferencia del circuito:
+
+\[ Cuentas = \frac{421}{60} * PSI + 65\]
+
+O en su forma inversa:
+
+\[ PSI = \frac{60}{421} * Cuentas - \frac{3900}{421} \]
+
+De esas dos funciones transferencia se obtiene que la resolución del circuito es de 0,14 psi y el valor de presión máximo es de 136,53 psi. Cumpliendo con el requisito REQ-ADQ-005.
+
+\subsection{Factor Lambda}
+
+Para la medición lambda fue necesario utilizar un circuito integrado especializado. El LM9044, fabricado por Texas Instruments es un amplificador diferencial diseñado para leer la señal de una sonda lambda con un microcontrolador. 
+
+\subsection{Tensión de batería}
 
 \section{Desarrollo del firmware}
 
