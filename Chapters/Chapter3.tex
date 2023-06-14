@@ -52,7 +52,7 @@ El sensor de presión de aceite es un sensor de resistencia variable. El valor d
 \label{fig:circuito-presion}
 \end{figure}
 
-La primera es una etapa amplificadora no inversora de ganancia unitaria, su entrada es la tensión del divisor resistivo formado por R9 y el sensor de presión y su salida se conecta a la siguiente etapa. La segunda etapa del circuito es una etapa amplificadora no inversora de ganancia dos.
+La primera es una etapa amplificadora no inversora de ganancia unitaria, su entrada es la tensión del divisor resistivo formado por R9 y el sensor de presión y su salida se conecta a la siguiente etapa. La segunda etapa del circuito es una etapa amplificadora no inversora de ganancia 2 V/V.
 Cuando la presión de aceite es 0 psi, la resistencia del sensor será de 7 Ohm, y la tensión de salida del circuito será 0,208 V. Si la presión de aceite es de 120 psi, la resistencia del sensor será de 135 Ohm y la tensión de salida del circuito será de 2,905 V. Cada cuenta del conversor analógico digital es de 32 mV y con estos datos se puede obtener la función transferencia del circuito:
 
 \[ Cuentas = \frac{421}{60} * PSI + 65\]
@@ -65,9 +65,34 @@ De esas dos funciones transferencia se obtiene que la resolución del circuito e
 
 \subsection{Factor Lambda}
 
-Para la medición lambda fue necesario utilizar un circuito integrado especializado. El LM9044, fabricado por Texas Instruments es un amplificador diferencial diseñado para leer la señal de una sonda lambda con un microcontrolador. 
+Para la medición lambda fue necesario utilizar un circuito integrado especializado. El LM9044, fabricado por Texas Instruments es un amplificador diferencial diseñado para leer la señal de una sonda lambda con un conversor analógico digital. La señal de salida del LM9044 tiene un rango de 0 a 5 V por lo que tiene que ser reducida a 3,3 V para ser leída por el ADC de la EDU-CIAA por eso a la salida del integrado es conectada a una etapa seguidora de tensión y luego es atenuada por un divisor resistivo un factor de 0,6. El circuito está diagramado en la figura \ref{fig:circuito-o2}.
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=\textwidth]{./Figures/ampli-o2.png}
+\caption{Diagrama del circuito amplificador de la sonda lambda.}
+\label{fig:circuito-o2}
+\end{figure}
+
+La señal de la sonda lambda puede captar factores lambda entre 0,8 y 2. Cuando el factor es 0,8 su señal es de 800 mV, cuando el factor lambda es 1 la señal es 450 mV y cuando el factor es 2 la señal es muy cercana a 0 V. Estos valores a la salida del circuito amplificador son de 2,16 V, 1,215 V y 0V. Con estos valores se cumple el rango requerido por REQ-ADQ-004.
 
 \subsection{Tensión de batería}
+
+La medición de la tensión de batería no es un requisito del proyecto. Sin embargo, durante el desarrollo del circuito, surgió la idea de incluir esta medición ya que la información sería de gran utilidad a la hora de ensayar el funcionamiento del circuito.
+Las baterías de plomo y ácido tienen una tensión nominal de 12 V, a circuito abierto su tensión entre bornes es de 14,7 V y cuando están completamente descargadas su tensión es de 10,5 V.
+
+La batería alimenta a todo el circuito, su tensión es disminuida por un regulador de voltaje LM7805, la salida del regulador luego es utilizada para alimentar a todos los circuitos integrados que requieren 5 V para operar, como los amplificadores operacionales, el amplificador de sonda lambda y la EDU-CIAA misma. Luego la salida del regulador de 3,3 V interno de la EDU-CIAA es utilizada para alimentar el resto de los circuitos integrados que operan con 3,3 V, como los circuitos de lectura de termocupla y la interfaz para el sensor de R.P.M.
+
+Para leer la tensión de batería con el ADC de la EDU-CIAA, esta tiene que ser reducida a un valor máximo de 3,3 V. Esto se logró con un divisor resistivo y a su salida un amplificador de ganancia 1 V/V, visto en la figura \ref{fig:circuito-bat} . La función del amplificador es para que la impedancia del ADC no afecte a la tensión de salida del divisor resistivo.
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=.7\textwidth]{./Figures/ampli-bat.png}
+\caption{Diagrama del circuito de reducción de tensión de la batería.}
+\label{fig:circuito-bat}
+\end{figure}
+
+Con los valores de resistencia seleccionados, una tensión de batería de 16,2 V en la entrada del ADC será de 3,3 V. Y la resolución de la medición será de 0,016 V.
 
 \section{Desarrollo del firmware}
 
