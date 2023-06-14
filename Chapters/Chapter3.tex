@@ -6,7 +6,7 @@ Este capítulo describe en detalle el sistema implementado, sus partes y su inte
 
 \section{Descripción del sistema implementado}
 
-La parte adquisidora del sistema se implementó sobre una placa de desarrollo EDU-CIAA debido a la experiencia de uso acumulada durante el cursado de la Especialización en Sistemas Embebidos. Además, el microprocesador que utiliza esa placa de desarrollo, el NXP LPC4337, cuenta con los periféricos necesarios para digitalizar las señales de todos los sensores a utilizar y enviar los datos recolectados al módulo de comunicación \textit{Bluetooth}. Específicamente el microprocesador posee: interfaz SPI de cuatro canales con velocidad hasta 60MB por segundo; interfaz USART y tres conversores analógico digital de 10 bits de resolución, y tasa de muestreo de 400 mil muestras por segundo. El circuito de alimentación, digitalización de las señales de los sensores y comunicación con el módulo \textit{Bluetooth} se diseñó para funcionar como "Poncho"  \cite{poncho} de la EDU-CIAA.
+La parte adquisidora del sistema se implementó sobre una placa de desarrollo EDU-CIAA debido a la experiencia de uso acumulada durante el cursado de la Especialización en Sistemas Embebidos. Además, el microprocesador que utiliza esa placa de desarrollo, el NXP LPC4337, cuenta con los periféricos necesarios para digitalizar las señales de todos los sensores a utilizar y enviar los datos recolectados al módulo de comunicación \textit{Bluetooth}. Específicamente el microprocesador posee: interfaz SPI de cuatro canales con velocidad hasta 60MB por segundo; interfaz USART y tres conversores analógico digital de 10 bits de resolución, y tasa de muestreo de 400 mil muestras por segundo.
 
 Para la comunicación \textit{Bluetooth} entre las partes se utilizó el módulo HM-10, basado en el circuito integrado CC2541 de Texas Instruments. Se utilizó este módulo porque sus niveles de señales son compatibles con los de la EDU-CIAA, tiene un bajo consumo de energía y puede transmitir información serie con una velocidad de hasta 6 kilobytes por segundo \cite{HM-10}.
 
@@ -14,7 +14,14 @@ Para la interfaz gráfica se utilizó una \textit{Raspberry Pi 3B+} con una pant
 
 \section{Desarrollo del circuito impreso} \label{circuito}
 
-Para el prototipo se desarrolló un circuito impreso que funciona como "poncho" para la EDU-CIAA. Un poncho es un circuito impreso con conectores específicos para conectarse a la EDU-CIAA y acceder a sus señales. El diseño del circuito se hizo con el software KiCAD versión 6.
+Para el prototipo se desarrolló un circuito impreso que funciona como "poncho" para la EDU-CIAA. Un poncho es un circuito impreso con conectores específicos para conectarse a la EDU-CIAA y acceder a sus señales \cite{poncho}. El diseño se hizo con el software KiCAD versión 6, en la figura \ref{fig:circuito-3d} puede verse un renderizado del circuito finalizado. El circuito cumple las funciones de alimentación, digitalización de las señales de los sensores y comunicación con el módulo \textit{Bluetooth}.
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=.8\textwidth]{./Figures/circuito-3d.png}
+\caption{Renderizado 3D del circuito finalizado.}
+\label{fig:circuito-3d}
+\end{figure}
 
 \subsection{Circuito de medición de temperatura}
 
@@ -25,8 +32,6 @@ Para convertir la tensión de la termocupla en un valor de temperatura se utiliz
 \subsection{Circuito de medición de velocidad de giro}
 
 Para medir la velocidad de giro del cigüeñal del motor se utilizó un sensor de reluctancia variable. Estos sensores convierten variaciones en la reluctancia magnética en una señal de tensión. Estos variaciones son generadas por la presencia o movimiento de un objeto ferroso en la proximidad del sensor. La medición de la velocidad de giro del cigüeñal se hace a través de una rueda fónica. Una rueda fónica es una rueda dentada de acero que gira en conjunto con el cigüeñal del motor. Cuando la rueda gira los dientes se acerca al sensor y se alejan al sensor y esto genera un tren de pulsos en sus bornes. Para medir la velocidad de giro la señal del sensor tiene que ser convertida a una señal cuadrada de valores dentro del rango admisible por el microprocesador. Para esto se utilizó el circuito integrado MAX9924 \cite{MAX9924}. El proceso de adaptación de la señal del MAX9924 está representado en el diagrama de bloques de la figura \ref{fig:bloq-rpm}.
-
-\break
 
 \begin{figure}[htpb]
 \centering
@@ -96,7 +101,7 @@ Con los valores de resistencia seleccionados, una tensión de batería de 16,2 V
 
 \section{Desarrollo del firmware}
 
-Descripción de criterios y consideraciones elegidas para el desarrollo del firmware.
+El firmware desarrollado para la parte adquisidora está implementado sobre FreeRTOS, la decisión de utilizar un sistema operativo de tiempo real es que permite dividir las distintas funciones del firmware en tareas independientes. La arquitectura elegida para el desarrollo del firmware es la de "Segmentación de proceso". En donde el proceso productor son las tareas que digitalizan los sensores, el proceso de buffer está implementado en una cola, y el proceso consumidor es la tarea que consulta si hay mensajes disponibles en la cola y los comunica con el módulo \textit{Bluetooth}.
 
 \section{Desarrollo de la interfaz gráfica}
 
