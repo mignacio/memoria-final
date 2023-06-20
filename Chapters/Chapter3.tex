@@ -31,7 +31,7 @@ Para convertir la tensión de la termocupla en un valor de temperatura se utiliz
 
 \subsection{Circuito de medición de velocidad de giro}
 
-Para medir la velocidad de giro del cigüeñal del motor se utilizó un sensor de reluctancia variable. Estos sensores convierten variaciones en la reluctancia magnética en una señal de tensión. Estos variaciones son generadas por la presencia o movimiento de un objeto ferroso en la proximidad del sensor. La medición de la velocidad de giro del cigüeñal se hace a través de una rueda fónica. Una rueda fónica es una rueda dentada de acero que gira en conjunto con el cigüeñal del motor. Cuando la rueda gira los dientes se acerca al sensor y se alejan al sensor y esto genera un tren de pulsos en sus bornes. Para medir la velocidad de giro la señal del sensor tiene que ser convertida a una señal cuadrada de valores dentro del rango admisible por el microprocesador. Para esto se utilizó el circuito integrado MAX9924 \cite{MAX9924}. El proceso de adaptación de la señal del MAX9924 está representado en el diagrama de bloques de la figura \ref{fig:bloq-rpm}.
+Para medir la velocidad de giro del cigüeñal del motor se utilizó un sensor de reluctancia variable. Estos sensores convierten variaciones en la reluctancia magnética en una señal de tensión. Estos variaciones son generadas por la presencia o movimiento de un objeto ferroso en la proximidad del sensor. La medición de la velocidad de giro del cigüeñal se hace a través de una rueda fónica. Una rueda fónica es una rueda dentada de acero que gira en conjunto con el cigüeñal del motor. Cuando la rueda gira, los dientes se acercan y se alejan del sensor y esto genera un tren de pulsos en sus bornes. Para medir la velocidad de giro la señal del sensor tiene que ser convertida a una señal cuadrada de valores dentro del rango admisible por el microprocesador. Para esto se utilizó el circuito integrado MAX9924 \cite{MAX9924}. El proceso de adaptación de la señal del MAX9924 está representado en el diagrama de bloques de la figura \ref{fig:bloq-rpm}.
 
 \begin{figure}[htpb]
 \centering
@@ -103,7 +103,7 @@ Con los valores de resistencia seleccionados, una tensión de batería de 16,2 V
 
 \section{Desarrollo del firmware}
 
-El firmware desarrollado para la parte adquisidora está implementado sobre FreeRTOS, la decisión de utilizar un sistema operativo de tiempo real es que permite dividir las distintas funciones del firmware en tareas independientes. La arquitectura elegida para el desarrollo del firmware es la de "Segmentación de proceso". En donde el proceso productor son las tareas que digitalizan los sensores, el proceso de buffer está implementado en una cola, y el proceso consumidor es la tarea que consulta si hay mensajes disponibles en la cola, los toma, y los envía por el puerto serie al módulo \textit{Bluetooth}.
+El firmware desarrollado para la parte adquisidora se escribió en el lenguaje de programación C y está implementado sobre FreeRTOS, la decisión de utilizar un sistema operativo de tiempo real es que permite dividir las distintas funciones del firmware en tareas independientes. La arquitectura elegida para el desarrollo del firmware es la de "Segmentación de proceso". En donde el proceso productor son las tareas que digitalizan los sensores, el proceso de buffer está implementado en una cola, y el proceso consumidor es la tarea que consulta si hay mensajes disponibles en la cola, los toma, y los envía por el puerto serie al módulo \textit{Bluetooth}.
 
 En total el firmware tiene que digitalizar las señales de siete sensores, tres sensores de temperatura, tres sensores analógicos (oxígeno, presión de aceite y tensión de batería), y el sensor de R.P.M. Para evitar excesivos cambios de contexto por el sistema operativo se agruparon esas funciones en tres tareas, una tarea para digitalizar los tres sensores de temperatura llamada \textit{temp-task}, otra para digitalizar los sensores analógicos llamada \textit{analog-task} y la última tarea llamada \textit{rpm-task} digitaliza la señal del sensor de R.P.M. El funcionamiento general del firmware está representado por el diagrama de bloques de la figura \ref{fig:diagrama-firmware}.
 
@@ -114,9 +114,18 @@ En total el firmware tiene que digitalizar las señales de siete sensores, tres 
 \label{fig:diagrama-firmware}
 \end{figure}
 
-El principio de funcionamiento de los procesos productores es el mismo. Primero corren por única vez la rutina de inicialización del sensor, luego ejecutan la tarea de adquisición de datos, luego convierten el dato en una variable física, la almacenan en un tipo de dato llamado \textit{measurement} que es almacenado en la cola y finalmente esperan por un tiempo según la frecuencia de muestreo de ese grupo de sensores, finalizado ese tiempo se vuelve a repetir el ciclo.
+El principio de funcionamiento de los procesos productores es el mismo. Primero corren por única vez la rutina de inicialización del sensor, luego ejecutan la tarea de adquisición de datos, convierten el dato en una variable física, la almacenan en un tipo de dato llamado \textit{measurement} que es almacenado en la cola y finalmente esperan por un tiempo según la frecuencia de muestreo de ese grupo de sensores, finalizado ese tiempo se vuelve a repetir el ciclo.
 
-Para la rutina de conversión de los sensores analógicos se utilizaron \textit{lookup tables} para evitar realizar cálculos matemáticos, que pueden ser costosos hablando en tiempo de ejecución, sobretodo si el sensor no tiene una función lineal en donde el cálculo puede ser complejo, como es el caso para la sonda lambda.
+Para la rutina de conversión de los sensores analógicos se utilizaron \textit{lookup tables} para evitar realizar cálculos matemáticos, que pueden ser costosos hablando en tiempo de ejecución, sobretodo si el sensor no tiene una función lineal en donde el cálculo puede ser complejo, como es el caso para la sonda lambda, su función transferencia puede verse en la figura \ref{fig:funcion-lambda}. Para la medición de R.P.M. se utilizó el periférico \textit{Timer} del microprocesador de la EDU-CIAA para medir el ancho de pulso de la señal cuadrada producida por el MAX9924, para producir una señal con bajo ruido se toman 8 mediciones consecutivas las cuales luego se promedia para conseguir una lectura estable.
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=.55\textwidth]{./Figures/funcion-lambda.png}
+\caption{Ejemplo de una función transferencia de una sonda Lambda \protect\footnotemark[3].}
+\label{fig:funcion-lambda}
+\end{figure}
+
+\footnotetext[3]{Imagen tomada de \cite{}}
 
 El tipo \textit{measurement} es una estructura de cinco elementos:
 
@@ -128,7 +137,7 @@ El tipo \textit{measurement} es una estructura de cinco elementos:
 \item{\textit{fault code}:} número sin signo de 8 bits que puede almacenar códigos de error si el sensor lo soportara.
 \end{itemize}
 
-La tarea \textit{bluetooth-task} convierte al tipo de dato \textit{measurement} en un arreglo de caracteres o \textit{String} para poder enviarlo por el puerto serie al módulo \textit{HM-10}. Para convertir este tipo de dato a \textit{String} y que pueda ser comprendido por el software receptor de datos, se utilizaron los caracteres especiales de la tabla ASCII, \textit{Start of text}, \textit{End of text} y \textit{Group separator}. Que están en las posiciones de la tabla 2, 3 y 19 respectivamente. El caracter \textit{Group separator} sirve para indicar la separación entre dos elementos de la estructura y los caracteres \textit{Start of text} y \textit{End of text} indican cuando inicia y termina una medición. Entonces la estructura convertida a tipo \textit{String} quedaría como en la figura \ref{fig:measurement-string}.
+La tarea \textit{bluetooth-task} convierte al tipo de dato \textit{measurement} en un arreglo de caracteres o \textit{String} para poder enviarlo por el puerto serie al módulo \textit{HM-10}. Para convertir este tipo de dato a \textit{String} y que pueda ser comprendido por el software receptor de datos, se utilizaron los caracteres especiales de la tabla ASCII, \textit{Start of text}, \textit{End of text} y \textit{Group separator}. Que están en las posiciones de la tabla 2, 3 y 19 respectivamente. El caracter \textit{Group separator} sirve para indicar la separación entre dos elementos de la estructura y los caracteres \textit{Start of text} y \textit{End of text} indican cuando inicia y termina una medición. Entonces la estructura convertida a tipo \textit{String} quedaría como en la figura \ref{fig:measurement-string}. El uso de caracteres especiales requiere enviar una mínima cantidad de \textit{bytes} extra por cada paquete, pero permite que los campos tengan longitudes flexibles y puedan ser diferenciados de forma sencilla. Para que un paquete sea decodificado por la parte receptora sólo es necesario respetar el orden en el que se envían los campos.
 
 \begin{figure}[htpb]
 \centering
@@ -141,5 +150,16 @@ La tarea \textit{bluetooth-task} convierte al tipo de dato \textit{measurement} 
 
 \section{Desarrollo de la interfaz gráfica}
 
-Descripción de criterios y consideraciones elegidas para el desarrollo de la interfaz gráfica.
+Se eligió Python 3.7 como lenguaje de programación para desarrollar el software de la interfaz gráfica, principalmente por que scripts desarrollados en Python pueden correr en una gran variedad de dispositivos y en distintos sistemas operativos. Se utilizó el framework gráfico multi-plataforma \textit{Kivy} para la interfaz gráfica en si, la librería \textit{Matplotlib} para dibujar las gráficas de los sensores y la librería \textit{Bleak} para resolver la comunicación \textit{Bluetooth} entre las partes del dispositivo. La figura \ref{fig:gui} muestra el resultado final de la interfaz gráfica.
+
+El principal desafío al desarrollar la interfaz gráfica fue la decodificación de la información recibida por \textit{Bluetooth}. El problema es los datos recibidos vienen en paquetes de longitud \textbf{X} que no necesariamente encapsula a un único \textit{measurement} convertido a \textit{String}. Por esto se implementó una máquina de estados que al recibir un paquete de datos busca los caracteres \textit{Start of text} y \textit{End of text}. Al recibir un \textit{Start of text} la máquina de estados concatena los datos recibidos hasta que encuentra un \textit{End of text} que indica la final de un \textit{measurement}. Una vez que se recibió un \textit{measurement} completo es almacenado en una \textit{dataclass} de Python que contiene los elementos: \textit{ticks}, \textit{value}, \textit{decimal pos}, \textit{name}, \textit{fault code}. Esta clase es equivalente a la estructura utilizada en el firmware de la parte adquisidora.
+
+Nuevamente la arquitectura utilizada fue la de "Segmentación de proceso", en este caso el proceso productor es una tarea que resuelve la recepción de datos por \textit{Bluetooth}, los decodifica a través de la máquina de estados mencionada y almacena a cada tipo de medición en una cola FIFO, esta cola es utilizada como buffer. Otra tarea asincrónica actúa como proceso consumidor y dibuja en pantalla la información recibida en sus gráficas correspondientes. Además esa tarea también responde a las acciones del usuario.
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=.9\textwidth]{./Figures/gui.png}
+\caption{Captura de pantalla del resultado final de la interfaz gráfica.}
+\label{fig:gui}
+\end{figure}
 
