@@ -1,7 +1,7 @@
 % Chapter 1
 \chapter{Introducción general} % Main chapter title
 
-Este capítulo explica los motivos detrás de la decisión de realizar este trabajo final. 
+En este capítulo se explican los motivos detrás de la decisión de realizar este trabajo final. 
 Enumera los alcances y requerimientos del trabajo, y compara al dispositivo desarrollado con productos de características similares disponibles en el mercado.
 
 \label{Chapter1} % For referencing the chapter elsewhere, use \ref{Chapter1} 
@@ -24,8 +24,8 @@ Enumera los alcances y requerimientos del trabajo, y compara al dispositivo desa
 %----------------------------------------------------------------------------------------
 \section{Motivación}
 
-Desde el año 1991 en adelante, todos los fabricantes de vehículos de combustión interna están obligados a incluir en sus vehículos un sistema electrónico de diagnóstico. Este sistema, conocido por sus siglas en inglés como OBD \textit{On-Board Diagnostics}, realiza las tareas de muestrear sensores que están conectados físicamente sobre el motor y alertar al conductor, a través de un indicador en el tablero, cuando el motor no está funcionando dentro de los parámetros de operación. También mantiene un registro interno de los fallos ocurridos durante la vida del mismo, para luego ser descargado por el mecánico encargado de realizar tareas de reparación o puesta a punto, y así facilitar su trabajo.
-Actualmente existen grupos de entusiastas y coleccionistas que poseen vehículos fabricados antes de que el sistema OBD se haga obligatorio. Y por esa razón, no tienen la posibilidad de hacer un monitoreo del funcionamiento del motor de su vehículo. Tampoco es posible mantener un registro de si hubo eventos de fallas o momentos de operación fuera de rango, información útil para su mantenimiento preventivo.
+Desde el año 1991 en adelante, todos los fabricantes de vehículos de combustión interna están obligados a incluir en sus vehículos un sistema electrónico de diagnóstico. Este sistema, conocido por sus siglas en inglés como OBD \textit{On-Board Diagnostics}, realiza las tareas de muestrear sensores que están conectados físicamente sobre el motor y alertar al conductor, a través de un indicador en el tablero, cuando el motor no está funcionando dentro de los parámetros de operación. También mantiene un registro interno de los fallos ocurridos durante la vida de el motor, para luego ser descargado por el mecánico encargado de realizar tareas de reparación o puesta a punto, y así facilitar su trabajo.
+Actualmente, existen grupos de entusiastas y coleccionistas que poseen vehículos fabricados antes de que el sistema OBD se hizo obligatorio. Y por esa razón, no tienen la posibilidad de hacer un monitoreo del funcionamiento del motor de su vehículo. Tampoco es posible mantener un registro de si hubo eventos de fallas o momentos de operación fuera de rango, información útil para su mantenimiento preventivo.
 Por esto es que se tomó la decisión de desarrollar un dispositivo que cumpla las mismas funciones que un OBD, pero para vehículos antiguos que no tienen instalado dicho sistema de fábrica.
 
 \section{Alcance y objetivos}
@@ -45,11 +45,12 @@ Los alcances son:
 \item Los ensayos de verificación y validación con el prototipo.
 \end{itemize}
 
-La selección de los sensores a utilizar no formó parte los alcances porque los sensores fueron seleccionados previo al comienzo del desarrollo.
+La selección de los sensores a utilizar no formó parte los alcances, porque fueron seleccionados previo al comienzo del desarrollo.
 
 \section{Estado del arte}
 
-Actualmente, existen en el mercado productos de características y funcionalidades similares. Para poder hacer una comparación se eligieron los productos de entrada de dos marcas distintas. Uno es el Fueltech FT-300 \citep{ft-300}, que puede verse en la figura \ref{fig:comparativa}\subref{fig:fueltech},  y el otro es el HT-193000 \citep{ht-193000} de Halltech, visto en la figura \ref{fig:comparativa}\subref{fig:halltech}. A este tipo de dispositivos se los conoce por sus siglas en inglés como ECU o \textit{Engine Control Unit}. Una ECU es un dispositivo electrónico que recopila los datos de los sensores del motor y también otros como la posición del pedal acelerador, para determinar la cantidad de combustible a inyectar y el tiempo de ignición. Además también funcionan como OBD para realizar diagnóstico y registro de fallos. Cabe destacar que al momento de escribir esta memoria, no existe un producto similar que esté diseñado o fabricado en Argentina.
+Actualmente, existen en el mercado productos de características y funcionalidades similares. Para poder hacer una comparación se eligieron los productos gama baja de dos marcas distintas. Uno es el Fueltech FT-300 \citep{ft-300}, que puede verse en la figura \ref{fig:comparativa}\subref{fig:fueltech},  y el otro es el HT-193000 \citep{ht-193000} de Halltech, visto en la figura \ref{fig:comparativa}\subref{fig:halltech}. A estos tipos de dispositivos se los conoce por sus siglas en inglés, como ECU o \textit{Engine Control Unit}. Una ECU es un dispositivo electrónico que recopila los datos de los sensores del motor y también otros como la posición del pedal acelerador, para determinar la cantidad de combustible a inyectar y el tiempo de ignición. También cumplen la función de OBD, para realizar diagnóstico y registro de fallos. Es importante destacar que por el momento no existen soluciones nacionales, por lo tanto, el desafío es lograr ser competitivo en precio y prestaciones, con productos importados que se encuentran en el mercado. Una ventaja de tener un producto nacional, es de poder proveer soporte a nivel local sin recurrir al extranjero.
+
 
 \begin{figure}[htpb]
 \centering
@@ -71,7 +72,7 @@ Actualmente, existen en el mercado productos de características y funcionalidad
 \end{figure}
 \footnotetext[1]{Imagenes tomada de \cite{ft-300} y \cite{ht-193000}}
 
-La tabla \ref{tab:comparativa} hace una comparativa entre estos productos y el dispositivo desarrollado enlistando sus funcionalidades y características.  Como se puede ver en esa tabla, el prototipo desarrollado no posee entradas para presión de combustible, presión de admisión, y lo más importante, tampoco posee control de inyección como los otros dos productos. El hecho de que el prototipo no realice control de inyección hace que no sea clasificado como ECU y solo realiza las funciones de un sistema de diagnóstico de a bordo. Se decidió no implementar estas características para abaratar costos y no alargar el tiempo de desarrollo. Las ventajas que tiene el prototipo es que tiene una pantalla LCD para mostrar las gráficas de las evoluciones de las variables en el tiempo y puede configurarse por medio de la misma por su interfaz táctil. El FT-300 puede configurarse conectando una PC con un cable USB, el usuario configura al dispositivo usando un software que proporciona el fabricante. Y el HT-19300 se configura de la misma manera, solo que el dispositivo funciona como un punto de acceso Wi-Fi y la PC debe conectarse a la red del dispositivo para poder comunicarse.
+La tabla \ref{tab:comparativa} hace una comparativa entre estos productos y el dispositivo desarrollado enlistando sus funcionalidades y características.  Como se puede apreciar en dicha tabla, el prototipo desarrollado no posee entradas para presión de combustible, presión de admisión, y lo más importante, tampoco posee control de inyección como los otros dos productos. El hecho de que el prototipo no realice control de inyección, y solo realice las funciones de diagnóstico de a bordo, hace que no sea clasificado como ECU. Se decidió no implementar estas características para abaratar costos y no alargar el tiempo de desarrollo. Las ventajas que tiene el prototipo, es que posee una pantalla LCD para mostrar las gráficas de las evoluciones de las variables en el tiempo, y puede configurarse por medio de esta, a través de su interfaz táctil. El FT-300 puede configurarse por medio de una PC con un cable USB, el usuario configura al dispositivo usando un software que proporciona el fabricante. Y el HT-19300 se configura de forma similar, solo que el dispositivo funciona como un punto de acceso Wi-Fi, y la PC debe conectarse a la red del dispositivo para poder comunicarse.
 
 \begin{table}[htpb]
 	\centering
