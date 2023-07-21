@@ -31,7 +31,7 @@ O en su forma inversa:
 
 \[ PSI = \frac{60}{421} * Cuentas - \frac{3900}{421} \]
 
-De estas dos funciones transferencia se obtiene que, la resolución del circuito es de 0,14 psi y el valor de presión máximo es de 136,53 psi. Con esto se cumple el requisito REQ-ADQ-005.
+De estas dos funciones transferencia se obtiene que, la resolución del circuito, es de 0,14 psi y el valor de presión máximo es de 136,53 psi .De esta forma se cumple el requisito REQ-ADQ-005.
 
 \begin{figure}[htpb]
 \centering
@@ -86,7 +86,13 @@ En total, el firmware tiene que digitalizar las señales de siete sensores, tres
 
 El principio de funcionamiento de los procesos productores muy similar para las tres tareas. Primero corren por única vez la rutina de inicialización del sensor, ejecutan la tarea de adquisición de datos, convierten el dato en una variable física, la almacenan en un tipo de dato llamado \textit{measurement} que es almacenado en la cola, y finalmente esperan por un tiempo según la frecuencia de muestreo de ese grupo de sensores. Finalizado ese tiempo se vuelve a repetir el ciclo.
 
-Se desarrolló un módulo de software para lograr la comunicación entre la EDU-CIAA y el integrado MAX31855. La tarea de medición de temperatura, llama una vez por segundo Este integrado integrado digitaliza la señal de termocuplas tipo K en un rango entre -200 \degree C y 700 \degree C con una resolución de 0,25 \degree C. Tiene una interfaz SPI de solo lectura, y una velocidad máxima de muestreo de 1 kHz. Además de informar la lectura de temperatura, también comunica códigos de error si la termocupla esta desconectada, o en cortocircuito con la alimentación o masa \cite{MAX31855}. Con estas características, se cumplen los requisitos REQ-ADQ-001 y REQ-ADQ-002.
+\subsection{Tarea medición de temperatura}
+
+Se desarrolló un módulo de software para lograr la comunicación entre la EDU-CIAA y el integrado MAX31855. Este integrado integrado digitaliza la señal de termocuplas tipo K en un rango entre -200 \degree C y 700 \degree C con una resolución de 0,25 \degree C. Tiene una interfaz SPI de solo lectura, y una velocidad máxima de muestreo de 1 kHz. Además de informar la lectura de temperatura, también comunica códigos de error si la termocupla esta desconectada, o en cortocircuito con la alimentación o masa \cite{MAX31855}. 
+
+La rutina de lectura de temperatura de medición de temperatura, llama a la función de lectura por SPI para cada uno de los tres conversores, almacena los valores en memoria, y luego convierte los valores leídos en valores de temperatura. Al finalizar estas operaciones, la tarea espera durante un segundo, dando lugar a la ejecución del resto de los procesos. De esta forma se cumplen los requisitos REQ-ADQ-001 y REQ-ADQ-002.
+
+\subsection{Tareas de medición de sensores analógicos}
 
 Para la rutina de conversión de los sensores analógicos, se utilizaron \textit{lookup tables} para evitar realizar cálculos matemáticos, que pueden ser costosos hablando en tiempo de ejecución. Sobretodo si el sensor no tiene una función lineal, en donde el cálculo puede ser complejo. Como es el caso para la sonda lambda, su función transferencia de factor lambda vs tensión del sensor, está representada en la figura \ref{fig:funcion-lambda}.
 
@@ -98,7 +104,13 @@ Para la rutina de conversión de los sensores analógicos, se utilizaron \textit
 \end{figure}
 \footnotetext[3]{Imagen tomada de \cite{sondalambda}}
 
+\subsection{Tarea de medición de velocidad del cigüeñal}
+
 Para la medición de R.P.M. se utilizó el periférico \textit{Timer}, para contar la cantidad de períodos de la señal cuadrada producida por el MAX9924. El \textit{Timer} se configuró para generar interrupciones por flanco positivo y contar cuantos flancos positivos se detectaron en un período de 180 ms. Para el caso de una rueda con un solo diente se genera un pulso por revolución. La resolución de esta forma de lectura es de 333 R.P.M. El rango máximo de medición, depende de la velocidad en la que el sistema pueda atender la interrupción. Que para el caso de 20.000 R.P.M., 60 pulsos en 180 ms, dicha capacidad es suficiente. De esta forma se cumple con el requisito REQ-ADQ-003.
+
+\subsection{Tarea de transmisión de datos}
+
+La tarea \textit{bluetooth-task}, convierte al tipo de dato \textit{measurement}, en un arreglo de caracteres o \textit{String} para poder enviarlo por el puerto serie al módulo \textit{HM-10}. Esto se realiza solo si existen elementos en la cola que no han sido enviados.
 
 El tipo \textit{measurement} es una estructura de cinco elementos:
 
@@ -110,7 +122,7 @@ El tipo \textit{measurement} es una estructura de cinco elementos:
 \item{\textit{fault code}:} número sin signo de 8 bits que puede almacenar códigos de error, solo si es soportado por el sensor.
 \end{itemize}
 
-La tarea \textit{bluetooth-task}, convierte al tipo de dato \textit{measurement}, en un arreglo de caracteres o \textit{String} para poder enviarlo por el puerto serie al módulo \textit{HM-10}. Para convertir este tipo de dato a \textit{String} y pueda ser comprendido por el software receptor de datos, se utilizaron los caracteres especiales de la tabla ASCII, \textit{Start of text}, \textit{End of text} y \textit{Group separator}. Que están en las posiciones 2, 3 y 19, de dicha tabla ASCII respectivamente. El caracter \textit{Group separator} sirve para indicar la separación entre dos elementos de la estructura. Los caracteres \textit{Start of text} y \textit{End of text} indican cuando inicia y termina una medición. La estructura convertida a tipo \textit{String} puede verse representada en la figura \ref{fig:measurement-string}. El uso de caracteres especiales requiere enviar una mínima cantidad de \textit{bytes} extra por cada paquete, pero permite que los campos tengan longitudes flexibles y puedan ser diferenciados de forma sencilla. Para que un paquete sea decodificado por la parte receptora, sólo es necesario respetar el orden en el que se envían los campos.
+Para convertir este tipo de dato a \textit{String} y pueda ser comprendido por el software receptor de datos, se utilizaron los caracteres especiales de la tabla ASCII, \textit{Start of text}, \textit{End of text} y \textit{Group separator}. Que están en las posiciones 2, 3 y 19, de dicha tabla ASCII respectivamente. El caracter \textit{Group separator} sirve para indicar la separación entre dos elementos de la estructura. Los caracteres \textit{Start of text} y \textit{End of text} indican cuando inicia y termina una medición. La estructura convertida a tipo \textit{String} puede verse representada en la figura \ref{fig:measurement-string}. El uso de caracteres especiales requiere enviar una mínima cantidad de \textit{bytes} extra por cada paquete, pero permite que los campos tengan longitudes flexibles y puedan ser diferenciados de forma sencilla. Para que un paquete sea decodificado por la parte receptora, sólo es necesario respetar el orden en el que se envían los campos.
 
 \begin{figure}[htpb]
 \centering

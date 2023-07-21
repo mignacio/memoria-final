@@ -85,7 +85,7 @@ Para verificar que la medición de presión de aceite cumpliera con el requisito
 
 En el primero se simuló al sensor de presión con un potenciómetro de valor similar. Luego se midió la tensión en los contactos de la bornera en donde se conecta el sensor con el circuito impreso. Y, finalmente, se contrastó el valor de tensión medido, con la lectura realizada por el ADC, para ver en cuanto diferían entre si.
 
-Para el segundo ensayo se conectó al sensor de presión a una bomba de presión de aire manual, para simular
+Para el segundo ensayo, se conectó al sensor de presión a una bomba de presión de aire manual con manómetro integrado, para simular así la presión del fluído y contrastar el valor medido con la lectura del manómetro.
 
 \subsection{Ensayos de medición de velocidad de giro}
 
@@ -112,7 +112,7 @@ Como se puede observar de los resultados del ensayo listados en la tabla \ref{ta
 
 \subsection{Ensayos de medición de la sonda lambda}
 
-
+Ante la falta de un dispositivo capaz de leer una sonda lamba para luego contrastar su lectura. Se optó por realizar una lectura indirecta del sensor, midiendo la tensión en bornes del mismo. Luego, se contrastó la lectura realizada por el prototipo, con el resultado de calcular el factor lambda correspondiente a la tensión en bornes medida.
 
 \subsection{Ensayo de pérdida de paquetes}
 
@@ -139,11 +139,9 @@ En esta sección se describen los casos de uso utilizados para ensayar si la int
 		Nombre				&   Conectarse a parte adquisidora. \\
 		Actor principal		&   Usuario \\
 		Disparadores		&   El usuario presiona el botón "Conectar" \\
-		Flujo básico		&   \begin{itemize}
-			\item{1.} Hola hola
-		\end{itemize}\\
+		Flujo básico		&   \\
 		Pre-condiciones		&   La parte adquisidora tiene que estar funcionamiento y su LED azul parpadeando. \\
-		Post-condiciones	&   \begin{itemize}\item{1.} El bótón "Conectar" se oscurece.\end{itemize}\\
+		Post-condiciones	&   \\
 		\bottomrule
 	\end{tabular}
 \label{tab:caso-conectar}
@@ -161,9 +159,7 @@ En esta sección se describen los casos de uso utilizados para ensayar si la int
 		Nombre				&   Ocultar variable en la gráfica. \\
 		Actor principal		&   Usuario \\
 		Disparadores		&   El usuario presiona el botón que tiene el mismo nombre de la variable que quiere ocultar. \\
-		Flujo básico		&   \begin{itemize}
-			\item{1.} Hola hola
-		\end{itemize}\\
+\\
 		Pre-condiciones		&   La variable se encuentra visible. \\
 		Post-condiciones	&   La variable deja de estar visible.\\
 		\bottomrule
@@ -183,9 +179,7 @@ En esta sección se describen los casos de uso utilizados para ensayar si la int
 		Nombre				& 	Mostrar variable oculta. \\
 		Actor principal		&   Usuario \\
 		Disparadores		&   El usuario presiona el botón que tiene el mismo nombre de la variable que quiere mostrar. \\
-		Flujo básico		&   \begin{itemize}
-			\item{1.} Hola hola
-		\end{itemize}\\
+\\
 		Pre-condiciones		&   La variable se encuentra oculta. \\
 		Post-condiciones	&   La variable es visualizada en su gráfica correspondiente.\\
 		\bottomrule

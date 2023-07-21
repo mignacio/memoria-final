@@ -16,7 +16,9 @@ En dos revoluciones completas del cigüeñal el pistón pasa por cuatro etapas, 
 \item{Escape:} la combustión genera gases que son evacuados de la cámara por el movimiento hacia arriba del pistón. Luego de esta etapa final, el proceso se repite y el pistón vuelve a la etapa de admisión.
 \end{itemize}
 
-\break
+\subsection{Proceso de combustión y su eficiencia}
+
+Un motor de combustión interna, o motor a explosión, es un tipo de máquina que obtiene energía mecánica a través de una reacción química conocida como combustión. La combustión es la oxidación rápida en presencia de oxígeno de materiales llamados combustibles. El resultado de esta reacción cuando es completa es dióxido de carbono, agua, y energía liberada en forma de calor y expansión gaseosa. La expansión gaseosa es convertida en movimiento rotatorio y el calor se disipa a la atmósfera. Cuando la combustión no es completa, ya sea por exceso o defecto de oxígeno, se producen otros compuestos parcialmente oxidados como el monóxido de Carbono. Esto sucede cuando la cantidad total de energía liberada es menor.
 
 \begin{figure}[htpb]
 \centering
@@ -25,10 +27,6 @@ En dos revoluciones completas del cigüeñal el pistón pasa por cuatro etapas, 
 \label{fig:motor-combustion}
 \end{figure}
 \footnotetext[2]{Imagen tomada de \cite{motor}}
-
-\subsection{Proceso de combustión y su eficiencia}
-
-Un motor de combustión interna, o motor a explosión, es un tipo de máquina que obtiene energía mecánica a través de una reacción química conocida como combustión. La combustión es la oxidación rápida en presencia de oxígeno de materiales llamados combustibles. El resultado de esta reacción cuando es completa es dióxido de carbono, agua, y energía liberada en forma de calor y expansión gaseosa. La expansión gaseosa es convertida en movimiento rotatorio y el calor se disipa a la atmósfera. Cuando la combustión no es completa, ya sea por exceso o defecto de oxígeno, se producen otros compuestos parcialmente oxidados como el monóxido de Carbono. Esto sucede cuando la cantidad total de energía liberada es menor.
 
 Para que una combustión sea completa, se tiene que cumplir la condición de que la proporción por peso, de oxígeno y combustible, sea igual a su proporción estequiométrica. En un motor de gasolina esta proporción es de 14,7 partes de oxígeno por 1 parte de combustible \citep{book-afr}. Se llama factor lambda, denominado con la letra griega $\lambda$, a la relación entre la proporción oxígeno y combustible actual con su proporción estequiométrica. Si la combustión ocurre con exceso de oxígeno, el factor lambda será mayor a 1, si ocurre con defecto de oxígeno, el factor será menor a 1, y si ocurre con la proporción justa será igual a 1. Los sensores desarrollados para poder monitorear este factor son llamados sondas lambda. En los vehículos actuales, el monitoreo de este factor es utilizado para regular la cantidad de combustible inyectada en cada proceso de combustión. De esta forma, es posible operar al motor eficientemente minimizando las emisiones de gases indeseados.
 
@@ -111,7 +109,7 @@ Para cumplir con el requisito REQ-GEN-001, se utilizó \textit{Git} para el cont
 
 \subsection{Sensor de temperatura}
 
-Para medir las temperaturas de los gases de admisión, escape y temperatura de aceite se utilizaron termocuplas tipo K. Una termocupla es un dispositivo compuesto por dos alambres metálicos de distintos materiales unidos en un punto. Cuando existe una diferencia de temperatura entre la unión y su extremo abierto, se genera una diferencia de tensión en sus bornes. La tensión generada es proporcional a la diferencia de temperatura, a este efecto se llama efecto Seebeck \cite{termocupla}. Para convertir la tensión de la termocupla en un valor de temperatura se utilizó el circuito integrado MAX31855K.
+Para medir las temperaturas de los gases de admisión, escape y temperatura de aceite se utilizaron termocuplas tipo K. Una termocupla es un dispositivo compuesto por dos alambres metálicos de distintos materiales unidos en un punto. Cuando existe una diferencia de temperatura entre la unión y su extremo abierto, se genera una diferencia de tensión en sus bornes. La tensión generada es proporcional a la diferencia de temperatura, a este efecto se llama efecto Seebeck \cite{termocupla}. Para convertir la tensión de la termocupla en un valor de temperatura, se utilizó el circuito integrado MAX31855K.
 
 \subsection{Sensor de presión de aceite}
 
@@ -119,11 +117,11 @@ El sensor de presión de aceite es un sensor de resistencia variable. Su valor d
 
 \subsection{Sensor de factor lambda}
 
-Una sonda lambda es un sensor que produce una señal eléctrica proporcional al factor de oxígeno sensado. Su rango es de 0,8 y 2. La tensión de la señal eléctrica entre estos dos valores es 800 mV y 0 V respectivamente. Su función transferencia puede verse en la figura \ref{fig:funcion-lambda}. Para la medición lambda fue necesario utilizar un circuito integrado especializado. El LM9044, fabricado por Texas Instruments es un amplificador diferencial diseñado para leer la señal de una sonda lambda con un conversor analógico digital.
+Una sonda lambda, es un sensor que produce una señal eléctrica de tensión proporcional al factor de oxígeno sensado. El sensor utilizado puede medir factores lambda entre 0,8 y 2. Para la medición de esta variable fue necesario utilizar un circuito integrado especializado. El LM9044, fabricado por Texas Instruments, es un amplificador diferencial diseñado para leer la señal de una sonda lambda con un conversor analógico digital.
 
 \subsection{Sensor de reluctancia variable}
 
-Para medir la velocidad de giro del cigüeñal del motor se utilizó un sensor de reluctancia variable. Estos sensores convierten variaciones en la reluctancia magnética en una señal de tensión. Estas variaciones son generadas por la presencia o movimiento de un objeto ferroso en la proximidad del sensor. La medición de la velocidad de giro del cigüeñal se hace a través de una rueda fónica. Una rueda fónica es una rueda dentada de acero que gira en conjunto con el cigüeñal del motor. Cuando la rueda gira, los dientes se acercan y se alejan del sensor y esto genera un tren de pulsos en sus bornes. Para medir la velocidad de giro, la señal del sensor tiene que ser convertida a una señal cuadrada de valores de tensión dentro del rango admisible por el microcontrolador. Para esto se utilizó el circuito integrado MAX9924 \cite{MAX9924}. El proceso de adaptación de la señal del MAX9924 está representado en el diagrama de bloques de la figura \ref{fig:bloq-rpm}.
+Para medir la velocidad de giro del cigüeñal del motor se utilizó un sensor de reluctancia variable. Estos sensores convierten variaciones en la reluctancia magnética en una señal de tensión. Estas variaciones, son generadas por la presencia o movimiento de un objeto ferroso en la proximidad del sensor. La medición de la velocidad de giro del cigüeñal se hace a través de una rueda fónica. Una rueda fónica es una rueda dentada de acero que gira en conjunto con el cigüeñal del motor. Cuando la rueda gira, los dientes se acercan y se alejan del sensor y esto genera un tren de pulsos en sus bornes. Para medir la velocidad de giro, la señal del sensor tiene que ser convertida a una señal cuadrada de valores de tensión dentro del rango admisible por el microcontrolador. Para esto se utilizó el circuito integrado MAX9924 \cite{MAX9924}. El proceso de adaptación de la señal del MAX9924 está representado en el diagrama de bloques de la figura \ref{fig:bloq-rpm}.
 
 \begin{figure}[htpb]
 \centering
