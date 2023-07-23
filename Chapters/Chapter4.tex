@@ -79,14 +79,6 @@ Se contrastaron las mediciones realizadas por el sistema contra las mediciones r
 
 En las tablas \ref{tab:ensayo-0-degree} , \ref{tab:ensayo-20-degree}, y \ref{tab:ensayo-100-degree} se listan los resultados de los tres ensayos de temperatura. A partir de dichos resultados se puede concluir que se cumplieron los requisitos REQ-ADQ-001 y REQ-ADQ-002.
 
-\subsection{Ensayos de medición de presión de aceite}
-
-Para verificar que la medición de presión de aceite cumpliera con el requisito REQ-ADQ-005 se realizaron dos ensayos distintos.
-
-En el primero se simuló al sensor de presión con un potenciómetro de valor similar. Luego se midió la tensión en los contactos de la bornera en donde se conecta el sensor con el circuito impreso. Y, finalmente, se contrastó el valor de tensión medido, con la lectura realizada por el ADC, para ver en cuanto diferían entre si.
-
-Para el segundo ensayo, se conectó al sensor de presión a una bomba de presión de aire manual con manómetro integrado, para simular así la presión del fluído y contrastar el valor medido con la lectura del manómetro.
-
 \subsection{Ensayos de medición de velocidad de giro}
 
 El ensayo de verificación de medición de velocidad de giro, se realizó simulando al sensor de reluctancia variable, con la placa de sonido de una computadora. A través de un software generador de señales, se inyectó en la entrada del circuito una señal triangular de frecuencia variable y de amplitud de 1 Vp2p. Este ensayo se basó de la hoja de datos del kit de evaluación del MAX9924 \cite{max9924evk}. Al igual que indica la hoja de datos del kit de evaluación, se hicieron ensayos con cuatro valores de frecuencia diferentes, 5 Hz, 55Hz, 2,5 kHz y 24 kHz.
@@ -108,6 +100,28 @@ Como se puede observar de los resultados del ensayo listados en la tabla \ref{ta
 		\bottomrule
 	\end{tabular}
 	\label{tab:ensayo-rpm}
+\end{table}
+
+\subsection{Ensayos de medición de presión de aceite}
+
+Para verificar que la medición de presión de aceite cumpliera con el requisito REQ-ADQ-005 se realizaron dos ensayos distintos.
+
+En el primero se simuló al sensor de presión con un potenciómetro de valor similar. Luego se midió la tensión en los contactos de la bornera en donde se conecta el sensor con el circuito impreso. Y, finalmente, se contrastó el valor de tensión medido, con la lectura realizada por el ADC, para ver en cuanto diferían entre si. Los resultados del ensayo están listados en la tabla \ref{tab:ensayo-presion}.
+
+\begin{table}[htpb]
+	\centering
+	\caption{Resultados de ensayo medición de presión de aceite.}
+	\centering
+	\begin{tabular}{c c c c}    
+		\toprule
+		\textbf{Tensión[V]} & \textbf{Presión equivalente[PSI]} & \textbf{Lectura[PSI]} & \textbf{Diferencia[PSI]}\\
+		\midrule
+		0,172		&   5,980 & 5,580 & 0,4 \\
+		0,847		&   66,007 & 65,488 & 0,519 \\
+		1,429		&   117,764 & 117,418 & 0,346 \\
+		\bottomrule
+	\end{tabular}
+	\label{tab:ensayo-presion}
 \end{table}
 
 \subsection{Ensayos de medición de la sonda lambda}
