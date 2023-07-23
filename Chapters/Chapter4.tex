@@ -122,36 +122,46 @@ Resultado: No se encontró pérdida de datos después de 10.000 transmisiones co
 
 \subsection{Ensayo de tiempo de transmisión}
 
+Para esta prueba, se modificó el firmware de forma de poder hacer uso de dos de los pines de propósito general disponibles. Uno de ellos se utilizó para indicar, con un valor alto, que la tarea de medición de temperatura está en proceso de adquisición. El pin restante se utilizó para indicar cuando el paquete measurement fue envíado por la tarea de transmisión. Entonces, a través del uso de un analizador lógico, se midió el tiempo entre los cambios de estado de ambos pines. Midiendo así el tiempo que transcurre entre que se obtuvo una medición de la variable hasta que fue transmitida. El resultado de una de estas mediciones puede apreciarse en la figura \ref{fig:tiempo-envio}. El promedio tiempo observado, a partir de tomar diez mediciones consecutivas, fue de 52,2 ms. De esta forma se cumple con el requisito REQ-ADQ-006.
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=\textwidth]{./Figures/tiempo-envio.png}
+\caption{Captura de pantalla del software del analizador lógico, donde se puede apreciar que el tiempo que transcurre entre, adquisición y envío del dato, es de 52 ms aproximadamente.}
+\label{fig:tiempo-envio}
+\end{figure}
+
+\break
 
 \section{Casos de uso}
 
-En esta sección se describen los casos de uso utilizados para ensayar si la interfaz gráfica cumple con los requisitos
+En esta sección se describen los casos y las pruebas realizadas para validar, si la interfaz gráfica cumple con sus requerimientos de aceptación. A mismo tiempo, se utilizaron estos ensayos para evaluar si son necesarios cambios o mejoras en el diseño de la interfaz.
 
-\begin{table}
+\begin{table}[htpb]
 	\centering
 	\caption{Caso de uso de conectarse a la parte adquisidora.}
 	\centering
-	\begin{tabular}{c c}    
+	\begin{tabular}{c p{0.6\textwidth}}    
 		\toprule
 		\textbf{Título }     & \textbf{Descripción} \\
 		\midrule
 		Identificador		&  CU1. \\
 		Nombre				&   Conectarse a parte adquisidora. \\
 		Actor principal		&   Usuario \\
-		Disparadores		&   El usuario presiona el botón "Conectar" \\
+		Disparadores		&   El usuario presiona el botón \textit{Conectar} \\
 		Flujo básico		&   \\
 		Pre-condiciones		&   La parte adquisidora tiene que estar funcionamiento y su LED azul parpadeando. \\
-		Post-condiciones	&   \\
+		Post-condiciones	&    \\
 		\bottomrule
 	\end{tabular}
 \label{tab:caso-conectar}
 \end{table}
 
-\begin{table}
+\begin{table}[htpb]
 	\centering
 	\caption{Caso de uso de ocultar una variable de su gráfica.}
 	\centering
-	\begin{tabular}{c c}    
+	\begin{tabular}{c p{0.6\textwidth}}    
 		\toprule
 		\textbf{Título }     & \textbf{Descripción} \\
 		\midrule
@@ -167,11 +177,11 @@ En esta sección se describen los casos de uso utilizados para ensayar si la int
 \label{tab:caso-ocultar}
 \end{table}
 
-\begin{table}
+\begin{table}[htpb]
 	\centering
 	\caption{Caso de uso de mostrar una variable oculta.}
 	\centering
-	\begin{tabular}{c c}    
+	\begin{tabular}{c p{0.6\textwidth}}    
 		\toprule
 		\textbf{Título }     & \textbf{Descripción} \\
 		\midrule
@@ -187,4 +197,43 @@ En esta sección se describen los casos de uso utilizados para ensayar si la int
 \label{tab:caso-mostrar}
 \end{table}
 
+\begin{table}[htpb]
+	\centering
+	\caption{Caso de uso de mostrar una variable oculta.}
+	\centering
+	\begin{tabular}{c p{0.6\textwidth}}    
+		\toprule
+		\textbf{Título }     & \textbf{Descripción} \\
+		\midrule
+		Identificador		&	CU4. \\
+		Nombre				& 	Aumentar valor de alarma. \\
+		Actor principal		&   Usuario \\
+		Disparadores		&   El usuario presiona alguno de los botones \"+\" que se encuentran al lado de los nombres de las variables. \\
+\\
+		Pre-condiciones		&   Ninguna \\
+		Post-condiciones	&   El valor de la alarma se incrementa en una unidad.\\
+		\bottomrule
+	\end{tabular}
+\label{tab:caso-aumentar}
+\end{table}
+
+\begin{table}[htpb]
+	\centering
+	\caption{Caso de uso de mostrar una variable oculta.}
+	\centering
+	\begin{tabular}{c p{0.6\textwidth}}    
+		\toprule
+		\textbf{Título }     & \textbf{Descripción} \\
+		\midrule
+		Identificador		&	CU5. \\
+		Nombre				& 	Disminuir valor de alarma. \\
+		Actor principal		&   Usuario \\
+		Disparadores		&   El usuario presiona alguno de los botones \"-\" que se encuentran al lado de los nombres de las variables. \\
+\\
+		Pre-condiciones		&   Ninguna \\
+		Post-condiciones	&   El valor de la alarma disminuye por una unidad.\\
+		\bottomrule
+	\end{tabular}
+\label{tab:caso-decrementar}
+\end{table}
 
