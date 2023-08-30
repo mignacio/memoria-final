@@ -24,60 +24,32 @@ Se ensambló un banco de ensayos para poder evaluar el rendimiento del sistema y
 \break
 \subsection{Ensayos de medición de temperatura}
 
-Se contrastaron las mediciones realizadas por el sistema contra las mediciones realizadas por un multímetro que tiene medición de termocupla tipo K. Para la contrastación se sumergieron a todas las termocuplas en un recipiente con agua, el ensayo se repitió tres veces y en estas reiteraciones la temperatura del agua fue de 0 \degree C, 100 \degree C y 20 \degree C considerada temperatura ambiente.
+Se contrastaron las mediciones realizadas por el sistema contra las mediciones realizadas por un multímetro que tiene medición de termocupla tipo K. Para la contrastación se sumergieron a todas las termocuplas en un recipiente con agua, el ensayo se repitió tres veces y en estas reiteraciones la temperatura del agua fue de 0 \degree C, 20 \degree C, considerada temperatura ambiente, y 80 \degree C. Para cada ensayo a cada temperatura se tomaron 150 muestras consecutivas, que representan un tiempo total transcurrido de 375 segundos o 6 minutos 15 segundos. Luego para cada juego de muestras se calculó su valor medio y la desviación estandar, para lograr cuantificar el error y la dispersión que tienen las medidas de temperatura tomadas por el sistema. Estos resultados están plasmados en las figuras \ref{fig:temp-0c}, \ref{fig:temp-20C} y \ref{fig:temp-80c}.
 
-\begin{table}[htpb]
-	\centering
-	\caption{Resultados de ensayo a 0 \degree C.}
-	\centering
-	\begin{tabular}{l c}    
-		\toprule
-		\textbf{Sensor }     & \textbf{Lectura [\degree C]} \\
-		\midrule
-		Termocupla admisión		&   0,25 \\
-		Termocupla escape		&   0,50 \\
-		Termocupla aceite		& - 0,25 \\
-		Termocupla contraste	&   0,03 \\
-		\bottomrule
-	\end{tabular}
-	\label{tab:ensayo-0-degree}
-\end{table}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=.9\textwidth]{./Figures/temp-0c.png}
+\caption{Valores medios y desviación estándar para el ensayo de temperatura a 0C.}
+\label{fig:temp-0c}
+\end{figure}
 
-\begin{table}[htpb]
-	\centering
-	\caption{Resultados de ensayo a 20 \degree C.}
-	\centering
-	\begin{tabular}{l c}    
-		\toprule
-		\textbf{Sensor }     & \textbf{Lectura [\degree C]} \\
-		\midrule
-		Termocupla admisión		&   20,25 \\
-		Termocupla escape		&   20,75 \\
-		Termocupla aceite		&   20,50 \\
-		Termocupla contraste	&   19,95 \\
-		\bottomrule
-	\end{tabular}
-	\label{tab:ensayo-20-degree}
-\end{table}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=.9\textwidth]{./Figures/temp-20c.png}
+\caption{Valores medios y desviación estándar para el ensayo de temperatura a 20C.}
+\label{fig:temp-20c}
+\end{figure}
 
-\begin{table}[htpb]
-	\centering
-	\caption{Resultados de ensayo a 100 \degree C.}
-	\centering
-	\begin{tabular}{l c}    
-		\toprule
-		\textbf{Sensor }     & \textbf{Lectura [\degree C]} \\
-		\midrule
-		Termocupla admisión		&   100,50 \\
-		Termocupla escape		&   100,75 \\
-		Termocupla aceite		&   100,75 \\
-		Termocupla contraste	&   100,50 \\
-		\bottomrule
-	\end{tabular}
-	\label{tab:ensayo-100-degree}
-\end{table}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=.9\textwidth]{./Figures/temp-80c.png}
+\caption{Valores medios y desviación estándar para el ensayo de temperatura a 0C.}
+\label{fig:temp-80c}
+\end{figure}
 
-En las tablas \ref{tab:ensayo-0-degree} , \ref{tab:ensayo-20-degree}, y \ref{tab:ensayo-100-degree} se listan los resultados de los tres ensayos de temperatura. A partir de dichos resultados se puede concluir que se cumplieron los requisitos REQ-ADQ-001 y REQ-ADQ-002.
+El resultado con menor diferencia al valor contrastado fue para la termocupla de temperatura de aceite en el ensayo de 0 \degree C, dicho error fue de 0,25 \degree C. La mayor diferencia se encontró para la termocupla de aceite en el ensayo a 80 \degree C, en ese caso el error fue de 2,25 \degree C. Este error máximo es considerado aceptable para la aplicación del sistema.
+
+\break
 
 \subsection{Ensayos de medición de velocidad de giro}
 
@@ -96,19 +68,19 @@ Para verificar la medición del sistema. Se realizaron ocho mediciones de la se�
 	\centering
 	\caption{Resultados de ensayo de medición de velocidad de giro.}
 	\centering
-	\begin{tabular}{c c c}    
+	\begin{tabular}{c c c c}    
 		\toprule
-		\textbf{Frecuencia simulada [RPM]} &  \textbf{Valor contrastado[RPM]}   & \textbf{Valor observado[RPM]} \\
+		\textbf{Simulada[RPM]} &  \textbf{Referencia[RPM]}   & \textbf{Observada[RPM]} & \textbf{Error[RPM]}\\
 		\midrule
-		1000	&	998 &	900 \\
-		2500	&	2577 & 2400 \\
-		5000	&	4967 & 5100 \\
-		7500	&	7447 & 7500 \\
-		10000	&	9925 & 9900 \\
-		12500	&	12402 & 12300 \\
-		15000	&	14876 & 14700 \\
-		17500	&	17182 & 17100 \\
-		20000	&	19817 & 19800 \\		
+		1000	&	998 &	900 & 98\\
+		2500	&	2577 & 2400 & 177\\
+		5000	&	4967 & 5100 & -133 \\
+		7500	&	7447 & 7500 & -53\\
+		10000	&	9925 & 9900 & 25\\
+		12500	&	12402 & 12300 & 102\\
+		15000	&	14876 & 14700 & 176\\
+		17500	&	17182 & 17100 & 82\\
+		20000	&	19817 & 19800 & 17\\		
 		\bottomrule
 	\end{tabular}
 	\label{tab:ensayo-rpm}
@@ -122,7 +94,7 @@ Como se puede observar de los resultados del ensayo. La diferencia máxima entre
 
 Para verificar que la medición de presión de aceite cumpliera con el requisito REQ-ADQ-005 se realizaron dos ensayos distintos.
 
-En el primero se simuló al sensor de presión con un potenciómetro de valor similar. Luego se midió la tensión en los contactos de la bornera en donde se conecta el sensor con el circuito impreso. Y, finalmente, se contrastó el valor de tensión medido, con la lectura realizada por el ADC, para ver en cuanto diferían entre si. Los resultados del ensayo están listados en la tabla \ref{tab:ensayo-presion}.
+En el primero se simuló al sensor de presión con un potenciómetro de valor similar. Luego se midió la tensión en los contactos de la bornera en donde se conecta el sensor con el circuito impreso. Y, finalmente, se contrastó el valor de tensión medido, con la lectura realizada por el ADC, para ver en cuanto diferían entre si. Los resultados del ensayo están listados en la tabla \ref{tab:ensayo-presion}. El error máximo se dio para el caso de 0,847 V, equivalente a una presión de 66,007 PSI y fue de 0,519 PSI. Dicho error es considerado aceptable. 
 
 \begin{table}[htpb]
 	\centering
@@ -130,7 +102,7 @@ En el primero se simuló al sensor de presión con un potenciómetro de valor si
 	\centering
 	\begin{tabular}{c c c c}    
 		\toprule
-		\textbf{Tensión[V]} & \textbf{Presión equivalente[PSI]} & \textbf{Lectura[PSI]} & \textbf{Diferencia[PSI]}\\
+		\textbf{Tensión[V]} & \textbf{Presión equivalente[PSI]} & \textbf{Lectura[PSI]} & \textbf{Error[PSI]}\\
 		\midrule
 		0,172		&   5,980 & 5,580 & 0,4 \\
 		0,847		&   66,007 & 65,488 & 0,519 \\
@@ -142,7 +114,30 @@ En el primero se simuló al sensor de presión con un potenciómetro de valor si
 
 \subsection{Ensayos de medición de la sonda lambda}
 
-Ante la falta de un dispositivo capaz de leer una sonda lamba para luego contrastar su lectura. Se optó por realizar una lectura indirecta del sensor, midiendo la tensión en bornes del mismo. Luego, se contrastó la lectura realizada por el prototipo, con el resultado de calcular el factor lambda correspondiente a la tensión en bornes medida.
+Ante la falta de un dispositivo capaz de leer una sonda lamba para luego contrastar su lectura. Se simuló una sonda Lambda con una fuente de tensión variable digital. Y se realizaron mediciones para 10 valores de tensión, simulando 10 valores distintos de factor lambda. Los resultados de las mediciones pueden verse de la tabla \ref{tab:caso-o2}. El error máximo registrado fue de -, considerado aceptable para la aplicación.
+
+\begin{table}[htpb]
+	\centering
+	\caption{Resultados de ensayo medición de presión de aceite.}
+	\centering
+	\begin{tabular}{c c c c}    
+		\toprule
+		\textbf{Tensión[V]} & \textbf{Lambda equivalente[$\lambda$]} & \textbf{Lectura[$\lambda$]} & \textbf{Error[$\lambda$]} \\
+		\midrule
+		0,510		&   0,650 & - & - \\
+		0,884		&   0,750 & - & - \\
+		1,177		&   0,850 & - & - \\
+		1,409		&   0,950 & - & - \\
+		1,448		&   0,970 & - & - \\
+		1,500		&   1,003 & - & - \\
+		1,548		&   1,050 & - & - \\
+		1,624		&   1,132 & - & - \\
+		1,832		&   1,429 & - & - \\
+		2,069		&   1,990 & - & - \\
+		\bottomrule
+	\end{tabular}
+	\label{tab:ensayo-o2}
+\end{table}
 
 \subsection{Ensayo de pérdida de paquetes}
 
@@ -161,11 +156,11 @@ Para esta prueba, se modificó el firmware de forma de poder hacer uso de dos de
 \label{fig:tiempo-envio}
 \end{figure}
 
-\break
-
 \section{Casos de uso}
 
 En esta sección se describen los casos y las pruebas realizadas para validar, si la interfaz gráfica cumple con sus requerimientos de aceptación. A mismo tiempo, se utilizaron estos ensayos para evaluar si son necesarios cambios o mejoras en el diseño de la interfaz.
+
+Al finalizar estas pruebas se verificó que el diseño y la implementación de la interfaz gráfica es adecuado para sus requisitos. Sin embargo se encontró que la pantalla utilizada era de un tamaño muy pequeño, y esto dificultaba la lectura de las gráficas y la interacción con los botones a través de la interfaz táctil.
 
 \begin{table}[htpb]
 	\centering
