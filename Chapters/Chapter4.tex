@@ -81,26 +81,42 @@ En las tablas \ref{tab:ensayo-0-degree} , \ref{tab:ensayo-20-degree}, y \ref{tab
 
 \subsection{Ensayos de medición de velocidad de giro}
 
-El ensayo de verificación de medición de velocidad de giro, se realizó simulando al sensor de reluctancia variable, con la placa de sonido de una computadora. A través de un software generador de señales, se inyectó en la entrada del circuito una señal triangular de frecuencia variable y de amplitud de 1 Vp2p. Este ensayo se basó de la hoja de datos del kit de evaluación del MAX9924 \cite{max9924evk}. Al igual que indica la hoja de datos del kit de evaluación, se hicieron ensayos con cuatro valores de frecuencia diferentes, 5 Hz, 55Hz, 2,5 kHz y 24 kHz.
+Para este ensayo se desarrolló, con una placa de desarrollo Arduino MEGA, un simulador de una señal proveniente de un sensor de reluctancia variable. El objetivo del programa desarrollado fue de generar una señal cuadrada periódica, de frecuencia seleccionable, y de ciclo de trabajo positivo de 10\%.
 
-Como se puede observar de los resultados del ensayo listados en la tabla \ref{tab:ensayo-rpm}, el prototipo cumple con el requisito REQ-ADQ-003.
+Para verificar la medición del sistema. Se realizaron ocho mediciones de la señal simulada, a distintos valores de R.P.M., y se utilizó un osciloscopio digital, como instrumento de jerarquía para contrastar los resultados obtenidos. Dichos resultados están plasmados en la tabla \ref{tab:ensayo-rpm}. En la figura \ref{fig:foto-rpm} se aprecia ambas placas conectadas entre si, y la forma de onda de la señal generada (en amarillo), y la señal producida por el MAX9924 (en azul) en la pantalla del osciloscopio.
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=.8\textwidth]{./Figures/foto-rpm.jpg}
+\caption{Foto del sistema en funcionamiento conectado a la placa Arduino MEGA utilizada como simulador de señal de R.P.M..}
+\label{fig:foto-rpm}
+\end{figure}
 
 \begin{table}[htpb]
 	\centering
 	\caption{Resultados de ensayo de medición de velocidad de giro.}
 	\centering
-	\begin{tabular}{c c}    
+	\begin{tabular}{c c c}    
 		\toprule
-		\textbf{Frecuencia señal }     & \textbf{Lectura} \\
+		\textbf{Frecuencia simulada [RPM]} &  \textbf{Valor contrastado[RPM]}   & \textbf{Valor observado[RPM]} \\
 		\midrule
-		5 Hz		&   5,1 Hz \\
-		55 Hz		&   54,9 Hz \\
-		2500 Hz		&   2499,9 Hz \\
-		24000 Hz	&   2399,9 Hz \\
+		1000	&	998 &	900 \\
+		2500	&	2577 & 2400 \\
+		5000	&	4967 & 5100 \\
+		7500	&	7447 & 7500 \\
+		10000	&	9925 & 9900 \\
+		12500	&	12402 & 12300 \\
+		15000	&	14876 & 14700 \\
+		17500	&	17182 & 17100 \\
+		20000	&	19817 & 19800 \\		
 		\bottomrule
 	\end{tabular}
 	\label{tab:ensayo-rpm}
 \end{table}
+
+Como se puede observar de los resultados del ensayo. La diferencia máxima entre el valor medido y el contrastado fue de 133 R.P.M., con esto entonces se cumple con el requisito REQ-ADQ-003.
+
+\break
 
 \subsection{Ensayos de medición de presión de aceite}
 

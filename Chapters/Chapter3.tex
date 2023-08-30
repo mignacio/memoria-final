@@ -35,7 +35,7 @@ De estas dos funciones transferencia se obtiene que, la resolución del circuito
 
 \begin{figure}[htpb]
 \centering
-\includegraphics[width=.9\textwidth]{./Figures/circuito-presion.png}
+\includegraphics[width=\textwidth]{./Figures/circuito-presion.png}
 \caption{Diagrama del circuito amplificador de presión.}
 \label{fig:circuito-presion}
 \end{figure}
@@ -77,6 +77,8 @@ El firmware desarrollado para la parte adquisidora se escribió en el lenguaje d
 
 En total, el firmware tiene que digitalizar las señales de siete sensores, tres termocuplas, sonda lambda, presión de aceite, tensión de batería y el sensor de R.P.M. Para evitar excesivos cambios de contexto por el sistema operativo, se agruparon estas funciones en tres tareas. Una tarea para digitalizar los tres sensores de temperatura llamada \textit{temp-task}, otra para digitalizar los sensores analógicos llamada \textit{analog-task} y la última tarea llamada \textit{rpm-task} digitaliza la señal del sensor de R.P.M. El funcionamiento general del firmware está representado por el diagrama de bloques de la figura \ref{fig:diagrama-firmware}.
 
+El principio de funcionamiento de los procesos productores es muy similar para las tres tareas. Primero corren por única vez la rutina de inicialización del sensor, ejecutan la tarea de adquisición de datos, convierten el dato en una variable física, la almacenan en un tipo de dato llamado \textit{measurement} que es almacenado en la cola, y finalmente esperan por un tiempo según la frecuencia de muestreo de ese grupo de sensores. Finalizado ese tiempo se vuelve a repetir el ciclo. Dicho proceso está diagramado en la figura \ref{fig:flujo-productor}.
+
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=.8\textwidth]{./Figures/diagrama-firmware.png}
@@ -84,7 +86,12 @@ En total, el firmware tiene que digitalizar las señales de siete sensores, tres
 \label{fig:diagrama-firmware}
 \end{figure}
 
-El principio de funcionamiento de los procesos productores muy similar para las tres tareas. Primero corren por única vez la rutina de inicialización del sensor, ejecutan la tarea de adquisición de datos, convierten el dato en una variable física, la almacenan en un tipo de dato llamado \textit{measurement} que es almacenado en la cola, y finalmente esperan por un tiempo según la frecuencia de muestreo de ese grupo de sensores. Finalizado ese tiempo se vuelve a repetir el ciclo.
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=.25\textwidth]{./Figures/flujo-productor.png}
+\caption{Diagrama de flujo generalizado para los procesos productores.}
+\label{fig:flujo-productor}
+\end{figure}
 
 \subsection{Tarea medición de temperatura}
 
