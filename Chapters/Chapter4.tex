@@ -6,12 +6,12 @@ En este capítulo se describen los ensayos llevados a cabo para verificar que to
 
 \section{Ensayos de verificación}
 
-Se ensambló un banco de ensayos para poder evaluar el rendimiento del sistema y resolver los fallos que ocurrieron durante el desarrollo. De esta forma se evitó la dependencia de disponer un motor de combustión interna para los ensayos. Las figuras \ref{fig:banco-pruebas-1} y \ref{fig:banco-pruebas-2} muestran dicho banco de pruebas durante uno de ellos.
+Se ensambló un banco de ensayos para poder evaluar el rendimiento del sistema y resolver los fallos que ocurrieron durante el desarrollo. De esta forma, se evitó la dependencia de disponer un motor de combustión interna para los ensayos. Las figuras \ref{fig:banco-pruebas-1} y \ref{fig:banco-pruebas-2} muestran dicho banco de pruebas durante uno de ellos.
 
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=.85\textwidth]{./Figures/banco-pruebas-1.jpg}
-\caption{Fotografía del banco de pruebas en uso durante uno de los ensayos.}
+\caption{Fotografía del banco de pruebas durante uno de los ensayos.}
 \label{fig:banco-pruebas-1}
 \end{figure}
 
@@ -24,43 +24,43 @@ Se ensambló un banco de ensayos para poder evaluar el rendimiento del sistema y
 \break
 \subsection{Ensayos de medición de temperatura}
 
-Se contrastaron las mediciones realizadas por el sistema contra las mediciones realizadas por un multímetro que tiene medición de termocupla tipo K. Para la contrastación se sumergieron a todas las termocuplas en un recipiente con agua, el ensayo se repitió tres veces y en estas reiteraciones la temperatura del agua fue de 0 \degree C, 20 \degree C, considerada temperatura ambiente, y 80 \degree C. Para cada ensayo a cada temperatura se tomaron 150 muestras consecutivas, que representan un tiempo total transcurrido de 375 segundos o 6 minutos 15 segundos. Luego para cada juego de muestras se calculó su valor medio y la desviación estandar, para lograr cuantificar el error y la dispersión que tienen las medidas de temperatura tomadas por el sistema. Estos resultados están plasmados en las figuras \ref{fig:temp-0c}, \ref{fig:temp-20C} y \ref{fig:temp-80c}.
+Se contrastaron las mediciones realizadas por el sistema contra las mediciones realizadas por un multímetro que tiene medición de termocupla tipo K. Para la contrastación se sumergieron a todas las termocuplas en un recipiente con agua, el ensayo se repitió tres veces y en estas reiteraciones la temperatura del agua fue de 0 \degree C, 20 \degree C, considerada temperatura ambiente, y 80 \degree C. Para cada ensayo a cada temperatura se tomaron 150 muestras consecutivas, que representan un tiempo total transcurrido de 375 segundos o 6 minutos 15 segundos. Luego, para cada juego de muestras se calculó su valor medio y la desviación estandar, para lograr cuantificar el error y la dispersión que tienen las medidas de temperatura tomadas por el sistema. Estos resultados están plasmados en las figuras \ref{fig:temp-0c}, \ref{fig:temp-20C} y \ref{fig:temp-80c}.
 
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=.9\textwidth]{./Figures/temp-0c.png}
-\caption{Valores medios y desviación estándar para el ensayo de temperatura a 0C.}
+\caption{Valores medios y desviación estándar para el ensayo de temperatura a 0 \degree C.}
 \label{fig:temp-0c}
 \end{figure}
 
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=.9\textwidth]{./Figures/temp-20c.png}
-\caption{Valores medios y desviación estándar para el ensayo de temperatura a 20C.}
+\caption{Valores medios y desviación estándar para el ensayo de temperatura a 20 \degree C.}
 \label{fig:temp-20c}
 \end{figure}
 
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=.9\textwidth]{./Figures/temp-80c.png}
-\caption{Valores medios y desviación estándar para el ensayo de temperatura a 0C.}
+\caption{Valores medios y desviación estándar para el ensayo de temperatura a 0 \degree C.}
 \label{fig:temp-80c}
 \end{figure}
 
-El resultado con menor diferencia al valor contrastado fue para la termocupla de temperatura de aceite en el ensayo de 0 \degree C, dicho error fue de 0,25 \degree C. La mayor diferencia se encontró para la termocupla de aceite en el ensayo a 80 \degree C, en ese caso el error fue de 2,25 \degree C. Este error máximo es considerado aceptable para la aplicación del sistema.
+El resultado con menor diferencia al valor contrastado fue para la termocupla de temperatura de aceite en el ensayo de 0 \degree C, dicho error fue de 0,25 \degree C. La mayor diferencia se encontró para la termocupla de aceite en el ensayo a 80 \degree C, en ese caso el error fue de 2,25 \degree C. La menor desviación estándar se registró para la termocupla de temperatura de admisión, en el ensayo de 0 \degree C, su valor fue de 0,179 \degree C. La mayor desviación estándar se registró para la termocupla de temperatura de aceite en el ensayo de 80 \degree C, su valor fue de 0,806 \degree C.  Los valores de error máximo y desviación máxima registrados son considerados aceptables.
 
 \break
 
 \subsection{Ensayos de medición de velocidad de giro}
 
-Para este ensayo se desarrolló, con una placa de desarrollo Arduino MEGA, un simulador de una señal proveniente de un sensor de reluctancia variable. El objetivo del programa desarrollado fue de generar una señal cuadrada periódica, de frecuencia seleccionable, y de ciclo de trabajo positivo de 10\%.
+Para este ensayo se desarrolló, con una placa de desarrollo Arduino "MEGA", un simulador de una señal proveniente de un sensor de reluctancia variable. El objetivo de este programa es de generar una señal cuadrada periódica, de frecuencia seleccionable, y de ciclo de trabajo positivo de 10\%.
 
-Para verificar la medición del sistema. Se realizaron ocho mediciones de la señal simulada, a distintos valores de R.P.M., y se utilizó un osciloscopio digital, como instrumento de jerarquía para contrastar los resultados obtenidos. Dichos resultados están plasmados en la tabla \ref{tab:ensayo-rpm}. En la figura \ref{fig:foto-rpm} se aprecia ambas placas conectadas entre si, y la forma de onda de la señal generada (en amarillo), y la señal producida por el MAX9924 (en azul) en la pantalla del osciloscopio.
+Para verificar la medición del sistema. Se realizaron ocho mediciones de la señal simulada a distintos valores de R.P.M. Para contrastar los resultados obtenidos se utilizo un osciloscopio digital como instrumento de jerarquía. Dichos resultados están plasmados en la tabla \ref{tab:ensayo-rpm}. En la figura \ref{fig:foto-rpm} se aprecia ambas placas conectadas entre si, y la forma de onda de la señal generada (en amarillo), y la señal producida por el MAX9924 (en azul) en la pantalla del osciloscopio.
 
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=.8\textwidth]{./Figures/foto-rpm.jpg}
-\caption{Foto del sistema en funcionamiento conectado a la placa Arduino MEGA utilizada como simulador de señal de R.P.M..}
+\caption{Foto del sistema en funcionamiento conectado a la placa Arduino "MEGA" utilizada como simulador de señal de R.P.M..}
 \label{fig:foto-rpm}
 \end{figure}
 
@@ -94,7 +94,7 @@ Como se puede observar de los resultados del ensayo. La diferencia máxima entre
 
 Para verificar que la medición de presión de aceite cumpliera con el requisito REQ-ADQ-005 se realizaron dos ensayos distintos.
 
-En el primero se simuló al sensor de presión con un potenciómetro de valor similar. Luego se midió la tensión en los contactos de la bornera en donde se conecta el sensor con el circuito impreso. Y, finalmente, se contrastó el valor de tensión medido, con la lectura realizada por el ADC, para ver en cuanto diferían entre si. Los resultados del ensayo están listados en la tabla \ref{tab:ensayo-presion}. El error máximo se dio para el caso de 0,847 V, equivalente a una presión de 66,007 PSI y fue de 0,519 PSI. Dicho error es considerado aceptable. 
+En el primero se simuló al sensor de presión con un potenciómetro de valor similar. Luego se midió la tensión en los contactos de la bornera en donde se conecta el sensor con el circuito impreso. Y, finalmente, se contrastó el valor de tensión medido, con la lectura realizada por el ADC, para ver en cuanto diferían entre sí. Los resultados del ensayo están listados en la tabla \ref{tab:ensayo-presion}. El error máximo se dio para el caso de 0,847 V, equivalente a una presión de 66,007 PSI y fue de 0,519 PSI. Dicho error es considerado aceptable. 
 
 \begin{table}[htpb]
 	\centering
@@ -114,26 +114,27 @@ En el primero se simuló al sensor de presión con un potenciómetro de valor si
 
 \subsection{Ensayos de medición de la sonda lambda}
 
-Ante la falta de un dispositivo capaz de leer una sonda lamba para luego contrastar su lectura. Se simuló una sonda Lambda con una fuente de tensión variable digital. Y se realizaron mediciones para 10 valores de tensión, simulando 10 valores distintos de factor lambda. Los resultados de las mediciones pueden verse de la tabla \ref{tab:caso-o2}. El error máximo registrado fue de -, considerado aceptable para la aplicación.
+Ante la falta de un dispositivo capaz de leer una sonda lamba para luego contrastar su lectura. Se simuló una sonda Lambda con una fuente de tensión variable digital. Y se realizaron mediciones para 11 valores de tensión, simulando 11 valores distintos de factor lambda. Los resultados de las mediciones pueden verse de la tabla \ref{tab:caso-o2}. El error máximo registrado fue de 0.019, considerado aceptable para la aplicación.
 
 \begin{table}[htpb]
 	\centering
-	\caption{Resultados de ensayo medición de presión de aceite.}
+	\caption{Resultados de ensayo medición de factor lambda.}
 	\centering
 	\begin{tabular}{c c c c}    
 		\toprule
 		\textbf{Tensión[V]} & \textbf{Lambda equivalente[$\lambda$]} & \textbf{Lectura[$\lambda$]} & \textbf{Error[$\lambda$]} \\
 		\midrule
-		0,510		&   0,650 & - & - \\
-		0,884		&   0,750 & - & - \\
-		1,177		&   0,850 & - & - \\
-		1,409		&   0,950 & - & - \\
-		1,448		&   0,970 & - & - \\
-		1,500		&   1,003 & - & - \\
-		1,548		&   1,050 & - & - \\
-		1,624		&   1,132 & - & - \\
-		1,832		&   1,429 & - & - \\
-		2,069		&   1,990 & - & - \\
+		0		&	2	 & 1.946 & 0.054 \\		
+		0,1		&   1,26 & 1.316 & -0.056 \\
+		0,2		&   1,06 & 1.089 & -0.029 \\
+		0,3		&   1.04 & 1.035 & 0.005 \\
+		0,45	&   1 	 & 1 	 & 0 \\
+		0,5		&   0.98 & 0.971- & 0.009 \\
+		0,6		&   0.92 & 0.924 & -0.004 \\
+		0,7		&   0.88 & 0.872 & 0.008 \\
+		0,8		&   0.84 & 0.843 & -0.003 \\
+		0,9		&   0.65 & 0.656 & -0.006 \\
+		1		&   0	 & 0.019 & -0.019 \\
 		\bottomrule
 	\end{tabular}
 	\label{tab:ensayo-o2}
@@ -141,13 +142,13 @@ Ante la falta de un dispositivo capaz de leer una sonda lamba para luego contras
 
 \subsection{Ensayo de pérdida de paquetes}
 
-Para este ensayo se modificó el software de ambas partes del sistema para agregar un campo extra a cada paquete transmitido para enumerar a cada uno de ellos con un número que comienza en 0 y se incrementa por 1 cada vez que se transmite un paquete. De esta forma es posible saber si existió pérdida de paquetes durante la transmisión verificando que la secuencia de los números no se vio interrumpida al finalizar el ensayo. Luego se colocaron ambas partes separadas por una distancia de tres metros y se inició la trasmisión de información hasta llegar a la cantidad de 10.000 paquetes transmitidos. 
+Para este ensayo se modificó el software de ambas partes del sistema para agregar un campo extra a cada paquete transmitido. Cada uno de ellos fue enumerado con una cifra que comienza en 0 y se incrementa por 1 cada vez que se transmite un paquete. De esta forma, es posible saber si existió pérdida de paquetes durante la transmisión, luego de verificar que la secuencia de los números no se vio interrumpida al finalizar el ensayo. Luego, se colocaron ambas partes separadas por una distancia de tres metros y se inició la trasmisión de información hasta llegar a la cantidad de 10.000 paquetes transmitidos.
 
 Resultado: No se encontró pérdida de datos después de 10.000 transmisiones consecutivas, se verificó que el requisito REQ-COMM-001 fue cumplido.
 
 \subsection{Ensayo de tiempo de transmisión}
 
-Para esta prueba, se modificó el firmware de forma de poder hacer uso de dos de los pines de propósito general disponibles. Uno de ellos se utilizó para indicar, con un valor alto, que la tarea de medición de temperatura está en proceso de adquisición. El pin restante se utilizó para indicar cuando el paquete measurement fue envíado por la tarea de transmisión. Entonces, a través del uso de un analizador lógico, se midió el tiempo entre los cambios de estado de ambos pines. Midiendo así el tiempo que transcurre entre que se obtuvo una medición de la variable hasta que fue transmitida. El resultado de una de estas mediciones puede apreciarse en la figura \ref{fig:tiempo-envio}. El promedio tiempo observado, a partir de tomar diez mediciones consecutivas, fue de 52,2 ms. De esta forma se cumple con el requisito REQ-ADQ-006.
+Para esta prueba, se modificó el firmware de forma de poder utilizar dos de los pines de propósito general disponibles. Uno de ellos se utilizó para indicar, con un valor alto, que la tarea de medición de temperatura está en proceso de adquisición. El pin restante se utilizó para indicar cuando el paquete measurement fue envíado por la tarea de transmisión. Entonces, empleando un analizador lógico, se midió el tiempo entre los cambios de estado de ambos pines. De esta forma, fue posible medir el tiempo que transcurre entre que se obtiene una medición de la variable, hasta que fue es transmitida. El resultado de una de estas mediciones puede apreciarse en la figura \ref{fig:tiempo-envio}. El promedio tiempo observado, a partir de tomar diez mediciones consecutivas, fue de 52,2 ms. De esta forma se cumple con el requisito REQ-ADQ-006.
 
 \begin{figure}[htpb]
 \centering
@@ -158,13 +159,13 @@ Para esta prueba, se modificó el firmware de forma de poder hacer uso de dos de
 
 \section{Casos de uso}
 
-En esta sección se describen los casos y las pruebas realizadas para validar, si la interfaz gráfica cumple con sus requerimientos de aceptación. A mismo tiempo, se utilizaron estos ensayos para evaluar si son necesarios cambios o mejoras en el diseño de la interfaz.
+En esta sección se describen los casos de uso y las pruebas realizadas para validar, si la interfaz gráfica cumple con sus requerimientos de aceptación. Al mismo tiempo, se utilizaron estos ensayos para evaluar si son necesarios cambios o mejoras en el diseño de la interfaz. Los casos de uso están descriptos en las tablas  \ref{tab:caso-conectar}, \ref{tab:caso-ocultar}, \ref{tab:caso-mostrar}, \ref{tab:caso-aumentar}, y \ref{tab:caso-decrementar}.
 
-Al finalizar estas pruebas se verificó que el diseño y la implementación de la interfaz gráfica es adecuado para sus requisitos. Sin embargo se encontró que la pantalla utilizada era de un tamaño muy pequeño, y esto dificultaba la lectura de las gráficas y la interacción con los botones a través de la interfaz táctil.
+Al finalizar estas pruebas se verificó que el diseño y la implementación de la interfaz gráfica es adecuada para sus requisitos. Sin embargo, se encontró que la pantalla utilizada era de un tamaño muy pequeño, y esto dificultaba la lectura de las gráficas y la interacción con los botones a través de la interfaz táctil.
 
 \begin{table}[htpb]
 	\centering
-	\caption{Caso de uso de conectarse a la parte adquisidora.}
+	\caption{Caso de uso: conectarse a la parte adquisidora.}
 	\centering
 	\begin{tabular}{c p{0.6\textwidth}}    
 		\toprule
@@ -184,7 +185,7 @@ Al finalizar estas pruebas se verificó que el diseño y la implementación de l
 
 \begin{table}[htpb]
 	\centering
-	\caption{Caso de uso de ocultar una variable de su gráfica.}
+	\caption{Caso de uso: ocultar una variable de su gráfica.}
 	\centering
 	\begin{tabular}{c p{0.6\textwidth}}    
 		\toprule
@@ -204,7 +205,7 @@ Al finalizar estas pruebas se verificó que el diseño y la implementación de l
 
 \begin{table}[htpb]
 	\centering
-	\caption{Caso de uso de mostrar una variable oculta.}
+	\caption{Caso de uso: mostrar una variable oculta.}
 	\centering
 	\begin{tabular}{c p{0.6\textwidth}}    
 		\toprule
@@ -224,7 +225,7 @@ Al finalizar estas pruebas se verificó que el diseño y la implementación de l
 
 \begin{table}[htpb]
 	\centering
-	\caption{Caso de uso de mostrar una variable oculta.}
+	\caption{Caso de uso: mostrar una variable oculta.}
 	\centering
 	\begin{tabular}{c p{0.6\textwidth}}    
 		\toprule
@@ -244,7 +245,7 @@ Al finalizar estas pruebas se verificó que el diseño y la implementación de l
 
 \begin{table}[htpb]
 	\centering
-	\caption{Caso de uso de mostrar una variable oculta.}
+	\caption{Caso de uso: mostrar una variable oculta.}
 	\centering
 	\begin{tabular}{c p{0.6\textwidth}}    
 		\toprule
