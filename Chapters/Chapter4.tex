@@ -6,7 +6,7 @@ En este capítulo se describen los ensayos llevados a cabo para verificar que to
 
 \section{Ensayos de verificación}
 
-Se ensambló un banco de ensayos para poder evaluar el rendimiento del sistema y resolver los fallos que ocurrieron durante el desarrollo. De esta forma, se evitó la dependencia de disponer un motor de combustión interna para los ensayos. Las figuras \ref{fig:banco-pruebas-1} y \ref{fig:banco-pruebas-2} muestran dicho banco de pruebas durante uno de ellos.
+Se ensambló un banco de ensayos para poder evaluar el rendimiento del sistema y resolver los fallos que se experimentaron durante el desarrollo. De esta forma, se evitó la dependencia de disponer un motor de combustión interna para los ensayos. Las figuras \ref{fig:banco-pruebas-1} y \ref{fig:banco-pruebas-2} muestran dicho banco de pruebas durante uno de ellos.
 
 \begin{figure}[htpb]
 \centering
@@ -24,7 +24,7 @@ Se ensambló un banco de ensayos para poder evaluar el rendimiento del sistema y
 \break
 \subsection{Ensayos de medición de temperatura}
 
-Se contrastaron las mediciones realizadas por el sistema contra las mediciones realizadas por un multímetro que tiene medición de termocupla tipo K. Para la contrastación se sumergieron a todas las termocuplas en un recipiente con agua, el ensayo se repitió tres veces y en estas reiteraciones la temperatura del agua fue de 0 \degree C, 20 \degree C, considerada temperatura ambiente, y 80 \degree C. Para cada ensayo a cada temperatura se tomaron 150 muestras consecutivas, que representan un tiempo total transcurrido de 375 segundos o 6 minutos 15 segundos. Luego, para cada juego de muestras se calculó su valor medio y la desviación estandar, para lograr cuantificar el error y la dispersión que tienen las medidas de temperatura tomadas por el sistema. Estos resultados están plasmados en las figuras \ref{fig:temp-0c}, \ref{fig:temp-20C} y \ref{fig:temp-80c}.
+Se contrastaron las mediciones realizadas por el sistema contra las mediciones realizadas por un multímetro, que incluye la opción para medir temperatura a través de termocuplas tipo K. Las termocuplas se sumergieron en un recipiente con agua y se repitió el ensayo tres veces, en los que se utilizaron temperaturas de referencias 0 \degree C, 20 \degree C (considerada temperatura ambiente) y 80 \degree C. Para cada ensayo a distinta temperatura se tomaron 150 muestras consecutivas, que representan un tiempo total transcurrido de 375 segundos o 6 minutos 15 segundos. Luego, para cada juego de muestras se calculó su valor medio y la desviación estandar, para lograr cuantificar el error y la dispersión que tienen las medidas de temperatura tomadas por el sistema. Estos resultados están plasmados en las figuras \ref{fig:temp-0c}, \ref{fig:temp-20c} y \ref{fig:temp-80c}.
 
 \begin{figure}[htpb]
 \centering
@@ -47,20 +47,20 @@ Se contrastaron las mediciones realizadas por el sistema contra las mediciones r
 \label{fig:temp-80c}
 \end{figure}
 
-El resultado con menor diferencia al valor contrastado fue para la termocupla de temperatura de aceite en el ensayo de 0 \degree C, dicho error fue de 0,25 \degree C. La mayor diferencia se encontró para la termocupla de aceite en el ensayo a 80 \degree C, en ese caso el error fue de 2,25 \degree C. La menor desviación estándar se registró para la termocupla de temperatura de admisión, en el ensayo de 0 \degree C, su valor fue de 0,179 \degree C. La mayor desviación estándar se registró para la termocupla de temperatura de aceite en el ensayo de 80 \degree C, su valor fue de 0,806 \degree C.  Los valores de error máximo y desviación máxima registrados son considerados aceptables.
+El resultado con menor diferencia al valor contrastado fue para la termocupla de temperatura de aceite en el ensayo de 0 \degree C, dicho error fue de 0,25 \degree C. La mayor diferencia se encontró para la termocupla de aceite en el ensayo a 80 \degree C, en ese caso el error fue de 2,25 \degree C. La menor desviación estándar se registró para la termocupla de temperatura de admisión, en el ensayo de 0 \degree C, su valor fue de 0,179 \degree C. La mayor desviación estándar se registró para la termocupla de temperatura de aceite en el ensayo de 80 \degree C, su valor fue de 0,806 \degree C.  Los valores de error y desviación máximos registrados son considerados aceptables.
 
 \break
 
 \subsection{Ensayos de medición de velocidad de giro}
 
-Para este ensayo se desarrolló, con una placa de desarrollo Arduino "MEGA", un simulador de una señal proveniente de un sensor de reluctancia variable. El objetivo de este programa es de generar una señal cuadrada periódica, de frecuencia seleccionable, y de ciclo de trabajo positivo de 10\%.
+Para este ensayo se desarrolló, con una placa de desarrollo Arduino "MEGA", un simulador de una señal proveniente de un sensor de reluctancia variable. El objetivo de este programa es generar una señal cuadrada periódica, de frecuencia seleccionable, y de ciclo de trabajo positivo de 10\%.
 
-Para verificar la medición del sistema. Se realizaron ocho mediciones de la señal simulada a distintos valores de R.P.M. Para contrastar los resultados obtenidos se utilizo un osciloscopio digital como instrumento de jerarquía. Dichos resultados están plasmados en la tabla \ref{tab:ensayo-rpm}. En la figura \ref{fig:foto-rpm} se aprecia ambas placas conectadas entre si, y la forma de onda de la señal generada (en amarillo), y la señal producida por el MAX9924 (en azul) en la pantalla del osciloscopio.
+Para verificar la medición del sistema. Se realizaron ocho mediciones de la señal simulada a distintos valores de R.P.M. Para contrastar los resultados obtenidos se utilizó un osciloscopio digital como instrumento de medición de calidad. Dichos resultados están plasmados en la tabla \ref{tab:ensayo-rpm}. En la figura \ref{fig:foto-rpm} se aprecia ambas placas conectadas entre si, y la forma de onda de la señal generada (en amarillo), y la señal producida por el MAX9924 (en azul) en la pantalla del osciloscopio.
 
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=.8\textwidth]{./Figures/foto-rpm.jpg}
-\caption{Foto del sistema en funcionamiento conectado a la placa Arduino "MEGA" utilizada como simulador de señal de R.P.M..}
+\caption{Foto del sistema en funcionamiento conectado a la placa Arduino "MEGA"  utilizada como simulador de señal de R.P.M.}
 \label{fig:foto-rpm}
 \end{figure}
 
@@ -114,7 +114,7 @@ En el primero se simuló al sensor de presión con un potenciómetro de valor si
 
 \subsection{Ensayos de medición de la sonda lambda}
 
-Ante la falta de un dispositivo capaz de leer una sonda lamba para luego contrastar su lectura. Se simuló una sonda Lambda con una fuente de tensión variable digital. Y se realizaron mediciones para 11 valores de tensión, simulando 11 valores distintos de factor lambda. Los resultados de las mediciones pueden verse de la tabla \ref{tab:caso-o2}. El error máximo registrado fue de 0.019, considerado aceptable para la aplicación.
+Ante la falta de un dispositivo capaz de leer una sonda lamba para luego contrastar su lectura. Se simuló una sonda Lambda con una fuente de tensión variable digital. Y se realizaron mediciones para 11 valores de tensión, de forma de simular 11 valores distintos de factor lambda. Los resultados del ensayo pueden verse en la tabla \ref{tab:ensayo-o2}. El error máximo registrado fue de 0.019, considerado aceptable para la aplicación.
 
 \begin{table}[htpb]
 	\centering
@@ -142,13 +142,13 @@ Ante la falta de un dispositivo capaz de leer una sonda lamba para luego contras
 
 \subsection{Ensayo de pérdida de paquetes}
 
-Para este ensayo se modificó el software de ambas partes del sistema para agregar un campo extra a cada paquete transmitido. Cada uno de ellos fue enumerado con una cifra que comienza en 0 y se incrementa por 1 cada vez que se transmite un paquete. De esta forma, es posible saber si existió pérdida de paquetes durante la transmisión, luego de verificar que la secuencia de los números no se vio interrumpida al finalizar el ensayo. Luego, se colocaron ambas partes separadas por una distancia de tres metros y se inició la trasmisión de información hasta llegar a la cantidad de 10.000 paquetes transmitidos.
+Para este ensayo se modificó el software de ambas partes del sistema para agregar un campo extra a cada paquete transmitido. Cada uno de ellos fue enumerado con una cifra que comienza en 0 y se incrementa por 1 cada vez que se transmite un paquete. De esta forma, es posible saber si existieron pérdidas de paquetes durante la transmisión, luego de verificar que la secuencia de los números no se vio interrumpida al finalizar el ensayo. Luego, se colocaron ambas partes separadas por una distancia de tres metros y se inició la trasmisión de información hasta llegar a la cantidad de 10.000 paquetes transmitidos.
 
-Resultado: No se encontró pérdida de datos después de 10.000 transmisiones consecutivas, se verificó que el requisito REQ-COMM-001 fue cumplido.
+Resultado: No se encontró pérdida de datos después de 10.000 transmisiones consecutivas, se verificó que el requisito REQ-COMM-001 fue cumplido con éxito.
 
 \subsection{Ensayo de tiempo de transmisión}
 
-Para esta prueba, se modificó el firmware de forma de poder utilizar dos de los pines de propósito general disponibles. Uno de ellos se utilizó para indicar, con un valor alto, que la tarea de medición de temperatura está en proceso de adquisición. El pin restante se utilizó para indicar cuando el paquete measurement fue envíado por la tarea de transmisión. Entonces, empleando un analizador lógico, se midió el tiempo entre los cambios de estado de ambos pines. De esta forma, fue posible medir el tiempo que transcurre entre que se obtiene una medición de la variable, hasta que fue es transmitida. El resultado de una de estas mediciones puede apreciarse en la figura \ref{fig:tiempo-envio}. El promedio tiempo observado, a partir de tomar diez mediciones consecutivas, fue de 52,2 ms. De esta forma se cumple con el requisito REQ-ADQ-006.
+En esta prueba, para poder emplear los dos pines de propósito general disponibles, se modificó el firmware. Uno de ellos se utilizó para indicar, con un nivel lógico alto, que la tarea de medición de temperatura está en proceso de adquisición. El pin restante se utilizó para indicar cuando el paquete measurement fue envíado por la tarea de transmisión. Entonces, a través de un analizador lógico, se midió el tiempo entre los cambios de estado de ambos pines. De esta forma, fue posible medir el tiempo que transcurre entre que se obtiene una medición de la variable, hasta que es transmitida. El resultado de una de estas mediciones puede apreciarse en la figura \ref{fig:tiempo-envio}. El tiempo promedio observado, a partir de tomar diez mediciones consecutivas, fue de 52,2 ms. De esta forma se cumple con el requisito REQ-ADQ-006.
 
 \begin{figure}[htpb]
 \centering
@@ -161,7 +161,7 @@ Para esta prueba, se modificó el firmware de forma de poder utilizar dos de los
 
 En esta sección se describen los casos de uso y las pruebas realizadas para validar, si la interfaz gráfica cumple con sus requerimientos de aceptación. Al mismo tiempo, se utilizaron estos ensayos para evaluar si son necesarios cambios o mejoras en el diseño de la interfaz. Los casos de uso están descriptos en las tablas  \ref{tab:caso-conectar}, \ref{tab:caso-ocultar}, \ref{tab:caso-mostrar}, \ref{tab:caso-aumentar}, y \ref{tab:caso-decrementar}.
 
-Al finalizar estas pruebas se verificó que el diseño y la implementación de la interfaz gráfica es adecuada para sus requisitos. Sin embargo, se encontró que la pantalla utilizada era de un tamaño muy pequeño, y esto dificultaba la lectura de las gráficas y la interacción con los botones a través de la interfaz táctil.
+Al finalizar estas pruebas, se verificó que el diseño y la implementación de la interfaz gráfica son adecuados para cumplir con sus requisitos. Sin embargo, se encontró que la pantalla utilizada era de un tamaño muy pequeño, y esto dificulta la lectura de las gráficas y la interacción con los botones a través de la interfaz táctil.
 
 \begin{table}[htpb]
 	\centering
@@ -176,7 +176,7 @@ Al finalizar estas pruebas se verificó que el diseño y la implementación de l
 		Actor principal		&   Usuario \\
 		Disparadores		&   El usuario presiona el botón \textit{Conectar} \\
 		Flujo básico		&   \\
-		Pre-condiciones		&   La parte adquisidora tiene que estar funcionamiento y su LED azul parpadeando. \\
+		Pre-condiciones		&   La parte adquisidora tiene que estar en funcionamiento y su LED azul parpadeando. \\
 		Post-condiciones	&    \\
 		\bottomrule
 	\end{tabular}
@@ -225,7 +225,7 @@ Al finalizar estas pruebas se verificó que el diseño y la implementación de l
 
 \begin{table}[htpb]
 	\centering
-	\caption{Caso de uso: mostrar una variable oculta.}
+	\caption{Caso de uso: aumentar valor de alarma.}
 	\centering
 	\begin{tabular}{c p{0.6\textwidth}}    
 		\toprule
@@ -234,7 +234,7 @@ Al finalizar estas pruebas se verificó que el diseño y la implementación de l
 		Identificador		&	CU4. \\
 		Nombre				& 	Aumentar valor de alarma. \\
 		Actor principal		&   Usuario \\
-		Disparadores		&   El usuario presiona alguno de los botones \"+\" que se encuentran al lado de los nombres de las variables. \\
+		Disparadores		&   El usuario presiona alguno de los botones + que se encuentran al lado de los nombres de las variables. \\
 \\
 		Pre-condiciones		&   Ninguna \\
 		Post-condiciones	&   El valor de la alarma se incrementa en una unidad.\\
@@ -245,7 +245,7 @@ Al finalizar estas pruebas se verificó que el diseño y la implementación de l
 
 \begin{table}[htpb]
 	\centering
-	\caption{Caso de uso: mostrar una variable oculta.}
+	\caption{Caso de uso: disminuir valor de alarma.}
 	\centering
 	\begin{tabular}{c p{0.6\textwidth}}    
 		\toprule
@@ -254,7 +254,7 @@ Al finalizar estas pruebas se verificó que el diseño y la implementación de l
 		Identificador		&	CU5. \\
 		Nombre				& 	Disminuir valor de alarma. \\
 		Actor principal		&   Usuario \\
-		Disparadores		&   El usuario presiona alguno de los botones \"-\" que se encuentran al lado de los nombres de las variables. \\
+		Disparadores		&   El usuario presiona alguno de los botones - que se encuentran al lado de los nombres de las variables. \\
 \\
 		Pre-condiciones		&   Ninguna \\
 		Post-condiciones	&   El valor de la alarma disminuye por una unidad.\\
