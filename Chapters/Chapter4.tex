@@ -24,7 +24,7 @@ Se ensambló un banco de ensayos para poder evaluar el rendimiento del sistema y
 \break
 \subsection{Ensayos de medición de temperatura}
 
-Se contrastaron las mediciones realizadas por el sistema contra las mediciones realizadas por un multímetro, que incluye la opción para medir temperatura a través de termocuplas tipo K. Las termocuplas se sumergieron en un recipiente con agua y se repitió el ensayo tres veces, en los que se utilizaron temperaturas de referencias 0 \degree C, 20 \degree C (considerada temperatura ambiente) y 80 \degree C. Para cada ensayo a distinta temperatura se tomaron 150 muestras consecutivas, que representan un tiempo total transcurrido de 375 segundos o 6 minutos 15 segundos. Luego, para cada juego de muestras se calculó su valor medio y la desviación estandar, para lograr cuantificar el error y la dispersión que tienen las medidas de temperatura tomadas por el sistema. Estos resultados están plasmados en las figuras \ref{fig:temp-0c}, \ref{fig:temp-20c} y \ref{fig:temp-80c}.
+Se contrastaron las mediciones realizadas por el sistema contra las mediciones realizadas por un multímetro, que incluye la opción para medir temperatura a través de termocuplas tipo K. Las termocuplas se sumergieron en un recipiente con agua y se repitió el ensayo tres veces, en los que se utilizaron temperaturas de referencias 0 \degree C, 20 \degree C (considerada temperatura ambiente) y 80 \degree C. Para cada ensayo a distinta temperatura se tomaron 150 muestras consecutivas, que representan un tiempo total transcurrido de 375 segundos o 6 minutos 15 segundos. Luego, para cada juego de muestras se calculó su valor medio y la desviación estandar, para lograr cuantificar el error y la dispersión que tuvieron las medidas de temperatura tomadas por el sistema. Estos resultados están plasmados en las figuras \ref{fig:temp-0c}, \ref{fig:temp-20c} y \ref{fig:temp-80c}.
 
 \begin{figure}[htpb]
 \centering
@@ -55,12 +55,12 @@ El resultado con menor diferencia al valor contrastado fue para la termocupla de
 
 Para este ensayo se desarrolló, con una placa de desarrollo Arduino "MEGA", un simulador de una señal proveniente de un sensor de reluctancia variable. El objetivo de este programa es generar una señal cuadrada periódica, de frecuencia seleccionable, y de ciclo de trabajo positivo de 10\%.
 
-Para verificar la medición del sistema. Se realizaron ocho mediciones de la señal simulada a distintos valores de R.P.M. Para contrastar los resultados obtenidos se utilizó un osciloscopio digital como instrumento de medición de calidad. Dichos resultados están plasmados en la tabla \ref{tab:ensayo-rpm}. En la figura \ref{fig:foto-rpm} se aprecia ambas placas conectadas entre si, y la forma de onda de la señal generada (en amarillo), y la señal producida por el MAX9924 (en azul) en la pantalla del osciloscopio.
+Para verificar la medición del sistema, se realizaron ocho mediciones de la señal simulada a distintos valores de R.P.M. Para contrastar los resultados obtenidos se utilizó un osciloscopio digital como instrumento de medición de calidad. Dichos resultados están plasmados en la tabla \ref{tab:ensayo-rpm}. En la figura \ref{fig:foto-rpm} se aprecia ambas placas conectadas entre si, y la forma de onda de la señal generada (en amarillo), y la señal producida por el MAX9924 (en azul) en la pantalla del osciloscopio.
 
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=.8\textwidth]{./Figures/foto-rpm.jpg}
-\caption{Foto del sistema en funcionamiento conectado a la placa Arduino "MEGA"  utilizada como simulador de señal de R.P.M.}
+\caption{Foto del sistema en funcionamiento conectado a la placa Arduino "MEGA" utilizada como simulador de señal de R.P.M.}
 \label{fig:foto-rpm}
 \end{figure}
 
@@ -94,7 +94,7 @@ Como se puede observar de los resultados del ensayo. La diferencia máxima entre
 
 Para verificar que la medición de presión de aceite cumpliera con el requisito REQ-ADQ-005 se realizaron dos ensayos distintos.
 
-En el primero se simuló al sensor de presión con un potenciómetro de valor similar. Luego se midió la tensión en los contactos de la bornera en donde se conecta el sensor con el circuito impreso. Y, finalmente, se contrastó el valor de tensión medido, con la lectura realizada por el ADC, para ver en cuanto diferían entre sí. Los resultados del ensayo están listados en la tabla \ref{tab:ensayo-presion}. El error máximo se dio para el caso de 0,847 V, equivalente a una presión de 66,007 PSI y fue de 0,519 PSI. Dicho error es considerado aceptable. 
+En el primero se simuló al sensor de presión con un potenciómetro de valor similar. Luego se midió la tensión en los contactos de la bornera en donde se conecta el sensor con el circuito impreso. Y, finalmente, se contrastó el valor de tensión medido, con la lectura realizada por el ADC, para observar en cuanto diferían entre sí. Los resultados del ensayo están listados en la tabla \ref{tab:ensayo-presion}. El error máximo se dio para el caso de 0,847 V, equivalente a una presión de 66,007 PSI y fue de 0,519 PSI. Dicho error es considerado aceptable. 
 
 \begin{table}[htpb]
 	\centering
@@ -114,7 +114,7 @@ En el primero se simuló al sensor de presión con un potenciómetro de valor si
 
 \subsection{Ensayos de medición de la sonda lambda}
 
-Ante la falta de un dispositivo capaz de leer una sonda lamba para luego contrastar su lectura. Se simuló una sonda Lambda con una fuente de tensión variable digital. Y se realizaron mediciones para 11 valores de tensión, de forma de simular 11 valores distintos de factor lambda. Los resultados del ensayo pueden verse en la tabla \ref{tab:ensayo-o2}. El error máximo registrado fue de 0.019, considerado aceptable para la aplicación.
+Ante la falta de un dispositivo capaz de leer una sonda lamba para luego contrastar su lectura. Se simuló una sonda Lambda con una fuente de tensión variable digital. Y se realizaron mediciones para 11 valores de tensión, de forma de simular distintos valores de factor lambda. Los resultados del ensayo pueden verse en la tabla \ref{tab:ensayo-o2}. El error máximo registrado fue de 0.019, considerado aceptable para la aplicación.
 
 \begin{table}[htpb]
 	\centering
@@ -142,13 +142,13 @@ Ante la falta de un dispositivo capaz de leer una sonda lamba para luego contras
 
 \subsection{Ensayo de pérdida de paquetes}
 
-Para este ensayo se modificó el software de ambas partes del sistema para agregar un campo extra a cada paquete transmitido. Cada uno de ellos fue enumerado con una cifra que comienza en 0 y se incrementa por 1 cada vez que se transmite un paquete. De esta forma, es posible saber si existieron pérdidas de paquetes durante la transmisión, luego de verificar que la secuencia de los números no se vio interrumpida al finalizar el ensayo. Luego, se colocaron ambas partes separadas por una distancia de tres metros y se inició la trasmisión de información hasta llegar a la cantidad de 10.000 paquetes transmitidos.
+Para este ensayo se modificó el software de ambas partes del sistema para agregar un campo extra a cada paquete transmitido. Cada uno de ellos fue enumerado con una cifra que comienza en 0 y se incrementa en 1 cada vez que se transmite un paquete. De esta forma, es posible saber si existieron pérdidas de paquetes durante la transmisión, luego de verificar que la secuencia de los números no se vio interrumpida al finalizar el ensayo. Luego, se colocaron ambas partes separadas por una distancia de tres metros y se inició la trasmisión de información hasta llegar a la cantidad de 10.000 paquetes transmitidos.
 
 Resultado: No se encontró pérdida de datos después de 10.000 transmisiones consecutivas, se verificó que el requisito REQ-COMM-001 fue cumplido con éxito.
 
 \subsection{Ensayo de tiempo de transmisión}
 
-En esta prueba, para poder emplear los dos pines de propósito general disponibles, se modificó el firmware. Uno de ellos se utilizó para indicar, con un nivel lógico alto, que la tarea de medición de temperatura está en proceso de adquisición. El pin restante se utilizó para indicar cuando el paquete measurement fue envíado por la tarea de transmisión. Entonces, a través de un analizador lógico, se midió el tiempo entre los cambios de estado de ambos pines. De esta forma, fue posible medir el tiempo que transcurre entre que se obtiene una medición de la variable, hasta que es transmitida. El resultado de una de estas mediciones puede apreciarse en la figura \ref{fig:tiempo-envio}. El tiempo promedio observado, a partir de tomar diez mediciones consecutivas, fue de 52,2 ms. De esta forma se cumple con el requisito REQ-ADQ-006.
+En esta prueba, para poder emplear los dos pines de propósito general disponibles, se modificó el firmware. Uno de ellos se utilizó para indicar, con un nivel lógico alto, que la tarea de medición de temperatura está en proceso de adquisición. El pin restante se utilizó para indicar cuando el paquete measurement fue envíado por la tarea de transmisión. Entonces, a través de un analizador lógico, se midió el tiempo entre los cambios de estado de ambos pines. De esta forma, fue posible medir el tiempo que transcurrió entre que se obtiene una medición de la variable, hasta que es transmitida. El resultado de una de estas mediciones puede apreciarse en la figura \ref{fig:tiempo-envio}. El tiempo promedio, luego de tomar diez mediciones consecutivas, fue de 52,2 ms. De esta forma se cumple con el requisito REQ-ADQ-006.
 
 \begin{figure}[htpb]
 \centering
@@ -243,7 +243,7 @@ Al finalizar estas pruebas, se verificó que el diseño y la implementación de 
 \label{tab:caso-aumentar}
 \end{table}
 
-\begin{table}[htpb]
+\begin{table}[t!]
 	\centering
 	\caption{Caso de uso: disminuir valor de alarma.}
 	\centering

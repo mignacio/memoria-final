@@ -2,11 +2,11 @@
 
 \label{Chapter3}
 
-En este capítulo se describen en detalle al sistema implementado, sus partes y su interacción entre ellas, incluidos los criterios adoptados durante el proceso de desarrollo. Luego, se explica qué sensores se utilizaron y su funcionamiento, qué componentes fueron utilizados para el circuito impreso. Y, finalmente, se describen el modo de operación y el proceso de desarrollo del software utilizado en la parte adquisidora y la interfaz gráfica.
+En este capítulo se describen en detalle el sistema implementado, sus partes y la interacción entre ellas, incluidos los criterios adoptados durante el proceso de desarrollo. Luego, se explica qué sensores se utilizaron y su funcionamiento, qué componentes fueron utilizados para el circuito impreso. Y, finalmente, se describen el modo de operación y el proceso de desarrollo del software utilizado en la parte adquisidora y la interfaz gráfica.
 
 \section{Desarrollo del circuito impreso} \label{circuito}
 
-Para el prototipo se desarrolló un circuito impreso, diseñado con conectores en una disposición específica para montarse sobre una EDU-CIAA-NXP y acceder a sus señales. Este tipo de circuitos son conocidos como "ponchos" \cite{poncho}. El diseño se realizó con la herramienta de diseño asistido por computadora, KiCAD. El circuito cumple con las funciones de alimentación, digitalización de las señales de los sensores y comunicación con el módulo \textit{Bluetooth}. En la figura \ref{fig:circuito-3d} se puede observar un renderizado del circuito finalizado. 
+Para el prototipo se desarrolló un circuito impreso, diseñado con conectores en una disposición específica para montarse sobre una EDU-CIAA-NXP y acceder a sus señales. Este tipo de circuitos son conocidos como "ponchos" \cite{poncho}. El diseño se realizó con la herramienta de diseño asistido por computadora, KiCAD. El circuito cumple con las funciones de alimentación, digitalización de señales provenientes de sensores y comunicación con el módulo \textit{Bluetooth}. En la figura \ref{fig:circuito-3d} se puede observar un renderizado del circuito finalizado. 
 
 \begin{figure}[htpb]
 \centering
@@ -23,7 +23,7 @@ Las variables analógicas son generadas por los sensores lambda, presión de ace
 \subsection{Presión de aceite}
 
 En la figura \ref{fig:circuito-presion}, se aprecia el circuito amplificador de presión de aceite, y está compuesto por dos etapas. La primera es un amplificador no inversor de ganancia unitaria. Su entrada es la tensión del divisor resistivo formado por R9 y el sensor de presión, y su salida se conecta a la segunda etapa, que es otro amplificador no inversor de ganancia 2 V/V.
-Cuando la presión de aceite es 0 psi, la resistencia del sensor será de 7 Ohm, y la tensión de salida del circuito será 0,208 V. Si la presión de aceite es de 120 psi, la resistencia del sensor será de 135 Ohm y la tensión de salida del circuito será de 2,905 V. Cada cuenta del conversor analógico digital es de 32 mV y con estos datos se puede obtener la función transferencia del circuito:
+Cuando la presión de aceite es 0 psi, la resistencia del sensor será de 7 Ohm, y la tensión de salida del circuito será 0,208 V. Si la presión de aceite es de 120 psi, la resistencia del sensor será de 135 Ohm y la tensión de salida del circuito será de 2,905 V. Cada cuenta del conversor analógico digital es de 32 mV y con estos datos se obtiene la función transferencia del circuito:
 
 \[ Cuentas = \frac{421}{60} * PSI + 65\]
 
@@ -31,7 +31,7 @@ O en su forma inversa:
 
 \[ PSI = \frac{60}{421} * Cuentas - \frac{3900}{421} \]
 
-De estas dos funciones de transferencia se obtiene que, la resolución del circuito, es de 0,14 psi y el valor de presión máximo es de 136,53 psi .De esta forma se cumple el requisito REQ-ADQ-005.
+De estas dos funciones de transferencia se puede concluir que, la resolución del circuito, es de 0,14 psi y el valor de presión máximo es de 136,53 psi .De esta forma se cumple el requisito REQ-ADQ-005.
 
 \begin{figure}[htpb]
 \centering
@@ -42,7 +42,7 @@ De estas dos funciones de transferencia se obtiene que, la resolución del circu
 \break
 \subsection{Factor Lambda}
 
-La señal de salida del LM9044 tiene un rango de 0 a 5 V por lo que debe ser reducida a 3,3 V para ser leída por el ADC de la EDU-CIAA. Es por esto que la salida del integrado es conectada a una etapa seguidora de tensión y luego es atenuada por un divisor resistivo por un factor de 0,6. El circuito está diagramado en la figura \ref{fig:circuito-o2}. Con esta atenuación, para factores lambda de 0,8, 1 y 2, se obtiene una señal de salida de 2,16 V, 1,215 V y 0 V. Con estos valores se cumple con el rango requerido por REQ-ADQ-004.
+La señal de salida del LM9044 tiene un rango de 0 a 5 V, por lo que debe ser reducida a 3,3 V para ser leída por el ADC de la EDU-CIAA. Es por esto que la salida del integrado es conectada a una etapa seguidora de tensión y luego es atenuada por un divisor resistivo por un factor de 0,6. El circuito está diagramado en la figura \ref{fig:circuito-o2}. Con esta atenuación, para factores lambda de 0,8; 1 y 2, se obtiene una señal de salida de 2,16 V, 1,215 V y 0 V. Con estos valores se cumple con el rango requerido por REQ-ADQ-004.
 
 \begin{figure}[htpb]
 \centering
@@ -56,7 +56,7 @@ La señal de salida del LM9044 tiene un rango de 0 a 5 V por lo que debe ser red
 La medición de la tensión de batería no es un requisito del proyecto. Sin embargo, durante el desarrollo del circuito, surgió la posibilidad de incluir esta medición dado que la información resultante sería de gran utilidad a la hora de evaluar el funcionamiento del dispositivo.
 Las baterías de plomo y ácido tienen una tensión nominal de 12 V, a circuito abierto su tensión entre bornes es de 14,7 V y cuando están completamente descargadas su tensión es de 10,5 V.
 
-La batería alimenta a todo el circuito. Su tensión es disminuida a 5 V por un regulador de voltaje LM7805 para alimentar a todos los circuitos integrados que requieren de esa tensión de operación. Como los bloques de adaptación de señales analógicas, el amplificador de sonda lambda y la EDU-CIAA misma. Luego, la salida del regulador interno de la EDU-CIAA de 3,3V se emplea como fuente de alimentación de los demás, tales como los circuitos encargados de la lectura de las termocuplas y la interfaz para el sensor de R.P.M.
+La batería alimenta a todo el circuito. Su tensión es disminuida a 5 V por un regulador de voltaje LM7805 para alimentar a todos los circuitos integrados que requieren de dicha tensión de operación. Como los bloques de adaptación de señales analógicas, el amplificador de sonda lambda y la EDU-CIAA-NXP. Luego, la salida del regulador interno de la EDU-CIAA-NXP de 3,3V se emplea como fuente de alimentación de los demás, tales como los circuitos encargados de la lectura de las termocuplas y la interfaz para el sensor de R.P.M.
 
 Para leer la tensión de la batería a través del ADC de la EDU-CIAA, esta tiene que ser reducida a un valor máximo de 3,3 V. Esto se logró con un divisor resistivo y a su salida un amplificador de ganancia 1 V/V, como se puede observar en la figura \ref{fig:circuito-bat} . La función del amplificador es para que la impedancia del ADC no afecte a la tensión de salida del divisor resistivo.
 
@@ -73,11 +73,11 @@ Con los valores de resistencia seleccionados, una tensión de batería de 16,2 V
 
 \section{Desarrollo del firmware}
 
-El firmware desarrollado para la parte adquisidora se escribió en el lenguaje de programación C y está implementado sobre FreeRTOS. El empleo de FreeRTOS como un sistema operativo de tiempo real determinista, brinda beneficios significativos al trabajar con sensores. Proporciona una plataforma sólida y confiable para la adquisición y procesamiento de datos en tiempo real. La arquitectura adoptada para el desarrollo del firmware es la de "Segmentación de proceso". En este enfoque, los procesos productores corresponden a las tareas encargadas de digitalizar los sensores. El proceso buffer se encuentra implementado a través de una cola. Mientras, que el proceso consumidor consiste en la tarea de verificar la disponibilidad de mensajes en dicha cola. Estos se envían a través del puerto serie hacía el módulo \textit{bluetooth}.
+El firmware correspondiente a la parte adquisidora se escribió en el lenguaje de programación C y está implementado sobre el sistema operativo de tiempo real. El empleo de un sistema operativo de tiempo real determinista, brinda beneficios significativos al trabajar con sensores. Proporciona una plataforma sólida y confiable para la adquisición y procesamiento de datos en tiempo real. La arquitectura adoptada para el desarrollo del firmware es la "Segmentación de proceso". En este enfoque, los procesos productores corresponden a las tareas encargadas de digitalizar los sensores. El proceso buffer se encuentra implementado a través de una cola. Mientras, que el proceso consumidor consiste en la tarea de verificar la disponibilidad de mensajes en dicha cola. Estos se envían a través del puerto serie hacía el módulo \textit{bluetooth}.
 
 En total, el firmware tiene que digitalizar las señales de siete sensores, tres termocuplas, sonda lambda, presión de aceite, tensión de batería y el sensor de R.P.M. Para evitar excesivos cambios de contexto por el sistema operativo, se agruparon estas funciones en tres tareas. Una tarea para digitalizar los tres sensores de temperatura llamada \textit{temp-task}, otra para digitalizar los sensores analógicos llamada \textit{analog-task} y la última tarea llamada \textit{rpm-task} digitaliza la señal del sensor de R.P.M. El funcionamiento general del firmware está representado por el diagrama de bloques, como se puede apreciar en la figura \ref{fig:diagrama-firmware}.
 
-El principio de funcionamiento de los procesos productores es similar para las tres tareas. En el orden de ejecución está primera la rutina de inicialización del sensor, que se ejecuta por una única vez en toda la operación del programa. Seguido de ella se ejecuta la rutina de adquisición, que convierte al dato adquirido en una variable física para luego almacenarla en la cola. Y por último, la tarea entra en modo de espera por un tiempo igual al período de muestreo propio del grupo de sensores. Finalizado este tiempo, el ciclo se repite, pero esta vez comenzando por el segundo paso. Dicho proceso está diagramado en la figura \ref{fig:flujo-productor}.
+El principio de funcionamiento de los procesos productores es similar para las tres tareas. En el orden de ejecución está primera la rutina de inicialización del sensor, que se ejecuta por una única vez en toda la operación del programa. Seguido de ella se ejecuta la rutina de adquisición, que convierte el dato adquirido a una variable física para luego almacenarla en la cola. Y por último, la tarea entra en modo de espera por un tiempo igual al período de muestreo propio del grupo de sensores. Finalizado este tiempo, el ciclo se repite, pero esta vez comienza por el segundo paso. Dicho proceso está diagramado en la figura \ref{fig:flujo-productor}.
 
 \begin{figure}[htpb]
 \centering
@@ -97,13 +97,13 @@ El principio de funcionamiento de los procesos productores es similar para las t
 
 \subsection{Tarea medición de temperatura}
 
-Se desarrolló un módulo de software para lograr la comunicación entre la EDU-CIAA y el integrado MAX31855. Este integrado digitaliza la señal de termocuplas tipo K en un rango entre -200 \degree C y 700 \degree C con una resolución de 0,25 \degree C. Tiene una interfaz SPI de solo lectura, y una velocidad máxima de muestreo de 1 kHz. Además de informar la lectura de temperatura, también comunica códigos de error si la termocupla esta desconectada, o en cortocircuito con la alimentación o masa \cite{MAX31855}. 
+Se desarrolló un módulo de software para lograr la comunicación entre la EDU-CIAA y el integrado MAX31855. Este dispositivo digitaliza la señal de termocuplas tipo K en un rango entre -200 \degree C y 700 \degree C con una resolución de 0,25 \degree C. Tiene una interfaz SPI de solo lectura, y una velocidad máxima de muestreo de 1 kHz. Además de informar la lectura de temperatura, comunica códigos de error si la termocupla esta desconectada, o en cortocircuito con la alimentación o masa \cite{MAX31855}. 
 
 La rutina de medición de temperatura, llama a la función de lectura por SPI para cada uno de los tres conversores. Almacena la información en memoria, y luego convierte los datos adquiridos en valores en grados Celsius. Al finalizar estas operaciones, la tarea espera durante un segundo, para respetar el tiempo de muestreo definido, y permitir que otros procesos tomen la prioridad de ejecución. De esta forma se cumplen los requisitos REQ-ADQ-001 y REQ-ADQ-002.
 
 \subsection{Tareas de medición de sensores analógicos}
 
-Para la rutina de conversión de las señales provenientes de los sensores analógicos, se utilizaron \textit{lookup tables} para evitar realizar cálculos matemáticos, que pueden ser costosos en términos de tiempo de ejecución. Especialmente cuando el sensor no responde a una función lineal, lo que podría resultar en cálculos complejos. Como es el caso para la sonda lambda, su función transferencia de factor lambda vs tensión del sensor, está representada en la figura \ref{fig:funcion-lambda}.
+Para la rutina de conversión de las señales provenientes de los sensores analógicos, se utilizaron \textit{lookup tables} para evitar cálculos matemáticos, que pueden ser costosos en términos de tiempo de ejecución. Especialmente cuando el sensor no responde a una función lineal, lo que podría resultar en cálculos complejos. Como es el caso para la sonda lambda, su función transferencia de factor lambda vs tensión del sensor, está representada en la figura \ref{fig:funcion-lambda}.
 
 \begin{figure}[htpb]
 \centering
@@ -119,19 +119,19 @@ Para la medición de R.P.M. se utilizó el periférico \textit{Timer}, para cont
 
 \subsection{Tarea de transmisión de datos}
 
-La tarea \textit{bluetooth-task} se encarga de convertir el tipo de dato \textit{measurement} en un arreglo de caracteres, a través del puerto serie, hacía el módulo \textit{bluetooth} \textit{HM-10}. Esto se realiza solo si existen elementos en la cola que no han sido enviados.
+La tarea \textit{bluetooth-task} se encarga de convertir el tipo de dato \textit{measurement} en un \textit{String}, a través del puerto serie, hacía el módulo \textit{bluetooth} \textit{HM-10}. Esto se realiza solo si existen elementos en la cola que no han sido enviados.
 
 El tipo \textit{measurement} es una estructura de cinco elementos:
 
 \begin{itemize}
-\item{\textit{ticks}:} variable de tipo \textit{TickType} definido por FreeRTOS, representa la cantidad de tiempo transcurrida de iniciado el programa en milisegundos.
+\item{\textit{ticks}:} variable de tipo \textit{TickType} definido por FreeRTOS, representa la cantidad de tiempo transcurrido desde el inicio de la ejecución del programa en milisegundos.
 \item{\textit{value}:} valor de la medición representado como número entero.
 \item{\textit{decimal pos}:} posición de la coma decimal.
 \item{\textit{name}:} \textit{String} de 4 caracteres de largo que almacena el nombre del sensor.
 \item{\textit{fault code}:} número sin signo de 8 bits que puede almacenar códigos de error, solo sí es soportado por el sensor.
 \end{itemize}
 
-Para convertir este tipo de dato a \textit{String} y pueda ser comprendido por el software receptor de datos, se utilizaron los caracteres especiales de la tabla ASCII, \textit{Start of text}, \textit{End of text} y \textit{Group separator}. Que están en las posiciones 2, 3 y 19, de dicha tabla ASCII respectivamente. El caracter \textit{Group separator} sirve para indicar la separación entre dos elementos de la estructura. Los caracteres \textit{Start of text} y \textit{End of text} indican cuando inicia y termina una medición. La estructura convertida a tipo \textit{String} puede verse representada en la figura \ref{fig:measurement-string}. El empleo de caracteres especiales requiere enviar una mínima cantidad de \textit{bytes} extra por cada paquete, pero permite que los campos tengan longitudes flexibles y puedan ser diferenciados de forma sencilla. Para que un paquete sea decodificado por la parte receptora, sólo es necesario respetar el orden en el que se envían los campos.
+Para convertir este tipo de dato a \textit{String} y pueda ser comprendido por el software receptor de datos, se utilizaron los caracteres especiales de la tabla ASCII, \textit{Start of text}, \textit{End of text} y \textit{Group separator}. Que están en las posiciones 2, 3 y 19 de dicha tabla ASCII respectivamente. El caracter \textit{Group separator} sirve para indicar la separación entre dos elementos de la estructura. Los caracteres \textit{Start of text} y \textit{End of text} indican cuando inicia y termina una medición. La estructura convertida a tipo \textit{String} puede verse representada en la figura \ref{fig:measurement-string}. El empleo de caracteres especiales requiere enviar una mínima cantidad de \textit{bytes} extra por cada paquete, pero permite que los campos tengan longitudes flexibles y puedan ser diferenciados de forma sencilla. Para que un paquete sea decodificado por la parte receptora, sólo es necesario respetar el orden en el que se envían los campos.
 
 \begin{figure}[htpb]
 \centering
@@ -146,9 +146,9 @@ Para convertir este tipo de dato a \textit{String} y pueda ser comprendido por e
 Se eligió Python 3.7 como lenguaje de programación para desarrollar el software de la interfaz gráfica. Principalmente porque los scripts desarrollados en Python pueden correr en una gran variedad de dispositivos y en distintos sistemas operativos. Se utilizó el framework gráfico multi-plataforma \textit{Kivy} para la interfaz gráfica en sí. La librería \textit{Matplotlib} para dibujar las gráficas de los sensores. Y a la librería \textit{Bleak} para resolver la comunicación \textit{Bluetooth} entre las partes del dispositivo. En las figuras \ref{fig:gui} y \ref{fig:gui-config} se puede apreciar el resultado final de la interfaz gráfica.
 
 El principal desafío al desarrollar la interfaz gráfica fue la decodificación de la información recibida por \textit{Bluetooth}. 
-El problema radica en que los datos que son recibidos por el software de la interfaz gráfica, llegan en paquetes de logintud variables. Estos no necesariamente encapsula a un único \textit{measurement} convertido a String. Por esto, se implementó una máquina de estados que al recibir un paquete de datos, busca los caracteres \textit{Start of text} y \textit{End of text}. Al recibir un \textit{Start of text}, la máquina de estados concatena los datos recibidos hasta que encuentra un \textit{End of text} que indica el final de un \textit{measurement}. Una vez que se recibió un \textit{measurement} completo, es almacenado en una \textit{dataclass} de Python que contiene los elementos: \textit{ticks}, \textit{value}, \textit{decimal pos}, \textit{name} y \textit{fault code}. Esta clase es equivalente a la estructura utilizada en el firmware de la parte adquisidora.
+El problema radicó en que los datos que son recibidos por el software de la interfaz gráfica, llegan en paquetes de longitud variables. Estos no necesariamente encapsulan a un único \textit{measurement} convertido a String. Por esto, se implementó una máquina de estados que al recibir un paquete de datos, busca los caracteres \textit{Start of text} y \textit{End of text}. Al recibir un \textit{Start of text}, la máquina de estados concatena los datos que recibe hasta que encuentra un \textit{End of text} que indica el final de un \textit{measurement}. Una vez que se recibió un \textit{measurement} completo, se almacena en una \textit{dataclass} de Python que contiene los elementos: \textit{ticks}, \textit{value}, \textit{decimal pos}, \textit{name} y \textit{fault code}. Esta clase es equivalente a la estructura utilizada en el firmware de la parte adquisidora.
 
-Nuevamente se implementó la arquitectura "Segmentación de proceso". En este caso, el proceso productor es una tarea que resuelve la recepción de datos por \textit{Bluetooth}, los decodifica a través de dicha máquina de estados, y almacena a cada tipo de medición en una cola FIFO. Otra tarea asincrónica actúa como proceso consumidor, y dibuja en pantalla la información recibida en sus gráficas correspondientes. Además, esta tarea responde a las acciones del usuario.
+Nuevamente se implementó la arquitectura "Segmentación de proceso". En este caso, el proceso productor es una tarea que resuelve la recepción de datos por \textit{Bluetooth}, los decodifica a través de dicha máquina de estados, y almacena a cada tipo de medición en una cola FIFO. Otra tarea asincrónica actúa como proceso consumidor, y dibuja en pantalla la información que recibe en sus gráficas correspondientes. Además, esta tarea responde a las acciones del usuario.
 
 \begin{figure}[htpb]
 \centering
