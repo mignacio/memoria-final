@@ -8,7 +8,7 @@ En este capítulo se describen en detalle el sistema implementado, sus partes y 
 
 Para el prototipo se desarrolló un circuito impreso, diseñado con conectores en una disposición específica para montarse sobre una EDU-CIAA-NXP y acceder a sus señales. Este tipo de circuitos son conocidos como "ponchos" \cite{poncho}. El diseño se realizó con la herramienta de diseño asistido por computadora, KiCAD. El circuito cumple con las funciones de alimentación, digitalización de señales provenientes de sensores y comunicación con el módulo \textit{Bluetooth}. En la figura \ref{fig:circuito-3d} se puede observar un renderizado del circuito finalizado. 
 
-\begin{figure}[htpb]
+\begin{figure}[t]
 \centering
 \includegraphics[width=.8\textwidth]{./Figures/circuito-3d.png}
 \caption{Renderizado 3D del circuito finalizado.}
@@ -19,6 +19,8 @@ Para el prototipo se desarrolló un circuito impreso, diseñado con conectores e
 \subsection{Circuito de medición de batería, oxígeno y presión de aceite}
 
 Las variables analógicas son generadas por los sensores lambda, presión de aceite y la tensión de la batería. Para digitalizar estas señales se utilizó el conversor analógico digital de la ECU-CIAA-NXP, con sus tres canales independientes. Para este propósito, se desarrollaron tres circuitos amplificadores con el fin de ajustar los niveles de tensión de las señales generadas por los sensores, y mantenerlos en el rango entre 0V y 3,3V. Y así emplear la excursión total del conversor analógico digital, que es de 10 bits. Para los circuitos adaptadores de señales se utilizó el amplificador operacional LM358. Principalmente por su capacidad de poder tener una salida de 0 V cuando se lo alimenta con una fuente simple \cite{lm358}. Su salida puede llegar a 1,5 V por debajo de su tensión de alimentación. Por lo tanto, al alimentarlo con una fuente simple de 5V su tensión de salida puede variar entre 0 V y 3.5 V, niveles de tensión compatibles con la EDU-CIAA.
+
+\break
 
 \subsection{Presión de aceite}
 
@@ -42,7 +44,7 @@ De estas dos funciones de transferencia se puede concluir que, la resolución de
 \break
 \subsection{Factor Lambda}
 
-La señal de salida del LM9044 tiene un rango de 0 a 5 V, por lo que debe ser reducida a 3,3 V para ser leída por el ADC de la EDU-CIAA. Es por esto que la salida del integrado es conectada a una etapa seguidora de tensión y luego es atenuada por un divisor resistivo por un factor de 0,6. El circuito está diagramado en la figura \ref{fig:circuito-o2}. Con esta atenuación, para factores lambda de 0,8; 1 y 2, se obtiene una señal de salida de 2,16 V, 1,215 V y 0 V. Con estos valores se cumple con el rango requerido por REQ-ADQ-004.
+La señal de salida del LM9044 puede variar en un rango de 0 a 5 V, por lo que debe ser reducida a 3,3 V para ser leída por el ADC de la EDU-CIAA. Es por esto que la salida del integrado es conectada a una etapa seguidora de tensión y luego es atenuada por un divisor resistivo por un factor de 0,6. El circuito está diagramado en la figura \ref{fig:circuito-o2}. Con esta atenuación, para factores lambda de 0,8; 1 y 2 se obtiene una señal de salida de 2,16 V, 1,215 V y 0 V. Con estos valores se cumple con el rango requerido por REQ-ADQ-004.
 
 \begin{figure}[htpb]
 \centering
@@ -56,7 +58,7 @@ La señal de salida del LM9044 tiene un rango de 0 a 5 V, por lo que debe ser re
 La medición de la tensión de batería no es un requisito del proyecto. Sin embargo, durante el desarrollo del circuito, surgió la posibilidad de incluir esta medición dado que la información resultante sería de gran utilidad a la hora de evaluar el funcionamiento del dispositivo.
 Las baterías de plomo y ácido tienen una tensión nominal de 12 V, a circuito abierto su tensión entre bornes es de 14,7 V y cuando están completamente descargadas su tensión es de 10,5 V.
 
-La batería alimenta a todo el circuito. Su tensión es disminuida a 5 V por un regulador de voltaje LM7805 para alimentar a todos los circuitos integrados que requieren de dicha tensión de operación. Como los bloques de adaptación de señales analógicas, el amplificador de sonda lambda y la EDU-CIAA-NXP. Luego, la salida del regulador interno de la EDU-CIAA-NXP de 3,3V se emplea como fuente de alimentación de los demás, tales como los circuitos encargados de la lectura de las termocuplas y la interfaz para el sensor de R.P.M.
+La batería alimenta a todo el circuito. Su tensión es disminuida a 5 V por un regulador de voltaje LM7805 para alimentar a todos los circuitos integrados que requieren de dicha tensión de operación. Como los bloques de adaptación de señales analógicas, el amplificador de sonda lambda y la EDU-CIAA-NXP. Luego, la salida del regulador interno de la placa de desarrollo de 3,3V se emplea como fuente de alimentación de los demás, tales como los circuitos encargados de la lectura de las termocuplas y la interfaz para el sensor de R.P.M.
 
 Para leer la tensión de la batería a través del ADC de la EDU-CIAA, esta tiene que ser reducida a un valor máximo de 3,3 V. Esto se logró con un divisor resistivo y a su salida un amplificador de ganancia 1 V/V, como se puede observar en la figura \ref{fig:circuito-bat} . La función del amplificador es para que la impedancia del ADC no afecte a la tensión de salida del divisor resistivo.
 
@@ -119,7 +121,7 @@ Para la medición de R.P.M. se utilizó el periférico \textit{Timer}, para cont
 
 \subsection{Tarea de transmisión de datos}
 
-La tarea \textit{bluetooth-task} se encarga de convertir el tipo de dato \textit{measurement} en un \textit{String}, a través del puerto serie, hacía el módulo \textit{bluetooth} \textit{HM-10}. Esto se realiza solo si existen elementos en la cola que no han sido enviados.
+La tarea \textit{bluetooth-task} se encarga de convertir el tipo de dato \textit{measurement} en un \textit{String}, a través del puerto serie, hacía el módulo \textit{bluetooth} \textit{HM-10}. Esto se realiza solo sí existen elementos en la cola que no han sido enviados.
 
 El tipo \textit{measurement} es una estructura de cinco elementos:
 
@@ -143,10 +145,10 @@ Para convertir este tipo de dato a \textit{String} y pueda ser comprendido por e
 
 \section{Desarrollo de la interfaz gráfica}
 
-Se eligió Python 3.7 como lenguaje de programación para desarrollar el software de la interfaz gráfica. Principalmente porque los scripts desarrollados en Python pueden correr en una gran variedad de dispositivos y en distintos sistemas operativos. Se utilizó el framework gráfico multi-plataforma \textit{Kivy} para la interfaz gráfica en sí. La librería \textit{Matplotlib} para dibujar las gráficas de los sensores. Y a la librería \textit{Bleak} para resolver la comunicación \textit{Bluetooth} entre las partes del dispositivo. En las figuras \ref{fig:gui} y \ref{fig:gui-config} se puede apreciar el resultado final de la interfaz gráfica.
+Se eligió Python 3.7 como lenguaje de programación para desarrollar el software de la interfaz gráfica. Principalmente porque los scripts desarrollados en Python pueden correr en una gran variedad de dispositivos y en distintos sistemas operativos. Se utilizó el framework gráfico multi-plataforma \textit{Kivy} para la interfaz gráfica en sí. La biblioteca \textit{Matplotlib} para dibujar las gráficas de los sensores. Y a la biblioteca \textit{Bleak} para resolver la comunicación \textit{Bluetooth} entre las partes del dispositivo. En las figuras \ref{fig:gui} y \ref{fig:gui-config} se puede apreciar el resultado final de la interfaz gráfica.
 
 El principal desafío al desarrollar la interfaz gráfica fue la decodificación de la información recibida por \textit{Bluetooth}. 
-El problema radicó en que los datos que son recibidos por el software de la interfaz gráfica, llegan en paquetes de longitud variables. Estos no necesariamente encapsulan a un único \textit{measurement} convertido a String. Por esto, se implementó una máquina de estados que al recibir un paquete de datos, busca los caracteres \textit{Start of text} y \textit{End of text}. Al recibir un \textit{Start of text}, la máquina de estados concatena los datos que recibe hasta que encuentra un \textit{End of text} que indica el final de un \textit{measurement}. Una vez que se recibió un \textit{measurement} completo, se almacena en una \textit{dataclass} de Python que contiene los elementos: \textit{ticks}, \textit{value}, \textit{decimal pos}, \textit{name} y \textit{fault code}. Esta clase es equivalente a la estructura utilizada en el firmware de la parte adquisidora.
+El problema radicó en que los datos que son recibidos por el software de la interfaz gráfica, llegan en paquetes de longitud variables. Estos no necesariamente encapsulan a un único \textit{measurement} convertido a String. Por esto, se implementó una máquina de estados que al recibir un paquete de datos, busca los caracteres \textit{Start of text} y \textit{End of text}. Al recibir un \textit{Start of text}, la máquina de estados concatena los datos que recibe hasta que encuentra un \textit{End of text} que indica el final de un \textit{measurement}. Una vez que se recibe un \textit{measurement} completo, se almacena en una \textit{dataclass} de Python que contiene los elementos: \textit{ticks}, \textit{value}, \textit{decimal pos}, \textit{name} y \textit{fault code}. Esta clase es equivalente a la estructura utilizada en el firmware de la parte adquisidora.
 
 Nuevamente se implementó la arquitectura "Segmentación de proceso". En este caso, el proceso productor es una tarea que resuelve la recepción de datos por \textit{Bluetooth}, los decodifica a través de dicha máquina de estados, y almacena a cada tipo de medición en una cola FIFO. Otra tarea asincrónica actúa como proceso consumidor, y dibuja en pantalla la información que recibe en sus gráficas correspondientes. Además, esta tarea responde a las acciones del usuario.
 

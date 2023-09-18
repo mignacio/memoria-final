@@ -53,16 +53,9 @@ El resultado con menor diferencia al valor contrastado fue para la termocupla de
 
 \subsection{Ensayos de medición de velocidad de giro}
 
-Para este ensayo se desarrolló, con una placa de desarrollo Arduino "MEGA", un simulador de una señal proveniente de un sensor de reluctancia variable. El objetivo de este programa es generar una señal cuadrada periódica, de frecuencia seleccionable, y de ciclo de trabajo positivo de 10\%.
+Para este ensayo, se creó firmware, mediante el empleo de una placa de desarrollo Arduino "MEGA", que genera una señal que simula ser originda por un sensor de reluctancia variable. El objetivo de este programa es generar una señal cuadrada periódica, de frecuencia seleccionable, y de ciclo de trabajo positivo de 10\%.
 
 Para verificar la medición del sistema, se realizaron ocho mediciones de la señal simulada a distintos valores de R.P.M. Para contrastar los resultados obtenidos se utilizó un osciloscopio digital como instrumento de medición de calidad. Dichos resultados están plasmados en la tabla \ref{tab:ensayo-rpm}. En la figura \ref{fig:foto-rpm} se aprecia ambas placas conectadas entre si, y la forma de onda de la señal generada (en amarillo), y la señal producida por el MAX9924 (en azul) en la pantalla del osciloscopio.
-
-\begin{figure}[htpb]
-\centering
-\includegraphics[width=.8\textwidth]{./Figures/foto-rpm.jpg}
-\caption{Foto del sistema en funcionamiento conectado a la placa Arduino ``MEGA`` utilizada como simulador de señal de R.P.M.}
-\label{fig:foto-rpm}
-\end{figure}
 
 \begin{table}[htpb]
 	\centering
@@ -86,9 +79,16 @@ Para verificar la medición del sistema, se realizaron ocho mediciones de la se�
 	\label{tab:ensayo-rpm}
 \end{table}
 
+\break
+
 Como se puede observar de los resultados del ensayo. La diferencia máxima entre el valor medido y el contrastado fue de 133 R.P.M., con esto entonces se cumple con el requisito REQ-ADQ-003.
 
-\break
+\begin{figure}[t]
+\centering
+\includegraphics[width=.8\textwidth]{./Figures/foto-rpm.jpg}
+\caption{Foto del sistema en funcionamiento conectado a la placa Arduino ``MEGA`` utilizada como simulador de señal de R.P.M.}
+\label{fig:foto-rpm}
+\end{figure}
 
 \subsection{Ensayos de medición de presión de aceite}
 
@@ -98,7 +98,7 @@ En el primero se simuló al sensor de presión con un potenciómetro de valor si
 
 \begin{table}[htpb]
 	\centering
-	\caption{Resultados de ensayo medición de presión de aceite.}
+	\caption{Resultados del ensayo medición de presión de aceite.}
 	\centering
 	\begin{tabular}{c c c c}    
 		\toprule
@@ -118,7 +118,7 @@ Ante la falta de un dispositivo capaz de leer una sonda lamba para luego contras
 
 \begin{table}[htpb]
 	\centering
-	\caption{Resultados de ensayo medición de factor lambda.}
+	\caption{Resultados del ensayo medición de factor lambda.}
 	\centering
 	\begin{tabular}{c c c c}    
 		\toprule
@@ -163,7 +163,7 @@ En esta sección se describen los casos de uso y las pruebas realizadas para val
 
 Al finalizar estas pruebas, se verificó que el diseño y la implementación de la interfaz gráfica son adecuados para cumplir con sus requisitos. Sin embargo, se encontró que la pantalla utilizada era de un tamaño muy pequeño, y esto dificulta la lectura de las gráficas y la interacción con los botones a través de la interfaz táctil.
 
-\begin{table}[htpb]
+\begin{table}[h]
 	\centering
 	\caption{Caso de uso: conectarse a la parte adquisidora.}
 	\centering
@@ -183,7 +183,7 @@ Al finalizar estas pruebas, se verificó que el diseño y la implementación de 
 \label{tab:caso-conectar}
 \end{table}
 
-\begin{table}[htpb]
+\begin{table}[h]
 	\centering
 	\caption{Caso de uso: ocultar una variable de su gráfica.}
 	\centering
@@ -203,7 +203,7 @@ Al finalizar estas pruebas, se verificó que el diseño y la implementación de 
 \label{tab:caso-ocultar}
 \end{table}
 
-\begin{table}[htpb]
+\begin{table}[t]
 	\centering
 	\caption{Caso de uso: mostrar una variable oculta.}
 	\centering
@@ -223,7 +223,7 @@ Al finalizar estas pruebas, se verificó que el diseño y la implementación de 
 \label{tab:caso-mostrar}
 \end{table}
 
-\begin{table}[htpb]
+\begin{table}[t]
 	\centering
 	\caption{Caso de uso: aumentar valor de alarma.}
 	\centering
@@ -242,6 +242,11 @@ Al finalizar estas pruebas, se verificó que el diseño y la implementación de 
 	\end{tabular}
 \label{tab:caso-aumentar}
 \end{table}
+
+\makeatletter
+\setlength{\@fptop}{5pt}
+\makeatother
+
 
 \begin{table}[t!]
 	\centering
